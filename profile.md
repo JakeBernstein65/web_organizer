@@ -1,17 +1,20 @@
 #The Brogrammers
-"If you code it, they will come"
-
-
+> "If you code it, they will come"
 
 ![alt text](https://slack-files.com/files-tmb/T03GLK2JE-F03K41CR1-36c8fcc8e6/team-brogrammers-logo_360.png "Team Logo")
 
+
+
 ##Team Idea/Direction
 
-Our team is going tto focus on productivity for our webapp. 
+Our team is going to focus on productivity for our webapp. 
 Our goal is to create 
 a product that our user can intuitvely understand, customize to fit them 
 personally, and use to improve their life.
-##The Team
+
+---
+
+##The Bros
 
 ###Matthew Lydigsen
 I'm a Computer Science and Math double major. 
@@ -67,4 +70,5 @@ My interests lie in User Experience design. I want to create applications and to
 Previous CS Courses Taken: 187, 230, 197C, 197WP
 
 Non CS Classes: Honors Seminar 291A, Anthropology 105.
+
 
