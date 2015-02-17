@@ -2,7 +2,7 @@ var url  = require('url');
 var http = require('http');
 
 function usage() {
-  console.log('node client.js [text|json] [url]');
+  console.log('node client.js [text|json|csvUser|jsonUser] [url]');
   process.exit(1);
 }
 
@@ -19,7 +19,7 @@ function isURL(str) {
 function checkType(type) {
   if (!type) return undefined
   else if (type === 'text' ||
-	   type === 'json')
+	   type === 'json' || type === 'csv')
     return type;
 }
 
@@ -71,9 +71,30 @@ function jsonHandler(res) {
   });
 }
 
+//edit this
+function jsonUserHandler(res) {
+  receive(res, function (data) {
+    var jsonObj = JSON.parse(data);
+    console.log('received json User message: ' + jsonObj.msg);
+  });
+}
+
+//edit this
+function csvUserHandler(res) {
+  receive(res, function (data) {
+    var csvObj = JSON.parse(data);
+    for(i = 0; i < csvObj.addressBook.length; i++){
+    //csvObj.addressBook[i].fname
+    console.log('received csv User message: ' + csvObj.addressBook[i]);
+    }
+   }); 
+}
+
 var handlers = {
   text : textHandler,
-  json : jsonHandler
+  json : jsonHandler,
+  jsonUser : jsonUserHandler,
+  csvUser : csvUserHandler
 };
 
 var options = {

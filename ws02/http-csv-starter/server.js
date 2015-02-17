@@ -30,14 +30,29 @@ fs.readFile('people.csv', 'utf8', function (err,data) {
     return console.log(err);
   }
   console.log(data);
+  
+var lines = data.split("\n");
+var result = [];
+var headers = lines[0].split(",");
+ 
+for(var i = 1; i < lines.length; i++){
+	var obj = {};
+	var currentline=lines[i].split(",");
+ 
+	for(var j = 0; j < headers.length; j++){
+		obj[headers[j]] = currentline[j];
+	  }
+}
+var addressBook = {};
+addressBook["addressBook"] = obj;
+  res.writeHead(200, { 'Content-Type' : 'text/json' });
+  res.write(JSON.stringify(addressBook));
+  res.end();
+
 });
 
 
-//  res.writeHead(200, { 'Content-Type' : 'text/csv' });
-// var data = { msg: 'hello, world' };
-//var csv = JSON.stringify(data);
-//res.write(csv);
-//res.end();
+
 }
 
 var handlers = {
