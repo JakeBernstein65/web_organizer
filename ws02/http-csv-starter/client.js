@@ -2,7 +2,7 @@ var url  = require('url');
 var http = require('http');
 
 function usage() {
-  console.log('node client.js [text|json|csvUser|jsonUser] [url]');
+  console.log('node client.js [text|json|csv|jsonUser] [url]');
   process.exit(1);
 }
 
@@ -19,7 +19,7 @@ function isURL(str) {
 function checkType(type) {
   if (!type) return undefined
   else if (type === 'text' ||
-	   type === 'json' || type === 'csv')
+	   type === 'json' || type === 'csv' || type === 'jsonUser')
     return type;
 }
 
@@ -71,21 +71,30 @@ function jsonHandler(res) {
   });
 }
 
-//edit this
 function jsonUserHandler(res) {
   receive(res, function (data) {
     var jsonObj = JSON.parse(data);
-    console.log('received json User message: ' + jsonObj.msg);
+    for(i = 0; i < jsonObj.addressBook.length; i++){
+    console.log('First Name: ' + jsonObj.addressBook[i].fname);
+    console.log('Last Name: ' + jsonObj.addressBook[i].lname);
+    console.log('User ID: ' + jsonObj.addressBook[i].uid);
+    console.log('Phone: ' + jsonObj.addressBook[i].phone);
+    console.log('Address: ' + jsonObj.addressBook[i].address + '\n');
+
+
+    }
   });
 }
 
-//edit this
 function csvUserHandler(res) {
   receive(res, function (data) {
     var csvObj = JSON.parse(data);
+    console.log('fname, lname, uid, phone, address') 
     for(i = 0; i < csvObj.addressBook.length; i++){
-    //csvObj.addressBook[i].fname
-    console.log('received csv User message: ' + csvObj.addressBook[i]);
+    //prints the csv file but won't print any of the consol log statements, prints received text info
+    console.log(csvObj.addressBook[i].fname + ', ' + csvObj.addressBook[i].lname + ', '
+    + csvObj.addressBook[i].uid + ', ' + csvObj.addressBook[i].phone + ', ' +
+    csvObj.addressBook[i].address);
     }
    }); 
 }
@@ -94,7 +103,7 @@ var handlers = {
   text : textHandler,
   json : jsonHandler,
   jsonUser : jsonUserHandler,
-  csvUser : csvUserHandler
+  csv : csvUserHandler
 };
 
 var options = {

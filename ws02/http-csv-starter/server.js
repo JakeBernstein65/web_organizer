@@ -25,29 +25,31 @@ function jsonHandler(req, res) {
 }
 
 function csvHandler(req, res) {
-fs.readFile('people.csv', 'utf8', function (err,data) {
+fs.readFile('people.csv', 'ascii', function (err,data) {
   if (err) {
     return console.log(err);
   }
-  console.log(data);
   
 var lines = data.split("\n");
 var result = [];
-var headers = lines[0].split(",");
- 
-for(var i = 1; i < lines.length; i++){
+var headers = lines[0].split(", ");
+var finalAddressBook = []; 
+for(var i = 1; i < lines.length-1; i++){
 	var obj = {};
-	var currentline=lines[i].split(",");
- 
+	var currentline=lines[i].split(", ");
+	
 	for(var j = 0; j < headers.length; j++){
+	    //console.log(currentline[j]);
 		obj[headers[j]] = currentline[j];
 	  }
+	  finalAddressBook[i-1] = obj;
+	  
 }
 var addressBook = {};
-addressBook["addressBook"] = obj;
-  res.writeHead(200, { 'Content-Type' : 'text/json' });
-  res.write(JSON.stringify(addressBook));
-  res.end();
+addressBook["addressBook"] = finalAddressBook;
+res.writeHead(200, { 'Content-Type' : 'text/json' });
+res.write(JSON.stringify(addressBook));
+res.end();
 
 });
 
