@@ -10,7 +10,7 @@
 <br />
 
 ## Meet the Bros
----
+
 #####Jake Bernstein
 - Courses:  Some past courses taken, cs 197u,  cs 220, cs 230, cs 240, cs 187, math 233, geo 101,  math 131, math 132
 - Role: Full stack developer, will be doing both back and front end work. Will be working a lot with Express and angular.js and Bootstrap, as well as some work with MongoDB and Node.js (created Timeline and helped create our application overiew and cost overiew)
@@ -36,7 +36,7 @@
 - Role: Will be working primarily with the back end. Will use mostly MongoDB, Node.js, as well as a bit of Express (Helped create the table of contents and the Problem statement)
 
 ## Problem Statement
----
+
 All of us have busy schedules. It’s hard enough to get good grades, but it becomes even harder when you are trying to balance school, family life, friends, and aspiring to be kickass brogrammers! 
 
 The only way to stay sane throughout all of this is to stay as organized as possible and to understand the value of time. There are countless organizational applications that already exist, but none of them have the right feel.  Trello, Wunderlist, Sunrise, Todoist,  and Calendars,  are all examples of  organizers that have  awesome features, but seem to be lacking in customization. 
@@ -44,7 +44,7 @@ The only way to stay sane throughout all of this is to stay as organized as poss
 Our team of super cool brogrammers found time in between trips to the gym and protein shakes to solve the problems we’ve seen with these organizers and come up with a better solution.  We are planning to implement our solution in the form of our own organizational app, Planit! (prospective url: http://www.plan.it).
 
 ## Outline
----
+
 Planit is a perfectly customizable organizer that makes every user feel like it was made specifically for them! Whether you are a busy stockbroker, a swamped college student, or a stay at home mom, Planit will be a perfect fit for you! 
 
 Planit gives you the options to make your methods of organizing as simple or complex as you like. We do this through modular planning! Every form of organization you could desire will be created into a module, where it can sync and run with other modules or run completely alone. Modules will consist of date trackers, reminders, grade calculators, and so much more. 
@@ -52,8 +52,6 @@ Planit gives you the options to make your methods of organizing as simple or com
 The only thing that limits the type of modules that can exist is your imagination. Take your organizer into your own hands, and use Planit!
 
 ## Preliminary Research
----
-...
 ...
 
 ## Timeline
@@ -99,7 +97,7 @@ The only thing that limits the type of modules that can exist is your imaginatio
 
 
 <br />
----
+
 ## Budget
 
 <table border align="center">
