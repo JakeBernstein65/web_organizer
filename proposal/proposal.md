@@ -51,8 +51,29 @@ Planit gives you the options to make your methods of organizing as simple or com
 
 The only thing that limits the type of modules that can exist is your imagination. Take your organizer into your own hands, and use Planit!
 
-## Preliminary Research
-...
+## Product Design
+
+Our product will be a fully customizable planner that allows you to make your 
+
+planner as simple or as complex as you want. On our homepage we will have the
+
+option add modules that represent whatever you want whether it is a class you
+
+are taking or an event you are planning. Inside that module we hope to make the
+
+module customizabe as well so that users can add things like a calendar or
+
+upcoming tasks that they need to complete. Inside every module we will give it
+
+a page that has more extensive details about the different tasks that you 
+
+need to complete such as what time of day it must be completeled, where an
+
+assignment may have to be uploaded, or specfic details about what needs to 
+
+be done for the task. Many of these details will be worked out in more specific
+
+details according to our timeline.  
 
 ## Timeline
 
