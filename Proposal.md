@@ -7,31 +7,31 @@
 
 ![alt text](http://hsto.org/getpro/habr/comment_images/149/047/4eb/1490474ebb013d073ecd9c05c76b46dc.png)
 
-
+<br />
 
 ## Meet the Bros
 ---
-*Jake Bernstein*
+#####Jake Bernstein
 - Courses:  Some past courses taken, cs 197u,  cs 220, cs 230, cs 240, cs 187, math 233, geo 101,  math 131, math 132
 - Role: Full stack developer, will be doing both back and front end work. Will be working a lot with Express and angular.js and Bootstrap, as well as some work with MongoDB and Node.js (created Timeline and helped create our application overiew and cost overiew)
 
-*Lucas Meira*
+#####Lucas Meira
 - Courses:  Some past courses taken, cs 197u, cs197c,  cs 220, cs 230, cs 240, cs 187, math 233, math 235, math 131, math 132
 - Role: Will be working primarily with the back end. Will use mostly MongoDB, Node.js, as well as a bit of Express (created table of contents and helped create cost analysis)
 
-*Matthew Lydigsen*
+#####Matthew Lydigsen
 - Courses:  Some past courses taken, cs 197u,  cs 220, cs 230, cs 240, cs 187, math 233, History 250
 - Role: Will be working primarily with the back end. Will use mostly MongoDB, Node.js, as well as a bit of Express (Helped create application overview and did preliminary research)
 
-*Michael Markman*
+#####Michael Markman
 - Courses:  Some past courses taken, cs 197u,  cs 220, cs 230, cs 240, cs 187, math 233,  math 131, math 132
 - Role: Full stack developer, will be doing both back and front end work. Will be working a lot with Express and angular.js and Bootstrap, as well as some work with MongoDB and Node.js (created Problem statement and helped to preliminary research)
 
-*Shaoxi Ma*
+#####Shaoxi Ma
 - Courses: Some past courses taken,  cs 220, cs 320, cs 240, cs 187, math 331,  psych 100
 - Role: Front End, will work primarily with creating the user interface and will use primarily Angular.js, Bootstrap, and some Node (Shaoxi helped do preliminary research and create the timeline)
 
-*Raymond Zhu*
+#####Raymond Zhu
 - Courses:  Some past courses taken, cs 220, cs 250, cs 187, math 235,  chem 111
 - Role: Will be working primarily with the back end. Will use mostly MongoDB, Node.js, as well as a bit of Express (Helped create the table of contents and the Problem statement)
 
@@ -53,11 +53,10 @@ The only thing that limits the type of modules that can exist is your imaginatio
 
 ## Preliminary Research
 ---
-
+...
 ...
 
 ## Timeline
----
 
 <table border align=center> 
   <tr>
@@ -102,8 +101,7 @@ The only thing that limits the type of modules that can exist is your imaginatio
 <br />
 ---
 ## Budget
----
-<br />
+
 <table border align="center">
 <thead>
 <td><strong>Domain Registry</strong></td>
