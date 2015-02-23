@@ -1,76 +1,64 @@
-# Team Brogrammers
+# **Team Brogrammers**
 
-> "*If you code it, they will come"*
+> *"If you code it, they will come"*
 
----
+<br />
 
 
 ![alt text](http://hsto.org/getpro/habr/comment_images/149/047/4eb/1490474ebb013d073ecd9c05c76b46dc.png)
 
+
+
+## Meet the Bros
+---
+*Jake Bernstein*
+- Courses:  Some past courses taken, cs 197u,  cs 220, cs 230, cs 240, cs 187, math 233, geo 101,  math 131, math 132
+- Role: Full stack developer, will be doing both back and front end work. Will be working a lot with Express and angular.js and Bootstrap, as well as some work with MongoDB and Node.js (created Timeline and helped create our application overiew and cost overiew)
+
+*Lucas Meira*
+- Courses:  Some past courses taken, cs 197u, cs197c,  cs 220, cs 230, cs 240, cs 187, math 233, math 235, math 131, math 132
+- Role: Will be working primarily with the back end. Will use mostly MongoDB, Node.js, as well as a bit of Express (created table of contents and helped create cost analysis)
+
+*Matthew Lydigsen*
+- Courses:  Some past courses taken, cs 197u,  cs 220, cs 230, cs 240, cs 187, math 233, History 250
+- Role: Will be working primarily with the back end. Will use mostly MongoDB, Node.js, as well as a bit of Express (Helped create application overview and did preliminary research)
+
+*Michael Markman*
+- Courses:  Some past courses taken, cs 197u,  cs 220, cs 230, cs 240, cs 187, math 233,  math 131, math 132
+- Role: Full stack developer, will be doing both back and front end work. Will be working a lot with Express and angular.js and Bootstrap, as well as some work with MongoDB and Node.js (created Problem statement and helped to preliminary research)
+
+*Shaoxi Ma*
+- Courses: Some past courses taken,  cs 220, cs 320, cs 240, cs 187, math 331,  psych 100
+- Role: Front End, will work primarily with creating the user interface and will use primarily Angular.js, Bootstrap, and some Node (Shaoxi helped do preliminary research and create the timeline)
+
+*Raymond Zhu*
+- Courses:  Some past courses taken, cs 220, cs 250, cs 187, math 235,  chem 111
+- Role: Will be working primarily with the back end. Will use mostly MongoDB, Node.js, as well as a bit of Express (Helped create the table of contents and the Problem statement)
+
+## Problem Statement
+---
+All of us have busy schedules. It’s hard enough to get good grades, but it becomes even harder when you are trying to balance school, family life, friends, and aspiring to be kickass brogrammers! 
+
+The only way to stay sane throughout all of this is to stay as organized as possible and to understand the value of time. There are countless organizational applications that already exist, but none of them have the right feel.  Trello, Wunderlist, Sunrise, Todoist,  and Calendars,  are all examples of  organizers that have  awesome features, but seem to be lacking in customization. 
+
+Our team of super cool brogrammers found time in between trips to the gym and protein shakes to solve the problems we’ve seen with these organizers and come up with a better solution.  We are planning to implement our solution in the form of our own organizational app, Planit! (prospective url: http://www.plan.it).
+
+## Outline
+---
+Planit is a perfectly customizable organizer that makes every user feel like it was made specifically for them! Whether you are a busy stockbroker, a swamped college student, or a stay at home mom, Planit will be a perfect fit for you! 
+
+Planit gives you the options to make your methods of organizing as simple or complex as you like. We do this through modular planning! Every form of organization you could desire will be created into a module, where it can sync and run with other modules or run completely alone. Modules will consist of date trackers, reminders, grade calculators, and so much more. 
+
+The only thing that limits the type of modules that can exist is your imagination. Take your organizer into your own hands, and use Planit!
+
+## Preliminary Research
 ---
 
-
-<body class="markdown haroopad">
-<h1 id="team-brogrammers"><a name="team-brogrammers" href="#team-brogrammers"></a>Team Brogrammers</h1><blockquote>
-<p>"<em>If you code it, they will come"</em></p>
-</blockquote><hr class="underscore"><p><img src="http://hsto.org/getpro/habr/comment_images/149/047/4eb/1490474ebb013d073ecd9c05c76b46dc.png" alt=""></p><hr class="underscore"><p class="toc" style="undefined"></p><ul>
-<li><ul>
-<li><span class="title">
-<a href="#meet-the-bros" title="Meet the Bros">Meet the Bros</a>
-</span>
-<!--span class="number">
-0
-</span-->
-</li>
-<li><span class="title">
-<a href="#problem-statement" title="Problem Statement">Problem Statement</a>
-</span>
-<!--span class="number">
-1
-</span-->
-</li>
-<li><span class="title">
-<a href="#outline" title="Outline">Outline</a>
-</span>
-<!--span class="number">
-2
-</span-->
-</li>
-<li><span class="title">
-<a href="#preliminary-research" title="Preliminary Research">Preliminary Research</a>
-</span>
-<!--span class="number">
-3
-</span-->
-</li>
-<li><span class="title">
-<a href="#timeline" title="Timeline">Timeline</a>
-</span>
-<!--span class="number">
-4
-</span-->
-</li>
-<li><span class="title">
-<a href="#budget" title="Budget">Budget</a>
-</span>
-<!--span class="number">
-5
-</span-->
-</li>
-</ul>
-</li>
-
-</ul>
-<p></p><h2 id="meet-the-bros"><a name="meet-the-bros" href="#meet-the-bros"></a>Meet the Bros</h2><p><em class="underline">Jake Bernstein</em></p><ul>
-<li>Courses:  Some past courses taken, cs 197u,  cs 220, cs 230, cs 240, cs 187, math 233, geo 101,  math 131, math 132</li><li>Role: Full stack developer, will be doing both back and front end work. Will be working a lot with Express and angular.js and Bootstrap, as well as some work with MongoDB and Node.js (created Timeline and helped create our application overiew and cost overiew)</li></ul><p><em class="underline">Lucas Meira</em></p><ul>
-<li>Courses:  Some past courses taken, cs 197u, cs197c,  cs 220, cs 230, cs 240, cs 187, math 233, math 235, math 131, math 132</li><li>Role: Will be working primarily with the back end. Will use mostly MongoDB, Node.js, as well as a bit of Express (created table of contents and helped create cost analysis)</li></ul><p><em class="underline">Matthew Lydigsen</em></p><ul>
-<li>Courses:  Some past courses taken, cs 197u,  cs 220, cs 230, cs 240, cs 187, math 233, History 250</li><li>Role: Will be working primarily with the back end. Will use mostly MongoDB, Node.js, as well as a bit of Express (Helped create application overview and did preliminary research)</li></ul><p><em class="underline">Michael Markman</em></p><ul>
-<li>Courses:  Some past courses taken, cs 197u,  cs 220, cs 230, cs 240, cs 187, math 233,  math 131, math 132</li><li>Role: Full stack developer, will be doing both back and front end work. Will be working a lot with Express and angular.js and Bootstrap, as well as some work with MongoDB and Node.js (created Problem statement and helped to preliminary research)</li></ul><p><em class="underline">Shaoxi Ma</em></p><ul>
-<li>Courses: Some past courses taken,  cs 220, cs 320, cs 240, cs 187, math 331,  psych 100</li><li>Role: Front End, will work primarily with creating the user interface and will use primarily Angular.js, Bootstrap, and some Node (Shaoxi helped do preliminary research and create the timeline)</li></ul><p><em class="underline">Raymond Zhu</em></p><ul>
-<li>Courses:  Some past courses taken, cs 220, cs 250, cs 187, math 235,  chem 111</li><li>Role: Will be working primarily with the back end. Will use mostly MongoDB, Node.js, as well as a bit of Express (Helped create the table of contents and the Problem statement)</li></ul><h2 id="problem-statement"><a name="problem-statement" href="#problem-statement"></a>Problem Statement</h2><p>All of us have busy schedules. It’s hard enough to get good grades, but it becomes even harder when you are trying to balance school, family life, friends, and aspiring to be kickass brogrammers! </p><p>The only way to stay sane throughout all of this is to stay as organized as possible and to understand the value of time. There are countless organizational applications that already exist, but none of them have the right feel.  Trello, Wunderlist, Sunrise, Todoist,  and Calendars,  are all examples of  organizers that have  awesome features, but seem to be lacking in customization. </p><p>Our team of super cool brogrammers found time in between trips to the gym and protein shakes to solve the problems we’ve seen with these organizers and come up with a better solution.  We are planning to implement our solution in the form of our own organizational app, Planit! (prospective url: <a href="http://www.plan.it">http://www.plan.it</a>).</p><h2 id="outline"><a name="outline" href="#outline"></a>Outline</h2><p>Planit is a perfectly customizable organizer that makes every user feel like it was made specifically for them! Whether you are a busy stockbroker, a swamped college student, or a stay at home mom, Planit will be a perfect fit for you! </p><p>Planit gives you the options to make your methods of organizing as simple or complex as you like. We do this through modular planning! Every form of organization you could desire will be created into a module, where it can sync and run with other modules or run completely alone. Modules will consist of date trackers, reminders, grade calculators, and so much more. </p><p>The only thing that limits the type of modules that can exist is your imagination. Take your organizer into your own hands, and use Planit!</p><h2 id="preliminary-research"><a name="preliminary-research" href="#preliminary-research"></a>Preliminary Research</h2><p>...</p>
+...
 
 ## Timeline
-
+---
+<br />
 <table border align=center> 
   <tr>
     <th>Date</th>
@@ -111,8 +99,11 @@
 </table>
 
 
+<br />
+---
 ## Budget
-
+---
+<br />
 <table border align="center">
 <thead>
 <td><strong>Domain Registry</strong></td>
