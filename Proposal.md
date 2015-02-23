@@ -10,7 +10,7 @@
 
 
 ## Meet the Bros
----
+
 *Jake Bernstein*
 - Courses:  Some past courses taken, cs 197u,  cs 220, cs 230, cs 240, cs 187, math 233, geo 101,  math 131, math 132
 - Role: Full stack developer, will be doing both back and front end work. Will be working a lot with Express and angular.js and Bootstrap, as well as some work with MongoDB and Node.js (created Timeline and helped create our application overiew and cost overiew)
@@ -20,7 +20,8 @@
 - Role: Will be working primarily with the back end. Will use mostly MongoDB, Node.js, as well as a bit of Express (created table of contents and helped create cost analysis)
 
 *Matthew Lydigsen*
-- Courses:  Some past courses taken, cs 197u,  cs 220, cs 230, cs 240, cs 187, math 233, History 250
+* Courses:  Some past courses taken, cs 197u,  cs 220, cs 230, cs 240, cs 187, 
+            math 233, History 250
 - Role: Will be working primarily with the back end. Will use mostly MongoDB, Node.js, as well as a bit of Express (Helped create application overview and did preliminary research)
 
 *Michael Markman*
