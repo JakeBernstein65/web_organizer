@@ -56,43 +56,61 @@ The only thing that limits the type of modules that can exist is your imaginatio
 
 ## Timeline
 
-<table border align=center> 
-  <tr>
-    <th>Date</th>
-    <th>Events</th>
-  </tr>
-  <tr align=center>
-    <td>2/16 - 2/23</td>
-    <td>Break down application into pieces and define necessary functions and pieces</td>
-  </tr>
-  <tr align=center>
-    <td>2/25 - 3/2</td>
-    <td>Define minimum viable product</td>
-  </tr>
-  <tr align=center>
-    <td>3/3 - 3/10</td>
-    <td>Preliminary research</td>
-  </tr>
-  <tr align=center>
-    <td>3/11 - 3/18</td>
-    <td>Complete intial design document</td>
-  </tr>
-  <tr align=center>
-    <td>3/19 - 4/5</td>
-    <td>Build 0.1, with at least 1 module</td>
-  </tr>
-  <tr align=center>
-    <td>4/7 - 4/11</td>
-    <td>Build 0.2</td>
-  </tr>
-  <tr align=center>
-    <td>4/13 - 4/19</td>
-    <td>Build 0.3</td>
-  </tr>
-  <tr align=center>
-    <td>TBD</td>
-    <td>Complete minimum viable product</td>
-  </tr>
+<table align="center" border>
+	<tr>
+		<th>Date</th>
+
+		<th>Events</th>
+	</tr>
+
+	<tr align="center">
+		<td>2/16 - 2/23</td>
+
+		<td>Break down application into pieces and define necessary
+		functions and pieces</td>
+	</tr>
+
+	<tr align="center">
+		<td>2/25 - 3/2</td>
+
+		<td>Define minimum viable product</td>
+	</tr>
+
+	<tr align="center">
+		<td>3/3 - 3/10</td>
+
+		<td>Preliminary research</td>
+	</tr>
+
+	<tr align="center">
+		<td>3/11 - 3/18</td>
+
+		<td>Complete intial design document</td>
+	</tr>
+
+	<tr align="center">
+		<td>3/19 - 4/5</td>
+
+		<td>Build 0.1, with at least 1 module</td>
+	</tr>
+
+	<tr align="center">
+		<td>4/7 - 4/11</td>
+
+		<td>Build 0.2</td>
+	</tr>
+
+	<tr align="center">
+		<td>4/13 - 4/19</td>
+
+		<td>Build 0.3</td>
+	</tr>
+
+	<tr align="center">
+		<td>TBD</td>
+
+		<td>Complete minimum viable product</td>
+	</tr>
 </table>
 
 
@@ -100,90 +118,135 @@ The only thing that limits the type of modules that can exist is your imaginatio
 
 ## Budget
 
-<table border align="center">
-<thead>
-<td><strong>Domain Registry</strong></td>
-<td><strong>Costs (per year)<em> </em></strong></td>
-</tr>
-<tr>
-<td>Hover</td>
-<td>Registration: $12.99 \ Renewal: $14.99 \ Transfer in: $10.99</td>
-</tr>
-<tr>
-<td>Namecheap (make an offer)</td>
-<td>Registration: $4.99-$15.00</td>
-</tr>
-<tr>
-<td>Name.com</td>
-<td>Registration: $10.99 \ Renewal: $10.99 \  Transfer: (1 year duration) $8.25</td>
-</tr>
-<tr>
-<td>GoDaddy</td>
-<td>Registration: $2.99 (first year) $14.99 (additional years)</td>
-</tr>
-<tr>
-<td>Gandi</td>
-<td>Registration: $15.50</td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td><strong>Virtual Private Server</strong></td>
-<td><strong>Effective Price</strong></td>
-</tr>
-<tr>
-<td>Inmotion hosting</td>
-<td>$4.89/month</td>
-</tr>
-<tr>
-<td>Bluehost</td>
-<td>$3.95/month</td>
-</tr>
-<tr>
-<td>Hostmonster</td>
-<td>$3.95/month</td>
-</tr>
-<tr>
-<td>A2Hosting</td>
-<td>$9.89/month</td>
-</tr>
-<tr>
-<td>arvixe web hosting</td>
-<td>$4.00</td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td><strong>Equipment</strong></td>
-<td><strong>Cost</strong></td>
-</tr>
-<tr>
-<td>New Computers</td>
-<td>$200-$500 per machine</td>
-</tr>
-<tr>
-<td>Existing Computers</td>
-<td>$0</td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td><strong>Options</strong></td>
-<td><strong>Total Price</strong></td>
-</tr>
-<tr>
-<td>Cheapest option:</td>
-<td>Price $6.49 (w/ an additional $3.95/month)</td>
-</tr>
-<tr>
-<td>Most expensive option:</td>
-<td>Price: $419.89 (w/ an additional $9.89/month)</td>
-</tr>
-</tbody>
+<table align="center" border>
+	<thead>
+		<tr>
+			<td><strong>Domain Registry</strong></td>
+
+			<td><strong>Costs (per year) <em></em></strong></td>
+		</tr>
+
+		<tr>
+			<td>Hover</td>
+
+			<td>Registration: $12.99 \ Renewal: $14.99 \ Transfer in:
+			$10.99</td>
+		</tr>
+
+		<tr>
+			<td>Namecheap (make an offer)</td>
+
+			<td>Registration: $4.99-$15.00</td>
+		</tr>
+
+		<tr>
+			<td>Name.com</td>
+
+			<td>Registration: $10.99 \ Renewal: $10.99 \ Transfer: (1 year
+			duration) $8.25</td>
+		</tr>
+
+		<tr>
+			<td>GoDaddy</td>
+
+			<td>Registration: $2.99 (first year) $14.99 (additional
+			years)</td>
+		</tr>
+
+		<tr>
+			<td>Gandi</td>
+
+			<td>Registration: $15.50</td>
+		</tr>
+
+		<tr>
+			<td></td>
+
+			<td></td>
+		</tr>
+
+		<tr>
+			<td><strong>Virtual Private Server</strong></td>
+
+			<td><strong>Effective Price</strong></td>
+		</tr>
+
+		<tr>
+			<td>Inmotion hosting</td>
+
+			<td>$4.89/month</td>
+		</tr>
+
+		<tr>
+			<td>Bluehost</td>
+
+			<td>$3.95/month</td>
+		</tr>
+
+		<tr>
+			<td>Hostmonster</td>
+
+			<td>$3.95/month</td>
+		</tr>
+
+		<tr>
+			<td>A2Hosting</td>
+
+			<td>$9.89/month</td>
+		</tr>
+
+		<tr>
+			<td>arvixe web hosting</td>
+
+			<td>$4.00</td>
+		</tr>
+
+		<tr>
+			<td></td>
+
+			<td></td>
+		</tr>
+
+		<tr>
+			<td><strong>Equipment</strong></td>
+
+			<td><strong>Cost</strong></td>
+		</tr>
+
+		<tr>
+			<td>New Computers</td>
+
+			<td>$200-$500 per machine</td>
+		</tr>
+
+		<tr>
+			<td>Existing Computers</td>
+
+			<td>$0</td>
+		</tr>
+
+		<tr>
+			<td></td>
+
+			<td></td>
+		</tr>
+
+		<tr>
+			<td><strong>Options</strong></td>
+
+			<td><strong>Total Price</strong></td>
+		</tr>
+
+		<tr>
+			<td>Cheapest option:</td>
+
+			<td>Price $6.49 (w/ an additional $3.95/month)</td>
+		</tr>
+
+		<tr>
+			<td>Most expensive option:</td>
+
+			<td>Price: $419.89 (w/ an additional $9.89/month)</td>
+		</tr>
+	</thead>
 </table>
