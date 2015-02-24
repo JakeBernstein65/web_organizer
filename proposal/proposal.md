@@ -21,7 +21,7 @@
 
 -Cost Overview (created by Lucas Meira 02/15/15)
 
--Timeline (Michael Markman 02/22/15)
+-Timeline (created by Michael Markman 02/22/15)
 
 ## Meet the Bros
 
@@ -30,7 +30,7 @@
 - Role: Full stack developer, will be doing both back and front end work. Will be working a lot with Express and angular.js and Bootstrap, as well as some work with MongoDB and Node.js (created Timeline and helped create our application overiew and cost overiew)
 
 #####Lucas Meira
-- Courses:  Some past courses taken, cs 197u, cs197c,  cs 220, cs 230, cs 240, cs 187, math 233, math 235, math 131, math 132, edu 210, nutrition 230
+- Courses:  Some past courses taken, cs 197u, cs197c,  cs 220, cs 230, cs 240, cs 187, math 233, math 235, math 132, edu 210, nutrition 230
 - Role: Will be working primarily with the back end. Will use mostly MongoDB, Node.js, as well as a bit of Express
 
 #####Matthew Lydigsen
