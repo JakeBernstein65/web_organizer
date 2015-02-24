@@ -15,13 +15,13 @@
 
 -Problem Statement (created by Jake Bernstein 02/15/15)
 
--Our Application (created by Harry Shaoxi and Raymond Zhu)
+-Outline (created by Harry Shaoxi and Raymond Zhu)
 
 -Product Design (created by Matthew Lydigsen and Jake Bernstein)
 
--Cost Overview (created by Lucas Meira 02/15/15)
-
 -Timeline (created by Michael Markman 02/22/15)
+
+-Cost Overview (created by Lucas Meira 02/15/15)
 
 ## Meet the Bros
 
