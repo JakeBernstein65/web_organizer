@@ -11,17 +11,17 @@
 
 ## Table Of Contents
 
-####Meet the Bros (created by Matthew Lydigsen 02/17/15)
+-Meet the Bros (created by Matthew Lydigsen 02/17/15)
 
-####Problem Statement (created by Jake Bernstein 02/15/15)
+-Problem Statement (created by Jake Bernstein 02/15/15)
 
-####Our Application (created by Harry Shaoxi and Raymond Zhu)
+-Our Application (created by Harry Shaoxi and Raymond Zhu)
 
-####Product Design (created by Matthew Lydigsen and Jake Bernstein)
+-Product Design (created by Matthew Lydigsen and Jake Bernstein)
 
-####Cost Overview (created by Lucas Meira 02/15/15)
+-Cost Overview (created by Lucas Meira 02/15/15)
 
-####Timeline (Michael Markman 02/22/15)
+-Timeline (Michael Markman 02/22/15)
 
 ## Meet the Bros
 
