@@ -9,6 +9,20 @@
 
 <br />
 
+## Table Of Contents
+
+####Meet the Bros (created by Matthew Lydigsen 02/17/15)
+
+####Problem Statement (created by Jake Bernstein 02/15/15)
+
+####Our Application (created by Harry Shaoxi and Raymond Zhu)
+
+####Product Design (created by Matthew Lydigsen and Jake Bernstein)
+
+####Cost Overview (created by Lucas Meira 02/15/15)
+
+####Timeline (Michael Markman 02/22/15)
+
 ## Meet the Bros
 
 #####Jake Bernstein
@@ -16,24 +30,24 @@
 - Role: Full stack developer, will be doing both back and front end work. Will be working a lot with Express and angular.js and Bootstrap, as well as some work with MongoDB and Node.js (created Timeline and helped create our application overiew and cost overiew)
 
 #####Lucas Meira
-- Courses:  Some past courses taken, cs 197u, cs197c,  cs 220, cs 230, cs 240, cs 187, math 233, math 235, math 131, math 132
-- Role: Will be working primarily with the back end. Will use mostly MongoDB, Node.js, as well as a bit of Express (created table of contents and helped create cost analysis)
+- Courses:  Some past courses taken, cs 197u, cs197c,  cs 220, cs 230, cs 240, cs 187, math 233, math 235, math 131, math 132, edu 210, nutrition 230
+- Role: Will be working primarily with the back end. Will use mostly MongoDB, Node.js, as well as a bit of Express
 
 #####Matthew Lydigsen
 - Courses:  Some past courses taken, cs 197u,  cs 220, cs 230, cs 240, cs 187, math 233, History 250
-- Role: Will be working primarily with the back end. Will use mostly MongoDB, Node.js, as well as a bit of Express (Helped create application overview and did preliminary research)
+- Role: Will be working primarily with the back end. Will use mostly MongoDB, Node.js, as well as a bit of Express
 
 #####Michael Markman
 - Courses:  Some past courses taken, cs 197u,  cs 220, cs 230, cs 240, cs 187, math 233,  math 131, math 132
-- Role: Full stack developer, will be doing both back and front end work. Will be working a lot with Express and angular.js and Bootstrap, as well as some work with MongoDB and Node.js (created Problem statement and helped to preliminary research)
+- Role: Full stack developer, will be doing both back and front end work. Will be working a lot with Express and angular.js and Bootstrap, as well as some work with MongoDB and Node.js
 
 #####Shaoxi Ma
 - Courses: Some past courses taken,  cs 220, cs 320, cs 240, cs 187, math 331,  psych 100
-- Role: Front End, will work primarily with creating the user interface and will use primarily Angular.js, Bootstrap, and some Node (Shaoxi helped do preliminary research and create the timeline)
+- Role: Front End, will work primarily with creating the user interface and will use primarily Angular.js, Bootstrap, and some Node
 
 #####Raymond Zhu
 - Courses:  Some past courses taken, cs 220, cs 250, cs 187, math 235,  chem 111
-- Role: Will be working primarily with the back end. Will use mostly MongoDB, Node.js, as well as a bit of Express (Helped create the table of contents and the Problem statement)
+- Role: Will be working primarily with the back end. Will use mostly MongoDB, Node.js, as well as a bit of Express
 
 ## Problem Statement
 
@@ -53,27 +67,12 @@ The only thing that limits the type of modules that can exist is your imaginatio
 
 ## Product Design
 
-Our product will be a fully customizable planner that allows you to make your 
+Our product will be a fully customizable planner that allows you to organize your day in as simple or complex a fashion as you please. On our homepage we will have the option to add modules that represent whatever you want, whether it is a class you
+are taking or an event that you are planning.
 
-planner as simple or as complex as you want. On our homepage we will have the
+Inside each module we hope to add ever increasing options for  customization, so that users can add things such as calendars and upcoming tasks that they need to complete. Inside every module we will provide a page that has more extensive details about the different tasks that you need to complete, such as the time of day it must be completeled, where an assignment may have to be uploaded, or specific details about what needs to be done for the task. 
 
-option add modules that represent whatever you want whether it is a class you
-
-are taking or an event you are planning. Inside that module we hope to make the
-
-module customizabe as well so that users can add things like a calendar or
-
-upcoming tasks that they need to complete. Inside every module we will give it
-
-a page that has more extensive details about the different tasks that you 
-
-need to complete such as what time of day it must be completeled, where an
-
-assignment may have to be uploaded, or specfic details about what needs to 
-
-be done for the task. Many of these details will be worked out in more specific
-
-details according to our timeline.  
+Many of these details will be worked out in the future according to scalability and usefulness in practice.  
 
 ## Timeline
 
