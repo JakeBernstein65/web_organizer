@@ -16,3 +16,6 @@ application, and some preliminary research.
 Proposal.md, Proposal.pdf, notes.md are all documents that should be reviewed.
 Proposal.md is our proposal, Proposal.pdf is our slide show, and notes.md is
 our team notes.
+
+#Functional Specification
+
