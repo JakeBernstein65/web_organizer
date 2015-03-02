@@ -1,0 +1,7 @@
+
+Plannit will be a fully functional planner for any general task that you wish to accomplish from a day to day basis. This website at it’s initial release may not have the capability of planning for specific events such as classes, or workouts (hopefully we will be able to tell you one day what leg workouts you need to accomplish on a certain day of the week.) Here are some other features that won’t be available on our web application.  
+
+There will be no chat or sharing features between users.
+There are no default planner layouts. (we want the user to create their own planner, having default options of planners would make the whole point of our app pointless)
+There will only be a default number of modules you can add such as calendar, upcoming events, details, ect… (as it progresses we may include a feature that lets you create your own module but at the moment we are only going to include a default list of modules to choose from)
+As mentioned earlier there will only be a default event you can choose from. Having the option to choose from a list of events such as class, extra curricular activity, sports, ect… will be a feature we may add down the road but won’t be functional in the initial launch
