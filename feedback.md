@@ -19,8 +19,10 @@ Overall Grade: weak thumbs up
 
 -----------------------------------------------------------------------------------
 
+Project Two:
+
 You should still keep the bios about your team members that you had for project one. Your problem statement does not reflect your classes and your timeline can be a little more specific. Add what exactly you hope to have accomplished or implemented by each date not just Build. Your budget breakdown is very thorough. Good job with that. Each section needs to have the author after it. For example who wrote the problem statement and when was it written? 
 
 Your idea seems like it will be very useful to many people. I'm interested to see how this will turn out.  I like the whole idea behind your startup company since organization and planning seems to be an area that everyone struggles with, especially with such busy lives. Will everyone have a login name? Since people do not always have a computer near them and usually always have their smart phone with them, will this be an app for phones or a website? Think about any competitors and what will set you apart. 
 
-Overall: weak thumbs up
+Overall: weak thumbs up. If you make these changes by 3/10, you will get a thumbs up.
