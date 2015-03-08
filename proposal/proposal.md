@@ -15,49 +15,76 @@
 
 -Problem Statement (created by Jake Bernstein 02/15/15)
 
--Outline (created by Harry Shaoxi and Raymond Zhu)
+-Outline (created by Harry Shaoxi and Raymond Zhu 02/16/15)
 
--Product Design (created by Matthew Lydigsen and Jake Bernstein)
+-Product Design (created by Matthew Lydigsen and Jake Bernstein 02/16/15)
 
 -Timeline (created by Michael Markman 02/22/15)
 
 -Cost Overview (created by Lucas Meira 02/15/15)
 
 ## Meet the Bros
-
-#####Jake Bernstein
-- Courses:  Some past courses taken, cs 197u,  cs 220, cs 230, cs 240, cs 187, math 233, geo 101,  math 131, math 132
-- Role: Full stack developer, will be doing both back and front end work. Will be working a lot with Express and angular.js and Bootstrap, as well as some work with MongoDB and Node.js (created Timeline and helped create our application overiew and cost overiew)
-
-#####Lucas Meira
-- Courses:  Some past courses taken, cs 197u, cs197c,  cs 220, cs 230, cs 240, cs 187, math 233, math 235, math 132, edu 210, nutrition 230
-- Role: Will be working primarily with the back end. Will use mostly MongoDB, Node.js, as well as a bit of Express
-
+created by Matthew Lydigsen 02/17/15
 #####Matthew Lydigsen
-- Courses:  Some past courses taken, cs 197u,  cs 220, cs 230, cs 240, cs 187, math 233, History 250
-- Role: Will be working primarily with the back end. Will use mostly MongoDB, Node.js, as well as a bit of Express
+I'm a Computer Science and Math double major.
 
-#####Michael Markman
-- Courses:  Some past courses taken, cs 197u,  cs 220, cs 230, cs 240, cs 187, math 233,  math 131, math 132
-- Role: Full stack developer, will be doing both back and front end work. Will be working a lot with Express and angular.js and Bootstrap, as well as some work with MongoDB and Node.js
+In terms of CS courses that I have taken I have taken 187, 220, 230, 240
+and I'm currently taking 390GC 250 and this class 326. Two college courses that
+I have taken that have made an impact on me are philosophy 100 and
+linear algebra 235.
+
+In terms of my bio I'm part of the umass minuteman marching
+band (I play the trumpet), I love robotics and I'm an extremely good swimmer.
 
 #####Shaoxi Ma
-- Courses: Some past courses taken,  cs 220, cs 320, cs 240, cs 187, math 331,  psych 100
-- Role: Front End, will work primarily with creating the user interface and will use primarily Angular.js, Bootstrap, and some Node
+I'm a CS student who is interested in web programming that is a faster way
+to develop fully functional applications. Last summer, I worked as an intern in a social app company
+
+I like the active atmosphere where working with a creative team.
+I am looking forward to working well with my new teammates and building a great app.
+
+I have previously taken CS 220, CS 240 and CS 320 and I have also taken Econ 103 and Psy 100.
 
 #####Raymond Zhu
-- Courses:  Some past courses taken, cs 220, cs 250, cs 187, math 235,  chem 111
-- Role: Will be working primarily with the back end. Will use mostly MongoDB, Node.js, as well as a bit of Express
+I'm a computer science major at UMass Amherst.
+Additionally, I'm a sophomore working towards my BS degree. I'm a gamer, and
+I've participated in a couple of tournaments when I was younger.
+
+Also, my favorite sport is soccer, or football in other countries.
+I have taken CS 187, 220 and 250 and other non cs classes I have taken are Math 235 and
+chem 111.
+
+#####Jake Bernstein:
+I am a computer science major with an interest in management and business.
+I have previously taken comp sci 187, comp sci 220, comp sci 230, and comp sci 240. I’ve also taken Calc 3 and Geology 101
+
+Some fun facts about me, I love jiujitsu, and anything with adrenaline like skydiving, and I have
+moved twenty one times.
+
+#####Lucas Meira
+I am currently a Sophomore studying Computer Science with a Software Engineering track
+
+I have previously taken cs197u, cs197c, cs187, cs220, cs230, and cs240.
+I am big into sports (soccer and volleyball especially), movies, and traveling.
+This Summer I will be interning at EMC where I will be working with network servers and cloud storage technology.
+
+#####Michael Markman
+I'm a Sophomore Computer Science Major, on the Software Engineering track.
+I'm currently working remotely as a Software Engineering intern at a finance company in Norwalk, CT (my home.)
+
+My interests lie in User Experience design. I want to create applications and tools that the client can intuitively understand and use. My dream is to create a tech startup. I also love comedy, dreaming up app ideas, reading (everything), and immersing myself in all the beautiful things the internet has to offer.
 
 ## Problem Statement
+created by Jake Bernstein 02/15/15
 
-All of us have busy schedules. It’s hard enough to get good grades, but it becomes even harder when you are trying to balance school, family life, friends, and aspiring to be kickass brogrammers! 
+All of us have busy schedules. From classes like CS 250, CS 326, Psy 100, and more the work load seems unbearable. It’s hard enough to get good grades, but it becomes even harder when you are trying to balance school, family life, friends, and aspiring to be kickass brogrammers! 
 
 The only way to stay sane throughout all of this is to stay as organized as possible and to understand the value of time. There are countless organizational applications that already exist, but none of them have the right feel.  Trello, Wunderlist, Sunrise, Todoist,  and Calendars,  are all examples of  organizers that have  awesome features, but seem to be lacking in customization. 
 
 Our team of super cool brogrammers found time in between trips to the gym and protein shakes to solve the problems we’ve seen with these organizers and come up with a better solution.  We are planning to implement our solution in the form of our own organizational app, Planit! (prospective url: http://www.plan.it).
 
 ## Outline
+created by Harry Shaoxi and Raymond Zhu 02/16/15
 
 Planit is a perfectly customizable organizer that makes every user feel like it was made specifically for them! Whether you are a busy stockbroker, a swamped college student, or a stay at home mom, Planit will be a perfect fit for you! 
 
@@ -66,6 +93,7 @@ Planit gives you the options to make your methods of organizing as simple or com
 The only thing that limits the type of modules that can exist is your imagination. Take your organizer into your own hands, and use Planit!
 
 ## Product Design
+created by Matthew Lydigsen and Jake Bernstein 02/16/15
 
 Our product will be a fully customizable planner that allows you to organize your day in as simple or complex a fashion as you please. On our homepage we will have the option to add modules that represent whatever you want, whether it is a class you
 are taking or an event that you are planning.
@@ -75,6 +103,7 @@ Inside each module we hope to add ever increasing options for  customization, so
 Many of these details will be worked out in the future according to scalability and usefulness in practice.  
 
 ## Timeline
+created by Michael Markman 02/22/15
 
 <table align="center" border>
 	<tr>
@@ -111,25 +140,25 @@ Many of these details will be worked out in the future according to scalability 
 	<tr align="center">
 		<td>3/19 - 4/5</td>
 
-		<td>Build 0.1, with at least 1 module</td>
+		<td>Prototype 1.0, Home page/login system complete and ready to be tested </td>
 	</tr>
 
 	<tr align="center">
 		<td>4/7 - 4/11</td>
 
-		<td>Build 0.2</td>
+		<td>Prototype 2.0, Indiviual user accounts pages are built and ready for testing</td>
 	</tr>
 
 	<tr align="center">
 		<td>4/13 - 4/19</td>
 
-		<td>Build 0.3</td>
+		<td>Prototype 3.0, Addition of specific modules has been implemented and the overall site is almost ready</td>
 	</tr>
 
 	<tr align="center">
 		<td>TBD</td>
 
-		<td>Complete minimum viable product</td>
+		<td>Complete minimum viable product so that is is ready for prime time</td>
 	</tr>
 </table>
 
@@ -137,6 +166,7 @@ Many of these details will be worked out in the future according to scalability 
 <br />
 
 ## Budget
+created by Lucas Meira 02/15/15
 
 <table align="center" border>
 	<thead>

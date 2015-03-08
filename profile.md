@@ -56,7 +56,7 @@ moved twenty one times.
 ###Lucas Meira
 I am currently a Sophomore studying Computer Science with a Software Engineering track. 
 
-I have previously taken cs197u, cs197c, cs187, cs220, cs230, and cscs240. 
+I have previously taken cs197u, cs197c, cs187, cs220, cs230, and cs240. 
 
 I am big into sports (soccer and volleyball especially), movies, and traveling. 
 This Summer I will be interning at EMC where I will be working with network servers and cloud storage technology.
