@@ -1,0 +1,15 @@
+Team Organization: by Michael Markman 3/10/15
+___________________________________________________________
+
+Michael Markman  - 
+Full-stack - Project management and UI/UX design
+Jake Bernstein
+Full-stack - Business/Financial analysis
+Matt Lydigsen 
+Back-end - Data organization
+Raymond Zhu
+Back-end - Database integration
+Lucas Meira 
+Back-end - Database management
+Harry Shaoxi 
+Front-end - Head UI/UX Designer
