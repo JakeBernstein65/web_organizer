@@ -19,3 +19,8 @@ our team notes.
 
 #Functional Specification
 
+Inside our notes folder we added two new documents 3-01-15 and 3-11-15 which
+highlight our meetings and the jobs assigned to each person in the group. Inside
+our doc/fspec folder we added individual documents for each section but the
+documents you should review are called FunctionalSpecification.pdf and
+FunctionalSpecificationSlides.pdf.
