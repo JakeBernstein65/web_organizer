@@ -1,0 +1,69 @@
+John is a computer science major at some prestigious school. He's a genius in the making, but his scores
+never really shows that. Due to his poor organizing, time management skills, and possibly memory he usually
+forgets to complete assignments or finished but completely forgot about handing it in. John realizes that if
+he wanted to show his genius and start doing better than decent he needed something to organize himself.
+John signs up for PlannIt, and creates a planner just for his classes. 
+It keeps track of important due dates, meetings, and if he totally forgot about an assignment PlannIt will
+notify John in real time that a due date is coming up. No more forgetting about an assignment or forgetting
+to hand it in for John or at least the excuse of forgetting.
+ 
+Robert is a business man, a very successful one at that. Before being a successful business man Robert
+used to work for other companies and he had a bad habit of how to spend his money. He'd forget that his budget
+was some dollar amount and just think "I need this product right now", that's not the mind set of a business
+man. One day Robert has an idea that he'd like to make a reality, little did he know it would some day be
+acknowledged as one of the best ideas in history. In order to create his business he needed money, he needed
+to manage it, and he needed investors. Robert decides he needs a planner to organize himself and something
+to manage his budget, profits, and a history of how many of his product sold in a certain time span because he
+knew he wasn't very good with that. Robert signs up for PlannIt and designs his own planner with modules related
+towards finance and business. Now Robert is easily keeping track of business meetings, monetary issues, and how to sell his product.
+ 
+Anthony is a just a regular guy, except for the fact that he has superpowers and saves the world every single day.
+Anthony is just always busy saving people left and right and stopping wars from happening around the globe.
+He's just so busy that he can't keep track of everything with just his mind. Anthony uses his secret identity
+to sign up for PlannIt and creates his planner to notify him when someone needs to be saved, when there's 
+a sparring match with a fellow superhero, and when a supervillian needs a good lesson.
+ 
+Emily is a mother of 3 children and each of these 3 children have birthdays within the same week. Emily is adamant to have 3 separate parties and has
+to plan the events for each of these birthdays and manage her budget per party. She also has to manage work on
+top of getting the party ready. Emily knows this is the worst week of the year, so to make it easier on herself
+this year she signs up for PlannIt so she doesn't have to worry about forgetting to buy a certain item, worry
+about going over her budget, or have to open several tabs or go through many links just to organize herself.
+ 
+Don Quixote is more towards the hardcore video gamer path and has participated in a few gaming tournaments himself.
+This time he's participating in a tournament in which he requires teamwork, leadership, and most importantly
+organization. The tournament is split into 8 divisions of randomized selected people per team. Each team's
+goal is to start from a starting point, each team differing in starting points but equal in length from the finish,
+but the map is structured as a labyrinth. Each team member are given 1 life in the game and once their in game
+character dies you're eliminated, death can occur from traps, rival teams attack, etc.. Don Quixote, being the
+most experienced in the group has been elected as the team's leader. He knew in order to conquer the labyrinth
+he must remember each step he takes as well as other team members, he instantly knew from past experience
+that this tournament consisted of timed events and hidden riddles in order to correctly traverse the labyrinth.
+He quickly planned out how to avoid certain timed traps, made logical decisions using a basic calculator, and
+record certain routes and dead ends. He knew the only thing capable of that in one app was PlannIt with his
+own customized sets of modules. 
+
+Arnold is a sophomore college student. He knows he should do well in his classes, but he can never get his
+social life organized enough to have time to work on the class' assignments. He signs up for a web app called
+Plannit in order to get both his social life and academic life organized, in hopes that he can enjoy being social
+while being able to do his work. Instantly he knew he needed to have two separate planners for academic aspects
+and for social aspects of his life. He also knew each of them needed a to do list that notified him when
+important dates are near for both his social and academic life. Arnold is now a professional at time management,
+and is the life of the party while still doing well in school. 
+
+Jane is a new principal for a high school and has to demonstrate she can be a great principal for the
+first academic year. She can manage her time very well, but her problem is that she needs to balance the school's
+fund while planning for events the school can have. If she performed her finances like Nikola Tesla performed his, she'd
+have another problem at hand. She decides to use Plannit to organize scheduled events, remaining budget,
+list of potential teachers at the high school, etc.. After many not as stressful days after using Plannit
+Jane finishes her first academic year as a principal successfully.
+
+Chris is a gamer as well, though not as great as Don Quixote, and a raid leader. The raid leader is 
+responsible for organizing everyone's available time and what team to raid with based on this time. He wants
+to organize everyone's team members as well as accommodating for their availabilities for their raid times.
+Chris decides to sign up for Plannit in order to get a good grasp of the team. He sees that people have different
+timezones and decides to use Plannit's calculator while organizing the team in order to have his own time
+represented in the organization. This gives Chris a better understanding of who can be teamed with who on
+certain days of the week. On top of that Chris would like to balance his gaming life with his social life and
+activities, so he doesn't have conflicting schedules. Chris, being a lazy man, decides to keep using Plannit
+so that he doesn't have to click through extra links and tabs to obtain his schedule. Chris is now a very
+powerful gamer and a very powerful person in real life with the help of Plannit.
