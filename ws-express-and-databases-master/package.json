@@ -1,0 +1,12 @@
+{
+  "name": "ws-express-and-databases",
+  "version": "0.0.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/umass-cs-326/ws-express-and-databases"
+  },
+  "dependencies": {
+    "express": "~4.9.0",
+    "pg": "^4.3.0"
+  }
+}
