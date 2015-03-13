@@ -14,6 +14,23 @@ console.log("A section in the form was undefined and missing from the database")
 }
 else{
 
+
+pg.connect(cstr, function(err, client, done) {
+  if(err) {
+    return console.error('error fetching client from pool', err);
+  }
+  client.query('INSERT INTO users(uid,fname,lname,password,age)' +
+'VALUES (\''+user.uid+'\',\''+user.fname+'\',\''+user.lname+'\',\''+user.password+'\',\''+user.age+'\');', function(err, result) {
+    //call `done()` to release the client back to the pool
+    done();
+    client.end();
+    if(err) {
+     console.error('error running query', err);
+    }
+    cb();
+  });
+});
+
 }
 
 }
@@ -38,7 +55,7 @@ function list(cb) {
   client.query('SELECT * FROM users', function(err, result) {
     //call `done()` to release the client back to the pool
     done();
-
+	client.end();
     if(err) {
       return console.error('error running query', err);
     }
@@ -52,12 +69,9 @@ function list(cb) {
     	finalTable += createNewRow(row.uid, row.fname, row.lname, row.password, row.age);
    		}
    		finalTable += '</table>';
-   		console.log(finalTable);
     	cb(finalTable);
-    
-    client.end();
   });
-})
+});
   
 }
 

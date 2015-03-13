@@ -30,9 +30,10 @@ app.get('/users/add', function (req, res) {
 if((req.query.uid !== undefined) && (req.query.fname !== undefined) && (req.query.lname !== undefined) 
 && (req.query.password !== undefined) && (req.query.age !== undefined)){
 
-	db.add(req.query, function(req, res)
+	db.add(req.query, function()
 	{
-	res.redirect('/users');
+	 console.log("redirecting!");
+	 res.redirect('/users');
 	}
 	);
 	
