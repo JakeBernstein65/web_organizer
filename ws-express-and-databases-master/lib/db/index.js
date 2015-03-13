@@ -27,7 +27,7 @@ pg.connect(cstr, function(err, client, done) {
     if(err) {
      console.error('error running query', err);
     }
-    cb();
+   // cb();
   });
 });
 
