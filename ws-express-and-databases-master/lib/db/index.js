@@ -70,6 +70,7 @@ function list(cb) {
    		}
    		finalTable += '</table>';
     	cb(finalTable);
+    	//finalTable returns complete table
   });
 });
   
