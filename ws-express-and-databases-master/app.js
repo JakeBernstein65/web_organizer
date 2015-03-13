@@ -3,7 +3,7 @@ var express = require('express');
 
 // Require our database library:
 var db = require('db');
-
+//db is database
 // Create an app:
 var app = express();
 
