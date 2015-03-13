@@ -47,7 +47,7 @@ return str;
  * This function returns a list of all users in the database.
  */
 function list(cb) {
-  
+  // connects to server
   pg.connect(cstr, function(err, client, done) {
   if(err) {
     return console.error('error fetching client from pool', err);
