@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <img src="../images/Plannit-logo.png">
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <p>Welcome to <%= title %></p>
+        <form method="post" action="/login/auth">
+      	 User Name: <input type="text" name="username"> <br>
+      	 Password:  <input type="password" name="password"> <br>
+      	 <button>Login</button>
+    	</form>
+
+        <p>New to Plannit? Sign up <a href="/login/newUser"> here</a></p>
+  </body>
+</html>
+  
