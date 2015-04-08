@@ -15,7 +15,6 @@ router.get('/login', function(req, res, next) {
 
 //this will display the sign up page for new users
 router.get('/login/newUser', function(req, res){
-  console.log('hello');
   res.render('addUser',{title: 'NewUser' });  
 });
 
