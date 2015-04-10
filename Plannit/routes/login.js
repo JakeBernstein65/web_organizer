@@ -24,7 +24,7 @@ router.get('/login/newUser', function(req, res){
 //add a new user, this function should redirect to /users/home once the user
 //has been created otherwise send us back to newUser page
 router.get('/addNewUser', function(req, res){
-  //res.redirect('/users/home');
+  res.redirect('/users/home');
 });
 
 module.exports = router;
