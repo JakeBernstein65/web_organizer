@@ -19,6 +19,7 @@ router.get('/login/newUser', function(req, res){
 });
 
 
+////////////////////////////////////this one
 //this will be called when the form has been filled out so that we can 
 //add a new user, this function should redirect to /users/home once the user
 //has been created otherwise send us back to newUser page

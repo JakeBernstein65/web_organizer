@@ -14,38 +14,6 @@ function auth(user){
   });
 }
 
-//this ensures authentication and reroutes if needed
-router.post('/auth', function(req, res) {
-  // redirect if logged in:
-  var user = req.session.user;
-
-  // do the check as described in the `exports.login` function.
-  if (user !== undefined && online[user.uid] !== undefined) {
-    res.redirect('/user/main');
-  }
-  else {
-    // Pull the values from the form.
-    var username = req.body.username;
-    var password = req.body.password;
-    // Perform the user lookup.
-    userlib.lookup(username, password, function(error, user) {
-      if (error) {
-        // If there is an error we "flash" a message to the
-        // redirected route `/user/login`.
-        req.flash('auth', error);
-        res.redirect('/login');
-      }
-      else {
-        req.session.user = user;
-        // Store the user in our in memory database.
-        online[user.uid] = user;
-        // Redirect to home.
-        res.redirect('/user/home');
-      }
-    });
-  }
-});
-
 /*all routes for user home*/
 
 //if they try to type in /users it will redirect them to users/home
@@ -105,7 +73,7 @@ router.get('/logout', function(req, res){
 /*IMPORTANT REPLACE NAMEOFMODULE WITH VARIABLE FOR THE ACTUAL MODULE NAME LIKE CS 326*/
 //this route will display the page for one of your planners like cs 326
 //it will render the module.ejs which will display 
-router.get('nameOfModule', function(req,res){
+router.get('/nameOfModule', function(req,res){
   var user = req.session.user;
   //call this everytime to verify the user is logged in
   auth(req.session.user);
@@ -113,5 +81,5 @@ router.get('nameOfModule', function(req,res){
   //name of module will be replaced with the variable name we declare above
   res.render('module', {user : user,
 			userPlanner : nameOfModule,});
-}
+});
 module.exports = router;

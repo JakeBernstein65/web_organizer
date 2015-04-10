@@ -6,7 +6,7 @@
 //var 
 
 //this will store everyone who is online
-var online{};
+var online = {};
 
 exports.addOnline = function(user){
   online[user.uid] = user; 
@@ -24,12 +24,13 @@ exports.isOnline = function(user, cb){
     cb(user);
   }
 }
-
+///////////////////////////this one
 //this will confirm whether a user exists or not
 exports.isUser = function (username){
 
 }
 
+///////////////////////////this one
 //this should be called to add user to users database
 exports.addNewUser = function (username, password, email){
 

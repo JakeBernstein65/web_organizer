@@ -21,6 +21,13 @@ our team notes.
 
 Inside our notes folder we added two new documents 3-01-15 and 3-11-15 which
 highlight our meetings and the jobs assigned to each person in the group. Inside
-our doc/fspec folder we added individual documents for each section but the
+our docs/fspec folder we added individual documents for each section but the
 documents you should review are called FunctionalSpecification.pdf and
 FunctionalSpecificationSlides.pdf.
+
+#Design Specification
+
+Inside our notes folder we added two new documents 4-07-15 and 4-09-15 which
+highlight our meeting and the tasks we need to complete. Inside docs/dspec
+we added dspec.pdf and slides.pdf which are the files you should review for
+this assignment.
