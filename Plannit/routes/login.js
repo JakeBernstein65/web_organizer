@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-/* GET home page. */
+var userlib = require('../lib/user');
 
 //typing in the name of site will bring you to login page
 router.get('/', function(req, res){
@@ -9,7 +9,8 @@ router.get('/', function(req, res){
 });
 
 router.get('/login', function(req, res, next) {
-  res.render('login', { title: 'Plannit' });
+   userlib.isUser(); 
+   res.render('login', { title: 'Plannit' });
 });
 
 

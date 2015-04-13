@@ -2,8 +2,13 @@
 //every user will have a username, password, email and a uid that we 
 //will set the value of
 
-//var conn = new Mongo();
-//var 
+var mongo = require('mongodb');
+//var connection = new Mongo();
+var Server = mongo.Server;
+var Db = mongo.Db;
+var server = new Server('localhost', 27017, {auto_reconnect: true});
+var db = new Db('users', server);
+
 
 //this will store everyone who is online
 var online = {};
@@ -26,10 +31,23 @@ exports.isOnline = function(user, cb){
 }
 ///////////////////////////this one
 //this will confirm whether a user exists or not
-exports.isUser = function (username){
 
+exports.isUser = function (){
+console.log('fdjkldjkl');
+db.open(function(err, db) {
+  if(!err) {
+    console.log("We are connected");
+    db.collection('myCollectionName', function(err, collectionref) { 
+    var myDoc = {"some":"data", "foo":"bar"};
+      collectionref.insert(myDoc, function (err, result) {
+      // this is an asynchroneous operation
+      }); 
+
+    });
+  }
+});  
+ 
 }
-
 ///////////////////////////this one
 //this should be called to add user to users database
 exports.addNewUser = function (username, password, email){
