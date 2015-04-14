@@ -32,33 +32,69 @@ exports.isOnline = function(user, cb){
 ///////////////////////////this one
 //this will confirm whether a user exists or not
 
-exports.isUser = function (){
-console.log('fdjkldjkl');
+exports.isUser = function (username, cb){
+if(username === undefined){
+  cb('User not logged in');
+}
+else{
 db.open(function(err, db) {
   if(!err) {
     console.log("We are connected");
-    db.collection('myCollectionName', function(err, collectionref) { 
-    var myDoc = {"some":"data", "foo":"bar"};
-      collectionref.insert(myDoc, function (err, result) {
+    db.collection(username, function(err, collectionref) {
+      if(!err){
+	cb(undefined);
+      }
+      else{
+	cb('User not found');
+      }
+   // var myDoc = {"some":"data", "foo":"bar"};
+      //collectionref.insert(myDoc, function (err, result) {
       // this is an asynchroneous operation
-      }); 
+      //}); 
 
     });
   }
 });  
- 
+}
 }
 ///////////////////////////this one
 //this should be called to add user to users database
-exports.addNewUser = function (username, password, email){
-
+exports.addNewUser = function (username, password, email, cb){
+//Add new users assumes you've checked that this username is unique
+//using the isUser function.
+//This function will add a new user and provide them an empty
+//todo collection that will enlist all the things to do, and it will
+//add the home collection that holds all the module collections.
+  db.open(function(err, db){
+    if(!err){
+      db.createCollection(username);
+      db.createCollection(username + 'TODO');
+      db.createCollection(username + 'HOME');
+      db.username.insert({user: username, pass: password, email: email});
+      cb(undefined);
+    }
+    else{
+      cb(err);
+    }
+  });      
 }
 //this should be called to add a database that will store all of the users
 //planners such as cs 326, cs 250 we should also verify that two
 //planners of the exact same name haven't been added
-exports.addHomeModule = function (user, nameOfModule) {
-
-}
+exports.addHomeModule = function (username, nameOfModule, cb) {
+  db.open(function(err, db){
+    if(!err){
+      db.collection(username+nameOfModule, function(err, collectionref){
+	if(!err){
+          cb(err);
+	}
+	else{
+	  db.createCollection(username+nameOfModule);
+	}
+      });
+    }
+  });
+}	
 
 //this will remove a planner such as cs 326 and cs 250
 exports.removeHomeModule = function (user, nameOfModule) {

@@ -8,9 +8,21 @@ router.get('/', function(req, res){
   res.redirect('/login');
 });
 
-router.get('/login', function(req, res, next) {
-   userlib.isUser(); 
-   res.render('login', { title: 'Plannit' });
+router.get('/login', function(req, res) {
+   //console.log(req.session);
+   var user = req.session; //Checks if req.session is defined
+   if(user !== undefined){
+   //If it is defined we check the user.
+     user = req.session.user;
+   }
+   userlib.isUser(user, function(err){
+     if(err !== undefined){
+        res.render('login', { title: 'Plannit' });
+     }
+     else{
+        res.redirect('/user/home');
+     }
+   });
 });
 
 
