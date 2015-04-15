@@ -36,8 +36,17 @@ exports.isUser = function (username, cb){
 db.open(function(err, db) {
   if(!err) {
     db.collection(username, function(err, user) {
+	console.log(user);
       if(!err){
-	cb(undefined, user);
+	console.log('here');
+	user.findOne({username:username}, function(err, currentUser){
+	  if(!err && currentUser !== null){
+ 	    cb(undefined, currentUser);
+	  }
+	  else{
+	    cb('User not found');
+	  }	
+	});
       }
       else{
 	cb('User not found');
@@ -68,11 +77,6 @@ exports.addNewUser = function (username, password, email, cb){
  	 userCollection.insert({username: username, password: password,
 	   email: email, uid: online.length});
       });
-//      db.createCollection(username + 'TODO');
-//      db.createCollection(username + 'HOME');
-	console.log('here');
-//      db.username.insert({user: username, pass: password, email: email
-// 		,uid: online.length});
       cb(undefined, user);
     }
     else{

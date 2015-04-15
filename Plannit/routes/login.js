@@ -76,8 +76,8 @@ router.get('/login/addNewUser', function(req, res){
     }
     else{
       userlib.isUser(req.query.username, function(err){
- 	if(err !== undefined){
-	  req.flash('add', err);
+	if(err === undefined){
+	  req.flash('add', 'user exists');
 	  res.redirect('/login/newUser');
  	}
 	else{
