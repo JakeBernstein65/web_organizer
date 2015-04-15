@@ -35,9 +35,9 @@ exports.isOnline = function(user, cb){
 exports.isUser = function (username, cb){
 db.open(function(err, db) {
   if(!err) {
-    db.collection(username, function(err, collectionref) {
+    db.collection(username, function(err, user) {
       if(!err){
-	cb(undefined);
+	cb(undefined, user);
       }
       else{
 	cb('User not found');
@@ -60,7 +60,14 @@ exports.addNewUser = function (username, password, email, cb){
     if(!err){
       var user = {username : username, password: password, email : email,
 	uid: online.length};
-//      db.createCollection(username);
+      db.collection(username, function(error, userCollection){
+         db.collection(username+ 'TODO', function(error, collectiontodo){         
+	 });
+	 db.collection(username+ 'HOME', function(error, collectionhome){
+	 });
+ 	 userCollection.insert({username: username, password: password,
+	   email: email, uid: online.length});
+      });
 //      db.createCollection(username + 'TODO');
 //      db.createCollection(username + 'HOME');
 	console.log('here');

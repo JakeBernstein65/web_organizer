@@ -2,7 +2,8 @@
     <link rel="import" href="/headerLogin.ejs">
      <img src="file:///home/vagrant/shared/Plannit-logo.png">
     <p>Welcome to <%= title %></p>
-        <form method="post" action="/login/auth">
+        <p><%= message%></p>
+	<form method="post" action="/login/auth">
       	 User Name: <input type="text" name="username"> <br>
       	 Password:  <input type="password" name="password"> <br>
       	 <button>Login</button>

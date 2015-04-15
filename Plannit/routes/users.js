@@ -33,7 +33,7 @@ router.get('/home', function(req, res, next) {
   //this will render the users home page and show all modules associated
   //with this particular user such as cs 326 or cs 250 it will also
   //show their to-do list
-   res.render('home', {title : 'Welcome to Plannit', username : user.username});
+   res.render('home', {title : 'Welcome to Plannit', username : 'matthew'});
 		        // listOfModules : user.modules,
  			// todo : user.todo});
   

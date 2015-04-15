@@ -9,20 +9,46 @@ router.get('/', function(req, res){
 });
 
 router.get('/login', function(req, res) {
-   //console.log(req.session);
-   var user = req.session.user; //Checks if req.session is defined
-   if(user !== undefined){
-   //If it is defined we check the user.
-     res.redirect('/users/home');
-   }
-   userlib.isUser(user, function(err){
-     if(err !== undefined){
-        res.render('login', { title: 'Plannit' });
+   var message = req.flash('auth') || '';
+   var user = req.session.user;
+   userlib.isOnline(user, function(users, cb){
+     if(users !== undefined){
+     //If it is defined we check the user.
+       res.redirect('/users/home');
      }
      else{
-        res.redirect('/user/home');
+       res.render('login', {title : 'Plannit', message: message});
      }
    });
+   
+});
+
+router.post('/login/auth', function(req, res){
+   console.log(req.query.username);
+   if(req.query.username === "" || req.query.password === "" ||
+      req.query.username === undefined ||
+      req.query.password === undefined){
+     req.flash('auth', 'please fill in all field');
+     res.redirect('/login');
+   }
+
+   else{
+     userlib.isUser(req.query.username, function(err, user){
+	if(err === undefined){
+	  if(req.query.password === user.password){
+	    res.redirect('/user/home');
+	  }
+	  else{
+	    req.flash('auth', 'incorrect password');
+	    res.redirect('/login');
+	  }
+	}
+	else{
+	  req.flash('auth', 'user does not exist');
+	  res.redirect('/login');
+	}	
+     });
+   }
 });
 
 
