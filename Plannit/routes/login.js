@@ -11,22 +11,18 @@ router.get('/', function(req, res){
 router.get('/login', function(req, res) {
    var message = req.flash('auth') || '';
    var user = req.session.user;
-   userlib.isOnline(user, function(users, cb){
-     if(users !== undefined){
+     if(user !== undefined){
        res.redirect('/users/home');
      }
      else{
        res.render('login', {title : 'Plannit', message: message});
      }
-   });
    
 });
 
 router.get('/logout', function(req, res){
   var user = req.session.user;
-   userlib.isOnline(user, function(users, cb){
-     if(users !== undefined){
-       userlib.removeOnline(user);
+     if(user !== undefined){
        delete req.session.user;
        res.redirect('/login');
      }
@@ -34,7 +30,6 @@ router.get('/logout', function(req, res){
        req.flash('auth', 'Not logged in!');
        res.redirect('/login');
      }
-   });
 
 });
 
@@ -50,7 +45,6 @@ router.get('/login/auth', function(req, res){
      userlib.isUser(req.query.username, function(err, user){
 	if(err === undefined){
 	  if(req.query.password === user.password){
-	    userlib.addOnline(user);
 	    req.session.user = user;
 	    res.redirect('/users/home');
 	  }
@@ -97,10 +91,10 @@ router.get('/login/addNewUser', function(req, res){
 	  res.redirect('/login/newUser');
  	}
 	else{
+	  
 	  userlib.addNewUser(req.query.username, req.query.password,
 		req.query.email, function(err, user){	  
 	    if(err === undefined){
-	      userlib.addOnline(user);
 	      req.session.user = user;
        	      res.redirect('/users/home');
 	    }

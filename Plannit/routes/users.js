@@ -15,11 +15,10 @@ router.get('/', function(req, res){
 router.get('/home', function(req, res, next) {
   //this is used to check if user is online
   var user = req.session.user;
-  console.log(user);
-  userlib.isOnline(user, function(userOnline) {
-    if (userOnline === undefined) {
+//  userlib.isOnline(user, function(userOnline)
+  if(user === undefined) {
       res.redirect('/login');
-    }
+  }  
     else{
         //this will render the users home page and show all modules associated
   	//with this particular user such as cs 326 or cs 250 it will also
@@ -29,7 +28,6 @@ router.get('/home', function(req, res, next) {
         // todo : user.todo});
 
     }
-  });
   
 });
 

@@ -3,80 +3,59 @@
 //will set the value of
 
 var mongo = require('mongodb');
-//var connection = new Mongo();
 var Server = mongo.Server;
 var Db = mongo.Db;
 var server = new Server('localhost', 27017, {auto_reconnect: true});
 var db = new Db('users', server);
 
+
+//this will store everyone who is online
+var online = {};
+
+exports.addOnline = function(user){
+  online[user.uid] = user; 
+}
+
+exports.removeOnline = function(user){
+  delete online[user.uid];
+}
+
+exports.isOnline = function(user, cb){
+  if(user === undefined || user !== online[user.uid]){
+    cb(undefined);
+  }
+  else{
+    cb(user);
+  }
+}
+///////////////////////////this one
 //this will confirm whether a user exists or not
 
-exports.isUser = function (username, cb){
+exports.isUser = function (){
+
 db.open(function(err, db) {
   if(!err) {
-    db.collection(username, function(err, user) {
-      if(!err){
-	user.findOne({username:username}, function(err, currentUser){
-	  if(!err && currentUser !== null){
- 	    cb(undefined, currentUser);
-	  }
-	  else{
-	    cb('User not found');
-	  }	
-	});
-      }
-      else{
-	cb('User not found');
-      }
+    console.log("We are connected");
+    db.collection('users', function(err, collectionref) { 
+    var myDoc = {"username":"raymond", "password":"password"};
+      collectionref.insert(myDoc, function (err, result) {
+ 
 
     });
   }
 });  
-
+ 
 }
-///////////////////////////this one
 //this should be called to add user to users database
-exports.addNewUser = function (username, password, email, cb){
-//Add new users assumes you've checked that this username is unique
-//using the isUser function.
-//This function will add a new user and provide them an empty
-//todo collection that will enlist all the things to do, and it will
-//add the home collection that holds all the module collections.
-  db.open(function(err, db){
-    if(!err){
-      var user = {username : username, password: password, email : email};
-      db.collection(username, function(error, userCollection){
-         db.collection(username+ 'TODO', function(error, collectiontodo){     
-	 });
-	 db.collection(username+ 'HOME', function(error, collectionhome){
-	 });
- 	 userCollection.insert({username: username, password: password,
-	   email: email});
-      });
-      cb(undefined, user);
-    }
-    else{
-      cb(err);
-    }
-  });      
+exports.addNewUser = function (username, password, email){
+
 }
 //this should be called to add a database that will store all of the users
 //planners such as cs 326, cs 250 we should also verify that two
 //planners of the exact same name haven't been added
-exports.addHomeModule = function (username, nameOfModule, cb) {
-  db.open(function(err, db){
-    if(!err){
-      db.collection(username+nameOfModule, function(err, collectionref){
-	if(!err){
-          cb(err);
-	}
-	else{
-	  db.createCollection(username+nameOfModule);
-	}
-      });
-    }
-  });
-}	
+exports.addHomeModule = function (user, nameOfModule) {
+
+}
 
 //this will remove a planner such as cs 326 and cs 250
 exports.removeHomeModule = function (user, nameOfModule) {
