@@ -28,12 +28,12 @@ router.get('/home', function(req, res, next) {
   //is online if he isn't the auth funtion will redirect to user login 
   //with message
   user = req.session.user;
-  auth(user);
+//  auth(user);
 
   //this will render the users home page and show all modules associated
   //with this particular user such as cs 326 or cs 250 it will also
   //show their to-do list
-   res.render('home', {title : 'Welcome to Plannit'});
+   res.render('home', {title : 'Welcome to Plannit', username : user.username});
 		        // listOfModules : user.modules,
  			// todo : user.todo});
   

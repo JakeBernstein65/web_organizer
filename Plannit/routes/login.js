@@ -10,10 +10,10 @@ router.get('/', function(req, res){
 
 router.get('/login', function(req, res) {
    //console.log(req.session);
-   var user = req.session; //Checks if req.session is defined
+   var user = req.session.user; //Checks if req.session is defined
    if(user !== undefined){
    //If it is defined we check the user.
-     user = req.session.user;
+     res.redirect('/users/home');
    }
    userlib.isUser(user, function(err){
      if(err !== undefined){
@@ -28,7 +28,8 @@ router.get('/login', function(req, res) {
 
 //this will display the sign up page for new users
 router.get('/login/newUser', function(req, res){
-  res.render('addUser',{title: 'NewUser' });  
+   var message = req.flash('add') || '';
+   res.render('addUser',{title: 'NewUser', message: message });  
 });
 
 
@@ -36,8 +37,39 @@ router.get('/login/newUser', function(req, res){
 //this will be called when the form has been filled out so that we can 
 //add a new user, this function should redirect to /users/home once the user
 //has been created otherwise send us back to newUser page
-router.get('/addNewUser', function(req, res){
-  res.redirect('/users/home');
+router.get('/login/addNewUser', function(req, res){
+  if(req.query.username === "" || req.query.password === "" ||
+	req.query.verifyPassword === "" || req.query.email === ""){
+    req.flash('add', 'Please fill in all fields');
+    res.redirect('/login/newUser');
+  }
+  else{
+    if(req.query.password !== req.query.verifyPassword){
+      req.flash('add', 'Passwords do not match');
+      res.redirect('/login/newUser');
+    }
+    else{
+      userlib.isUser(req.query.username, function(err){
+ 	if(err !== undefined){
+	  req.flash('add', err);
+	  res.redirect('/login/newUser');
+ 	}
+	else{
+	  userlib.addNewUser(req.query.username, req.query.password,
+		req.query.email, function(err, user){	  
+	    if(err === undefined){
+	      userlib.addOnline(user);
+	      res.redirect('/users/home');
+	    }
+	    else{
+	      req.flash('add', err);
+	      res.redirect('/login/newUser');
+	    }
+	  });
+	}
+      });
+    }
+  }
 });
 
 module.exports = router;

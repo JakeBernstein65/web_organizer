@@ -6,14 +6,15 @@
   </head>
   <body>
     <h1><%= title %></h1>
-<form action="/users/add" method="get">
+    <p><%= message %></p> 
+<form action="/login/addNewUser" method="get">
   Username:<br> <input type="text" name="username"><br><br>
-  Password:<br> <input type="text" name=""><br><br>
-  Verify Password:<br> <input type="text" name="lname"><br><br>
-  email:<br> <input type="text" name="password"><br><br>
+  Password:<br> <input type="text" name="password"><br><br>
+  Verify Password:<br> <input type="text" name="verifyPassword"><br><br>
+  email:<br> <input type="text" name="email"><br><br>
   <input type="submit" value="Add User">
 </form><br><br>    
 
-    <p><a href="/login/">Back to Main Menu</a></p>
+    <p><a href="/login/">Back to Login</a></p>
   </body>
 </html>

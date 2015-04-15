@@ -33,13 +33,8 @@ exports.isOnline = function(user, cb){
 //this will confirm whether a user exists or not
 
 exports.isUser = function (username, cb){
-if(username === undefined){
-  cb('User not logged in');
-}
-else{
 db.open(function(err, db) {
   if(!err) {
-    console.log("We are connected");
     db.collection(username, function(err, collectionref) {
       if(!err){
 	cb(undefined);
@@ -47,15 +42,11 @@ db.open(function(err, db) {
       else{
 	cb('User not found');
       }
-   // var myDoc = {"some":"data", "foo":"bar"};
-      //collectionref.insert(myDoc, function (err, result) {
-      // this is an asynchroneous operation
-      //}); 
 
     });
   }
 });  
-}
+
 }
 ///////////////////////////this one
 //this should be called to add user to users database
@@ -67,11 +58,15 @@ exports.addNewUser = function (username, password, email, cb){
 //add the home collection that holds all the module collections.
   db.open(function(err, db){
     if(!err){
-      db.createCollection(username);
-      db.createCollection(username + 'TODO');
-      db.createCollection(username + 'HOME');
-      db.username.insert({user: username, pass: password, email: email});
-      cb(undefined);
+      var user = {username : username, password: password, email : email,
+	uid: online.length};
+//      db.createCollection(username);
+//      db.createCollection(username + 'TODO');
+//      db.createCollection(username + 'HOME');
+	console.log('here');
+//      db.username.insert({user: username, pass: password, email: email
+// 		,uid: online.length});
+      cb(undefined, user);
     }
     else{
       cb(err);
