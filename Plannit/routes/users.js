@@ -3,17 +3,6 @@ var router = express.Router();
 
 var userlib = require('../lib/user');
 
-//this function should be called before we render any view to ensure user
-//if logged in
-function auth(user){
-  userlib.isOnline(user, function(userOnline) {
-    if (userOnline === undefined) {
-      req.flash('auth', 'Not logged in!');
-      res.redirect('/login');
-    }
-  });
-}
-
 /*all routes for user home*/
 
 //if they try to type in /users it will redirect them to users/home
@@ -24,18 +13,23 @@ router.get('/', function(req, res){
 //this is the users home where all of the users planners and todo list will
 //be displayed
 router.get('/home', function(req, res, next) {
-  //this is calling our auth function that will check to see if the user 
-  //is online if he isn't the auth funtion will redirect to user login 
-  //with message
-  user = req.session.user;
-//  auth(user);
+  //this is used to check if user is online
+  var user = req.session.user;
+  console.log(user);
+  userlib.isOnline(user, function(userOnline) {
+    if (userOnline === undefined) {
+      res.redirect('/login');
+    }
+    else{
+        //this will render the users home page and show all modules associated
+  	//with this particular user such as cs 326 or cs 250 it will also
+  	//show their to-do list
+      res.render('home', {title : 'Welcome to Plannit', username : 
+	user.username}); // listOfModules : user.modules,
+        // todo : user.todo});
 
-  //this will render the users home page and show all modules associated
-  //with this particular user such as cs 326 or cs 250 it will also
-  //show their to-do list
-   res.render('home', {title : 'Welcome to Plannit', username : 'matthew'});
-		        // listOfModules : user.modules,
- 			// todo : user.todo});
+    }
+  });
   
 });
 

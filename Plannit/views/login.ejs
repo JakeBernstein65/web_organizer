@@ -3,10 +3,10 @@
      <img src="file:///home/vagrant/shared/Plannit-logo.png">
     <p>Welcome to <%= title %></p>
         <p><%= message%></p>
-	<form method="post" action="/login/auth">
+	<form method="get" action="/login/auth">
       	 User Name: <input type="text" name="username"> <br>
       	 Password:  <input type="password" name="password"> <br>
-      	 <button>Login</button>
+      	 <input type="submit" value="Login">
     	</form>
 
         <p>New to Plannit? Sign up <a href="/login/newUser"> here</a></p>

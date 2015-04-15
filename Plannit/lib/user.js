@@ -22,7 +22,7 @@ exports.removeOnline = function(user){
 }
 
 exports.isOnline = function(user, cb){
-  if(user === undefined || user !== online[user.uid]){
+  if(user === undefined || user.username !== online[user.uid].username){
     cb(undefined);
   }
   else{
@@ -36,9 +36,7 @@ exports.isUser = function (username, cb){
 db.open(function(err, db) {
   if(!err) {
     db.collection(username, function(err, user) {
-	console.log(user);
       if(!err){
-	console.log('here');
 	user.findOne({username:username}, function(err, currentUser){
 	  if(!err && currentUser !== null){
  	    cb(undefined, currentUser);

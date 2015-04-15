@@ -13,7 +13,6 @@ router.get('/login', function(req, res) {
    var user = req.session.user;
    userlib.isOnline(user, function(users, cb){
      if(users !== undefined){
-     //If it is defined we check the user.
        res.redirect('/users/home');
      }
      else{
@@ -23,12 +22,27 @@ router.get('/login', function(req, res) {
    
 });
 
-router.post('/login/auth', function(req, res){
-   console.log(req.query.username);
+router.get('/logout', function(req, res){
+  var user = req.session.user;
+   userlib.isOnline(user, function(users, cb){
+     if(users !== undefined){
+       userlib.removeOnline(user);
+       delete req.session.user;
+       res.redirect('/login');
+     }
+     else{
+       req.flash('auth', 'Not logged in!');
+       res.redirect('/login');
+     }
+   });
+
+});
+
+router.get('/login/auth', function(req, res){
    if(req.query.username === "" || req.query.password === "" ||
       req.query.username === undefined ||
       req.query.password === undefined){
-     req.flash('auth', 'please fill in all field');
+     req.flash('auth', 'please fill in all fields');
      res.redirect('/login');
    }
 
@@ -36,7 +50,9 @@ router.post('/login/auth', function(req, res){
      userlib.isUser(req.query.username, function(err, user){
 	if(err === undefined){
 	  if(req.query.password === user.password){
-	    res.redirect('/user/home');
+	    userlib.addOnline(user);
+	    req.session.user = user;
+	    res.redirect('/users/home');
 	  }
 	  else{
 	    req.flash('auth', 'incorrect password');
@@ -85,7 +101,8 @@ router.get('/login/addNewUser', function(req, res){
 		req.query.email, function(err, user){	  
 	    if(err === undefined){
 	      userlib.addOnline(user);
-	      res.redirect('/users/home');
+	      req.session.user = user;
+       	      res.redirect('/users/home');
 	    }
 	    else{
 	      req.flash('add', err);
