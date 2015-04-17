@@ -81,43 +81,38 @@ exports.listHomeModule = function(username, cb){
 exports.addHomeModule = function (username, nameOfModule, cb) {
   db.open(function(err, db){
     if(!err){
-      db.collection(username+ 'HOME', function(err, homecollection){
+      db.collection(username+ 'HOME', function(erra, homecollection){
+          if(!erra){
       db.collection(username+nameOfModule, function(err, collectionref){
 	  if(!err){
 	    collectionref.findOne({}, function(err, stuff){
 	      if(!err){
-	        if(stuff === undefined){
+	        if(stuff === undefined){//stuff
                   collectionref.insert({exist: true});
                   homecollection.insert({planner: nameOfModule});
 		  cb(undefined);
-                }
-		else{
+                }//to stuff
+		else{//err in findOne
 		  cb('Home module, ' + nameOfModule + ', already exists!');
-                }
-              }
-              else{
+                }//end that
+              }//End checking for non-error
+              else{ //If err occured
 		cb('Error in trying to find something in '+username+nameOfModule);
+              }//End err occured
+              }); //End findone cb
+	      }//End not err if
+	      else{//Else err
+		cb(user+nameModule +' could not be connected.');
+              } 
+              });//End accessing user+nameOfModule
+              else{
+		cb(username+'HOME' + ' could not be accessed');
               }
-              });
-           }
-	   else{
-	     cb('Trouble creating or accessing collection ' + username+nameOfModule);
-           }
-        });
-      }
+              });//END 'HOME'
+           }//end last err
+        //});
       else{
 	cb('Trouble opening database');
-     // }
-   // });
-
-
-	//if(!err){
-          //cb(err);
-	//}
-	//else{
-	  //db.createCollection(username+nameOfModule);
-	//}
-     // });
     }
   });
 }	
