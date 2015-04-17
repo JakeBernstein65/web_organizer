@@ -60,28 +60,82 @@ exports.addNewUser = function (username, password, email, cb){
     }
   });      
 }
+
+exports.listHomeModule = function(username, cb){
+  db.open(function(err, db){
+    if(!err){
+      db.collection(username+'HOME', function(err, collectionref){
+	if(!err){
+	  cb(collectionref);
+	}
+      });
+     }
+  });
+}
+
 //this should be called to add a database that will store all of the users
 //planners such as cs 326, cs 250 we should also verify that two
 //planners of the exact same name haven't been added
+//We should take in a callback that just checks if an error occurred when
+//making a home module.
 exports.addHomeModule = function (username, nameOfModule, cb) {
   db.open(function(err, db){
     if(!err){
+      db.collection(username+ 'HOME', function(err, homecollection){
       db.collection(username+nameOfModule, function(err, collectionref){
-	if(!err){
-          cb(err);
-	}
-	else{
-	  db.createCollection(username+nameOfModule);
-	}
-      });
+	  if(!err){
+	    collectionref.findOne({}, function(err, stuff){
+	      if(!err){
+	        if(stuff === undefined){
+                  collectionref.insert({exist: true});
+                  homecollection.insert({planner: nameOfModule});
+		  cb(undefined);
+                }
+		else{
+		  cb('Home module, ' + nameOfModule + ', already exists!');
+                }
+              }
+              else{
+		cb('Error in trying to find something in '+username+nameOfModule);
+              }
+              });
+           }
+	   else{
+	     cb('Trouble creating or accessing collection ' + username+nameOfModule);
+           }
+        });
+      }
+      else{
+	cb('Trouble opening database');
+     // }
+   // });
+
+
+	//if(!err){
+          //cb(err);
+	//}
+	//else{
+	  //db.createCollection(username+nameOfModule);
+	//}
+     // });
     }
   });
 }	
 
 //this will remove a planner such as cs 326 and cs 250
 exports.removeHomeModule = function (user, nameOfModule) {
-
-}
+  db.open(function(err, db){
+    if(!err){
+      db.collection(user+nameOfModule, function(err, collectionref){
+	if(!err){
+	  
+	  db.dropCollection(username+nameOfModule, function(err, result){
+	  });
+        }
+      });
+    }
+  });
+}   
 
 //this should be called to create a new page module database that is specific
 //to a user and one of their planners. The newPageModule will be the name of
@@ -90,7 +144,7 @@ exports.removeHomeModule = function (user, nameOfModule) {
 //this should make sure that the module hasn't already been added   
 exports.addPageModule = function (user, nameOfModule, newPageModule, 
 	pageModuleData) {
-
+  
 }
 //this should be called to edit a pageModule with the new pageModule.
 exports.editPageModule = function (user, nameOfModule, pageModule, 
