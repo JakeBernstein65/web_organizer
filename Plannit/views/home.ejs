@@ -6,6 +6,13 @@
   </head>
   <body>
     <h1><%=title %> <%= username%></h1>
+
+    <ul>
+	<% for(var i = 0; i < listOfModules.length; i++) { %>
+	<li><%= listOfModule[i].planner %></li>
+     <%  }  %>
+    </ul>
+	
     <p><a href="/logout">Logout</a>
     
   </body>
