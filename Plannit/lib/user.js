@@ -122,13 +122,15 @@ exports.addHomeModule = function (username, nameOfModule, cb) {
 exports.removeHomeModule = function (user, nameOfModule) {
   db.open(function(err, db){
     if(!err){
+      db.collection(user+'HOME', function(err, homecollection){
       db.collection(user+nameOfModule, function(err, collectionref){
 	if(!err){
-	  
-	  db.dropCollection(username+nameOfModule, function(err, result){
+	  homecollection.remove({planner: nameOfModule});
+	  db.dropCollection(user+nameOfModule, function(err, result){
 	  });
         }
       });
+     });
     }
   });
 }   
