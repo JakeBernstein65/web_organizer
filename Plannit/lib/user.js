@@ -105,6 +105,7 @@ exports.addHomeModule = function (username, nameOfModule, cb) {
 		cb(user+nameModule +' could not be connected.');
               } 
               });//End accessing user+nameOfModule
+              }
               else{
 		cb(username+'HOME' + ' could not be accessed');
               }
