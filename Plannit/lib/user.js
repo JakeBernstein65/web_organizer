@@ -46,13 +46,13 @@ exports.addNewUser = function (username, password, email, cb){
     if(!err){
       var user = {username : username, password: password, email : email};
       db.collection(username, function(error, userCollection){
-         db.collection(username+ 'TODO', function(error, collectiontodo){     
-	 });
-	 db.collection(username+ 'HOME', function(error, collectionhome){
-	 });
- 	 userCollection.insert({username: username, password: password,
+        userCollection.insert({username: username, password: password,
 	   email: email});
       });
+	  db.createCollection(username +'TODO', function(error, collectiontodo){
+	  });
+         db.createCollection(username+'HOME', function(error, collectionhome){
+	  });
       cb(undefined, user);
     }
     else{
