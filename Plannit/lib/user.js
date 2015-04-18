@@ -95,7 +95,7 @@ exports.addHomeModule = function (username, nameOfModule, cb) {
 	      cb(undefined);
 	    }
 	    else{
-	      cb(nameOfModule + 'already exists');
+	      cb(nameOfModule + ' already exists');
 	    }
 	  });
 	}
@@ -111,15 +111,15 @@ exports.addHomeModule = function (username, nameOfModule, cb) {
 }	
 
 //this will remove a planner such as cs 326 and cs 250
-exports.removeHomeModule = function (user, nameOfModule) {
+exports.removeHomeModule = function (username, nameOfModule) {
   db.open(function(err, db){
     if(!err){
-      db.collection(user+'HOME', function(err, homecollection){
-      db.collection(user+nameOfModule, function(err, collectionref){
+      db.collection(username+'HOME', function(err, homecollection){
+      db.collection(username+nameOfModule, function(err, collectionref){
 	if(!err){
 	  homecollection.remove({planner: nameOfModule});
-	  db.dropCollection(user+nameOfModule, function(err, result){
-	  });
+	  //db.dropCollection(user+nameOfModule, function(err, result){
+	  
         }
       });
      });

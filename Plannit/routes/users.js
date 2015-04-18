@@ -36,7 +36,6 @@ router.get('/home', function(req, res, next) {
 
 //this will call a function in userlib to add to the users home modules db
 router.get('/addHomeModule', function(req, res){
-  //this is used to check if user is online
   var user = req.session.user;
   if(user === undefined) {
       res.redirect('/login');
@@ -58,10 +57,14 @@ router.get('/addHomeModule', function(req, res){
 //this will call a function in userlib to remove a module from the users
 //home modules db
 router.get('/removeHomeModule',function(req, res){
-  //call this everytime to verify the user is logged in
-  auth(req.session.user);
-  //userlib.removeHomeModule(user, name of module);
-
+  var user = req.session.user;
+  if(user === undefined) {
+      res.redirect('/login');
+  }
+  else{
+    userlib.removeHomeModule(user.username, req.query.planner);
+    res.redirect('/users/home');
+  }
 });
 
 router.get('/editToDoList', function(req, res){

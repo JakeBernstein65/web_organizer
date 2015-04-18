@@ -11,6 +11,12 @@
     <ul>
 	<% for(var i = 0; i < listOfModules.length; i++) { %>
 	<li><%= listOfModules[i].planner %></li>
+    <form action="/users/removeHomeModule" method="get">
+      <input type="hidden" name='planner'
+	value=<%= listOfModules[i].planner %>><br><br>
+      <input type="submit" value="Remove Module"> <br><br>
+    </form> <br>
+
      <%  }  %>
     </ul>
     
