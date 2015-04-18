@@ -15,8 +15,6 @@ router.get('/', function(req, res){
 router.get('/home', function(req, res, next) {
   //this is used to check if user is online
   var user = req.session.user;
-  var errorMessage = req.flash('error') || '';
-
   if(user === undefined) {
       res.redirect('/login');
   }  
@@ -24,11 +22,9 @@ router.get('/home', function(req, res, next) {
         //this will render the users home page and show all modules associated
   	//with this particular user such as cs 326 or cs 250 it will also
   	//show their to-do list
-         userlib.listHomeModule(user.username, function(userHomeModules){       
-	 res.render('home', {title : 'Welcome to Plannit', username : 
-	user.username,  listOfModules : userHomeModules, error : errorMessage});
+      res.render('home', {title : 'Welcome to Plannit', username : 
+	user.username}); // listOfModules : user.modules,
         // todo : user.todo});
-         });//END
 
     }
   
@@ -36,23 +32,9 @@ router.get('/home', function(req, res, next) {
 
 //this will call a function in userlib to add to the users home modules db
 router.get('/addHomeModule', function(req, res){
-  //this is used to check if user is online
-  var user = req.session.user;
-  if(user === undefined) {
-      res.redirect('/login');
-  }
-  else{
-    userlib.addHomeModule(user.username, req.query.planner, function(err){
-	if(err === undefined){
-	  res.redirect('/users/home');
-	}
-	else{
-	  console.log(err + 'im HERE');
-	  req.flash('error', err);
-	  res.redirect('/users/home');
-	}
-    });
-  }
+  //call this everytime to verify the user is logged in
+  
+  //userlib.addHomeModule(user, name of module)
 });
 
 //this will call a function in userlib to remove a module from the users

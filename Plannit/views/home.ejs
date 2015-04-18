@@ -6,15 +6,19 @@
   </head>
   <body>
     <h1><%=title %> <%= username%></h1>
+    <p><%=error %></p>
 
     <ul>
 	<% for(var i = 0; i < listOfModules.length; i++) { %>
-	<li><%= listOfModule[i].planner %></li>
+	<li><%= listOfModules[i].planner %></li>
      <%  }  %>
     </ul>
     
-    <a href="addModule"> <button type="button">AddModule</button>
-    </a>	
+     
+    <form action="/users/addHomeModule" method="get">
+      Add Planner:<br> <input type="text" name="planner"><br><br>
+      <input type="submit" value="Add Module"> <br><br>
+    </form> <br>	
     <p><a href="/logout">Logout</a>
     
   </body>

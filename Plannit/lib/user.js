@@ -1,3 +1,4 @@
+
 //initialize mongodb and get the database of users
 //every user will have a username, password, email and a uid that we 
 //will set the value of
@@ -34,14 +35,9 @@ db.open(function(err, db) {
 });  
 
 }
-///////////////////////////this one
+
 //this should be called to add user to users database
 exports.addNewUser = function (username, password, email, cb){
-//Add new users assumes you've checked that this username is unique
-//using the isUser function.
-//This function will add a new user and provide them an empty
-//todo collection that will enlist all the things to do, and it will
-//add the home collection that holds all the module collections.
   db.open(function(err, db){
     if(!err){
       var user = {username : username, password: password, email : email};
@@ -66,7 +62,16 @@ exports.listHomeModule = function(username, cb){
     if(!err){
       db.collection(username+'HOME', function(err, collectionref){
 	if(!err){
-	  cb(collectionref);
+	  var cursor = collectionref.find();
+	  cursor.toArray(function(err, arrayOfHomeModules){
+	    if(err){
+	      console.log(err);
+	    }
+	    else{
+	      cb(arrayOfHomeModules);
+	    }
+	
+	  });
 	}
       });
      }
@@ -81,39 +86,26 @@ exports.listHomeModule = function(username, cb){
 exports.addHomeModule = function (username, nameOfModule, cb) {
   db.open(function(err, db){
     if(!err){
-      db.collection(username+ 'HOME', function(erra, homecollection){
-          if(!erra){
-      db.collection(username+nameOfModule, function(err, collectionref){
-	  if(!err){
-	    collectionref.findOne({}, function(err, stuff){
-	      if(!err){
-	        if(stuff === undefined){//stuff
-                  collectionref.insert({exist: true});
-                  homecollection.insert({planner: nameOfModule});
-		  cb(undefined);
-                }//to stuff
-		else{//err in findOne
-		  cb('Home module, ' + nameOfModule + ', already exists!');
-                }//end that
-              }//End checking for non-error
-              else{ //If err occured
-		cb('Error in trying to find something in '+username+nameOfModule);
-              }//End err occured
-              }); //End findone cb
-	      }//End not err if
-	      else{//Else err
-		cb(user+nameModule +' could not be connected.');
-              } 
-              });//End accessing user+nameOfModule
-              }
-              else{
-		cb(username+'HOME' + ' could not be accessed');
-              }
-              });//END 'HOME'
-           }//end last err
-        //});
-      else{
-	cb('Trouble opening database');
+      db.collection(username+ 'HOME', function(err, homeCollection){
+        if(!err){
+	  homeCollection.findOne({planner : nameOfModule}, function(err, stuff){
+	    console.log(stuff);
+	    if(!err && stuff === null){
+	      homeCollection.insert({planner: nameOfModule});
+	      cb(undefined);
+	    }
+	    else{
+	      cb(nameOfModule + 'already exists');
+	    }
+	  });
+	}
+	else{
+	  cb(user+'HOME' + 'couldnt be accessed'); 
+	}
+      });
+    }//if err
+    else{
+      cb('Trouble opening database');
     }
   });
 }	
