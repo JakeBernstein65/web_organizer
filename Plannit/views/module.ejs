@@ -9,6 +9,10 @@ that class or whatever the users planner is-->
   </head>
   <body>
     <h1><%=planner %></h1>
+    <% for(var i; i < listOfModules.length; i++) { %>
+    <li> listOfModules[i] </li>	
+    <% } %>	
+    <h1>Drop Down Button </h1>
     <a href="/users/home">Back to Home</a><br>
     <a href="/logout">Logout</a>
   </body>

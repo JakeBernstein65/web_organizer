@@ -57,6 +57,7 @@ router.get('/addHomeModule', function(req, res){
 //this will call a function in userlib to remove a module from the users
 //home modules db
 router.get('/removeHomeModule',function(req, res){
+//
   var user = req.session.user;
   if(user === undefined) {
       res.redirect('/login');
@@ -67,9 +68,10 @@ router.get('/removeHomeModule',function(req, res){
   }
 });
 
+
+
 router.get('/editToDoList', function(req, res){
  //call this everytime to verify the user is logged in
-  auth(req.session.user);  
 });
 
 //this route will display the page for one of your planners like cs 326
@@ -82,7 +84,11 @@ router.get('/currentHomeModule', function(req,res){
     res.redirect('/login');
   }
   else{
-  res.render('module', {planner : currentPlanner});
+  userlib.listPageModules(user.username, currentPlanner, 
+    function(listOfModule, data){  
+	res.render('module', {planner : currentPlanner}, {listOfModules : listOfModule});
+    });
+ 
   }
 });
 module.exports = router;
