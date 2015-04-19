@@ -193,7 +193,7 @@ exports.listPageModules = function (username, nameOfModule, cb){
 //the new database and the pageModuleData will be the data you store in that
 //newPageModule such as any notes you have or maybe a link. In addition,
 //this should make sure that the module hasn't already been added   
-exports.addPageModule = function (username, nameOfModule, newPageModule, 
+exports.addModuleData = function (username, nameOfModule, newPageModule, 
 	pageModuleData) {
   db.open(function(err, db){
     if(!err){
@@ -203,12 +203,8 @@ exports.addPageModule = function (username, nameOfModule, newPageModule,
       db.collection(username+ nameOfModule + newPageModule, 
 	function(err, pageCollection){
         if(!err){
-	  if(newPageModule === 'notes'){
-            pageCollection.insert({text: pageModuleData});
-	  }
-	  if(newPageModule === 'budget'){
-	    pageCollection.insert({text: pageModuleData});
-	  }
+
+         //Do not need 'notes' or 'budget'
 	  if(newPageModule === 'upcoming events'){
 	    pageCollection.insert({month: pageModuleData[0], day: pageModuleData[1]
 		, year: pageModuleData[2], time: pageModuleData[3],
@@ -231,13 +227,66 @@ exports.addPageModule = function (username, nameOfModule, newPageModule,
   });  
 }
 //this should be called to edit a pageModule with the new pageModule.
-exports.editPageModule = function (user, nameOfModule, pageModule, 
+exports.editPageModule = function (username, nameOfModule, pageModule, 
 	pageModuleData){
+
+  db.open(function(err, db){
+    if(!err){
+      //db.collection(username+ nameOfModule,function(err, plannerCollection){
+      //	plannerCollection.insert({module: newPageModule});
+     // });
+      
+      db.collection(username+ nameOfModule + newPageModule, 
+	function(err, pageCollection){
+        if(!err){
+	  if(newPageModule === 'notes'){
+	    //Check if text field is empty
+            if(pageCollection.find() === null) 
+             pageCollection.insert({text: pageModuleData});
+
+	   //Update text	  
+            else
+             pageCollection.update({text: pageModuleData});
+
+           }
+	  if(newPageModule === 'budget'){
+	  //Checks if text field is empty
+	   if(pageCollection.find() === null)
+	    pageCollection.insert({text: pageModuleData});
+           
+          //Update text    
+           else
+	    pageCollection.update({text: pageModuleData});
+	  }
+
+	  if(newPageModule === 'upcoming events'){
+
+          pageCollection.update({uid: pageModuleData[5]}, {{month: pageModuleData[0]}
+          ,{day: pageModuleData[1]}, {year: pageModuleData[2]}, {time: pageModuleData[3]},
+	   {info: pageModuleData[4]}
+	  });
+
+ 
+	  }
+	  
+        }
+        else{
+          cb(username + nameOfModule + newPageModule +' couldnt be accessed');
+        }
+      });
+    }//if err
+    else{
+      cb('Trouble opening database');
+    }
+
+  });  
+
+
 
 }
 
 //this should remove a specified pageModule and all data associated with it 
-exports.removePageModule = function (user, nameOfModule, pageModule){
+exports.removePageModule = function (username, nameOfModule, pageModule){
   
 }
 
