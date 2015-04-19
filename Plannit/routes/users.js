@@ -72,26 +72,17 @@ router.get('/editToDoList', function(req, res){
   auth(req.session.user);  
 });
 
-//this will call the remove online function in userlib and then redirect to
-//the login page
-router.get('/logout', function(req, res){
-  var user = req.session.user;
-  //call this everytime to verify the user is logged in 
-  auth(req.session.user);
-  //userlib.removeOnline(user);
-  res.redirect('/login');
-});
-
-/*IMPORTANT REPLACE NAMEOFMODULE WITH VARIABLE FOR THE ACTUAL MODULE NAME LIKE CS 326*/
 //this route will display the page for one of your planners like cs 326
 //it will render the module.ejs which will display 
-router.get('/nameOfModule', function(req,res){
+router.get('/currentHomeModule', function(req,res){
   var user = req.session.user;
+  var currentPlanner = req.query.planner;
   //call this everytime to verify the user is logged in
-  auth(req.session.user);
-
-  //name of module will be replaced with the variable name we declare above
-  res.render('module', {user : user,
-			userPlanner : nameOfModule,});
+  if(user === undefined) {
+    res.redirect('/login');
+  }
+  else{
+  res.render('module', {planner : currentPlanner});
+  }
 });
 module.exports = router;

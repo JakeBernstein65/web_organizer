@@ -9,15 +9,20 @@
     <p><%=error %></p>
 
     <ul>
-	<% for(var i = 0; i < listOfModules.length; i++) { %>
-	<li><%= listOfModules[i].planner %></li>
-    <form action="/users/removeHomeModule" method="get">
-      <input type="hidden" name='planner'
-	value=<%= listOfModules[i].planner %>><br><br>
-      <input type="submit" value="Remove Module"> <br><br>
-    </form> <br>
+      <% for(var i = 0; i < listOfModules.length; i++) { %>
+	<form action="/users/currentHomeModule" method="get">
+	   <input type="hidden" name='planner'
+	   value=<%= listOfModules[i].planner %>>
+	   <input type="submit" class="linkButton" 
+	   value=<%= listOfModules[i].planner %>>
+	</form><br>
+        <form action="/users/removeHomeModule" method="get">
+           <input type="hidden" name='planner'
+	   value=<%= listOfModules[i].planner %>><br><br>
+           <input type="submit" value="Remove Module"> <br><br>
+        </form> <br>
 
-     <%  }  %>
+      <%  }  %>
     </ul>
     
      

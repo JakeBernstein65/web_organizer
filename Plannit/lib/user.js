@@ -89,7 +89,6 @@ exports.addHomeModule = function (username, nameOfModule, cb) {
       db.collection(username+ 'HOME', function(err, homeCollection){
         if(!err){
 	  homeCollection.findOne({planner : nameOfModule}, function(err, stuff){
-	    console.log(stuff);
 	    if(!err && stuff === null){
 	      homeCollection.insert({planner: nameOfModule});
 	      cb(undefined);
@@ -100,7 +99,7 @@ exports.addHomeModule = function (username, nameOfModule, cb) {
 	  });
 	}
 	else{
-	  cb(user+'HOME' + 'couldnt be accessed'); 
+	  cb(username+'HOME' + 'couldnt be accessed'); 
 	}
       });
     }//if err
@@ -114,27 +113,122 @@ exports.addHomeModule = function (username, nameOfModule, cb) {
 exports.removeHomeModule = function (username, nameOfModule) {
   db.open(function(err, db){
     if(!err){
-      db.collection(username+'HOME', function(err, homecollection){
-      db.collection(username+nameOfModule, function(err, collectionref){
+      db.collection(username+'HOME', function(err, homeCollection){
+      db.collection(username+nameOfModule, function(err, planner){
 	if(!err){
-	  homecollection.remove({planner: nameOfModule});
-	  //db.dropCollection(user+nameOfModule, function(err, result){
-	  
+	  homeCollection.remove({planner: nameOfModule});
+	  var cursor = planner.find();
+          cursor.toArray(function(err, arrayOfModules){
+            if(err){
+		console.log(err);	    
+	    }
+	    else{
+		//this will remove all page module collections such as notes
+		for(var i = 0; i < arrayOfModules.length; i++){
+		  var moduleCollection = username + nameOfModule + 
+			arrayOfModules[i].module;
+		  db.collection(moduleCollection, function(err, newModuleCollection){
+		     newModuleCollection.remove();
+		  });
+		}
+		//this will remove the planner collection
+		planner.remove();
+	    }
+	  });
         }
       });
      });
     }
   });
 }   
+//this will return a list of all modules on a page for a planner and it
+//will return the data associated with each module as well.
+//The list of page modules will be stored in one array and the other array
+//will store the associated data for each page module as an array  
+exports.listPageModules = function (username, nameOfModule, cb){
+  db.open(function(err, db){
+    if(!err){
+       db.collection(username+ nameOfModule,function(err, plannerCollection){
+	  var cursor = plannerCollection.find();
+          cursor.toArray(function(err, arrayOfModules){
+            if(err){
+                console.log(err);
+            }
+            else{
+		//data will be the array that store all of the data
+		var data = [];
+	        for(var i = 0; i < arrayOfModules.length; i++){
+		  var pageModule = username + nameOfModule + 
+			arrayOfModules[i].module;
+		  db.collection(pageModule, function(err, moduleCollection){
+		     var cursor = moduleCollection.find();
+	             cursor.toArray(function(err, arrayOfData){
+           	       if(err){
+               	   	 console.log(err);
+            	       }
+            	       else{
+			 data.push(arrayOfData);
+		       }
+		     });
+		  });
+		}//for
+		//this will return an array of all page modules for a certain
+		//planner and then the data for each of those modules stored
+		// as an array. All fields in the data array are also arrays
+		cb(arrayOfModules ,data);
+	    }
+	  });
+       });
+    }//if err
+    else{
+      cb('Trouble opening database');
+    }
+
+  });
+
+}
 
 //this should be called to create a new page module database that is specific
 //to a user and one of their planners. The newPageModule will be the name of
 //the new database and the pageModuleData will be the data you store in that
 //newPageModule such as any notes you have or maybe a link. In addition,
 //this should make sure that the module hasn't already been added   
-exports.addPageModule = function (user, nameOfModule, newPageModule, 
+exports.addPageModule = function (username, nameOfModule, newPageModule, 
 	pageModuleData) {
-  
+  db.open(function(err, db){
+    if(!err){
+      db.collection(username+ nameOfModule,function(err, plannerCollection){
+	plannerCollection.insert({module: newPageModule});
+      });
+      db.collection(username+ nameOfModule + newPageModule, 
+	function(err, pageCollection){
+        if(!err){
+	  if(newPageModule === 'notes'){
+            pageCollection.insert({text: pageModuleData});
+	  }
+	  if(newPageModule === 'budget'){
+	    pageCollection.insert({text: pageModuleData});
+	  }
+	  if(newPageModule === 'upcoming events'){
+	    pageCollection.insert({month: pageModuleData[0], day: pageModuleData[1]
+		, year: pageModuleData[2], time: pageModuleData[3],
+		info: pageModuleData[4]});
+	  }
+	  if(newPageModule === 'useful links'){
+	    pageCollection.insert({link: pageModuleData});
+	  }
+	  
+        }
+        else{
+          cb(username + nameOfModule + newPageModule +' couldnt be accessed');
+        }
+      });
+    }//if err
+    else{
+      cb('Trouble opening database');
+    }
+
+  });  
 }
 //this should be called to edit a pageModule with the new pageModule.
 exports.editPageModule = function (user, nameOfModule, pageModule, 
