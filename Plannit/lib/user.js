@@ -153,10 +153,13 @@ exports.listPageModules = function (username, nameOfModule, cb){
           cursor.toArray(function(err, arrayOfModules){
             if(err){
                 console.log(err);
+		cb(err);
             }
             else{
 		//data will be the array that store all of the data
 		var data = [];
+		
+		
 	        for(var i = 0; i < arrayOfModules.length; i++){
 		  var pageModule = username + nameOfModule + 
 			arrayOfModules[i].module;
@@ -172,9 +175,11 @@ exports.listPageModules = function (username, nameOfModule, cb){
 		     });
 		  });
 		}//for
+		
 		//this will return an array of all page modules for a certain
 		//planner and then the data for each of those modules stored
 		// as an array. All fields in the data array are also arrays
+		console.log(arrayOfModules + ' hfk ' + data);
 		cb(arrayOfModules ,data);
 	    }
 	  });
@@ -191,7 +196,7 @@ exports.listPageModules = function (username, nameOfModule, cb){
 exports.addPageModule = function(username, nameOfModule, newPageModule, cb){
   db.open(function(err, db){
     if(!err){
-      db.collection(uername+nameOfModule, function(err, plannerCollection){
+      db.collection(username+nameOfModule, function(err, plannerCollection){
         if(!err){
 	  plannerCollection.insert({module: newPageModule});
         }

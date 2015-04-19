@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-
+var currentPlanner = undefined;
 var userlib = require('../lib/user');
 
 /*all routes for user home*/
@@ -46,7 +46,6 @@ router.get('/addHomeModule', function(req, res){
 	  res.redirect('/users/home');
 	}
 	else{
-	  console.log(err + 'im HERE');
 	  req.flash('error', err);
 	  res.redirect('/users/home');
 	}
@@ -69,6 +68,23 @@ router.get('/removeHomeModule',function(req, res){
 });
 
 
+router.get('/addPageModule', function(req,res){
+
+var user = req.session.user;
+  if(user === undefined){
+     res.redirect('/login');
+   }
+  else{
+    userlib.addPageModule(user.username, req.query.module, currentPlanner, 
+    function(err){ console.log(err);
+    }); 
+    res.redirect('/users/currentHomeModule');
+
+}  
+
+
+});
+
 
 router.get('/editToDoList', function(req, res){
  //call this everytime to verify the user is logged in
@@ -78,7 +94,7 @@ router.get('/editToDoList', function(req, res){
 //it will render the module.ejs which will display 
 router.get('/currentHomeModule', function(req,res){
   var user = req.session.user;
-  var currentPlanner = req.query.planner;
+  currentPlanner = req.query.planner;
   //call this everytime to verify the user is logged in
   if(user === undefined) {
     res.redirect('/login');
@@ -86,7 +102,7 @@ router.get('/currentHomeModule', function(req,res){
   else{
   userlib.listPageModules(user.username, currentPlanner, 
     function(listOfModule, data){  
-	res.render('module', {planner : currentPlanner}, {listOfModules : listOfModule});
+	res.render('module', {planner : currentPlanner, listOfModules : listOfModule});
     });
  
   }

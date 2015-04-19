@@ -9,10 +9,25 @@ that class or whatever the users planner is-->
   </head>
   <body>
     <h1><%=planner %></h1>
-    <% for(var i; i < listOfModules.length; i++) { %>
+    <% for(var i = 0; i < listOfModules.length; i++) { %>
     <li> listOfModules[i] </li>	
     <% } %>	
     <h1>Drop Down Button </h1>
+  <form>
+  <select id="Module">
+    <option value="Notes">Notes</option>
+    <option value="Budget">Budget</option>
+    <option value="Upcoming Events">Upcoming Events</option>
+    <option value="Useful Link">Useful Link</option>
+  </select>
+  </form>
+
+  <form action="/users/addPageModule">
+  <input type="hidden" name='module' value = document.getElementBy("Module").value>
+  <input type="submit" value = "Add">
+  </form>
+
+
     <a href="/users/home">Back to Home</a><br>
     <a href="/logout">Logout</a>
   </body>
