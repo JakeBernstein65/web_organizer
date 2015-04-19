@@ -252,7 +252,7 @@ exports.addModuleData = function (username, nameOfModule, newPageModule,
 }
 //this should be called to edit a pageModule with the new pageModule.
 exports.editPageModule = function (username, nameOfModule, pageModule, 
-	pageModuleData){
+	pageModuleData, cb){
 
   db.open(function(err, db){
     if(!err){
@@ -309,7 +309,7 @@ exports.editPageModule = function (username, nameOfModule, pageModule,
 }
 
 //this should remove a specified pageModule and all data associated with it 
-exports.removePageModule = function (username, nameOfModule, pageModule){
+exports.removePageModule = function (username, nameOfModule, pageModule, cb){
   
 }
 
