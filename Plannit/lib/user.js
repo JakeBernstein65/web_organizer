@@ -188,18 +188,42 @@ exports.listPageModules = function (username, nameOfModule, cb){
 
 }
 
+exports.addPageModule = function(username, nameOfModule, newPageModule, cb){
+  db.open(function(err, db){
+    if(!err){
+      db.collection(uername+nameOfModule, function(err, plannerCollection){
+        if(!err){
+	  plannerCollection.insert({module: newPageModule});
+        }
+        else{
+	  cb('Welp we broke their ' + nameOfModule);
+        }
+      });
+      db.createCollection(username+nameOfModule+newPageModule, function(err, 
+                         newCollection){
+     	if(err){
+	  cb('Aww the collection wasnt made');
+        }    
+      });
+    }
+    else{
+      cb('Something terrible happened with the database');
+    }
+  });
+}
+
 //this should be called to create a new page module database that is specific
 //to a user and one of their planners. The newPageModule will be the name of
 //the new database and the pageModuleData will be the data you store in that
 //newPageModule such as any notes you have or maybe a link. In addition,
 //this should make sure that the module hasn't already been added   
 exports.addModuleData = function (username, nameOfModule, newPageModule, 
-	pageModuleData) {
+	pageModuleData, cb) {
   db.open(function(err, db){
     if(!err){
-      db.collection(username+ nameOfModule,function(err, plannerCollection){
-	plannerCollection.insert({module: newPageModule});
-      });
+      //db.collection(username+ nameOfModule,function(err, plannerCollection){
+	//plannerCollection.insert({module: newPageModule});
+     // });
       db.collection(username+ nameOfModule + newPageModule, 
 	function(err, pageCollection){
         if(!err){
@@ -254,17 +278,16 @@ exports.editPageModule = function (username, nameOfModule, pageModule,
 	   if(pageCollection.find() === null)
 	    pageCollection.insert({text: pageModuleData});
            
-          //Update text    
+          //Update text   
            else
 	    pageCollection.update({text: pageModuleData});
 	  }
 
 	  if(newPageModule === 'upcoming events'){
 
-          pageCollection.update({uid: pageModuleData[5]}, {{month: pageModuleData[0]}
-          ,{day: pageModuleData[1]}, {year: pageModuleData[2]}, {time: pageModuleData[3]},
-	   {info: pageModuleData[4]}
-	  });
+          pageCollection.update({uid: pageModuleData[5]}, {$set:{month: pageModuleData[0]
+          ,day: pageModuleData[1], year: pageModuleData[2], time: pageModuleData[3],
+	   info: pageModuleData[4]}});
 
  
 	  }
