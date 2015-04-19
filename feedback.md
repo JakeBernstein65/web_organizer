@@ -41,3 +41,17 @@ You did not include a revision history. This should track any changes you have o
 Before your team goes further into the technical aspects of the development, think about your idea more. How exactly will Plannit be different from other planner sites? Think of at least two major applications of Plannit that will make people prefer it over any other planner and incorporate them into your idea.
 
 Grade: Thumbs down. If you make these changes by April 2, you will receive a thumbs up. 
+
+
+-------------------------------------------------------------------------------------
+
+
+Project Four
+
+The flow chart is a helpful visualization of what you will be implementing and how each component works with each other. Your layout of this submission is very choppy. All external libaries should be listen in  one section, not throughout the entire write up. 
+You should have a more indepth section about what each team member will be responsible for specifically. 
+This submissions seems very jumbled together.  For each component you were supposed to relate the technical and functional aspects. Like what functional aspect does the edit page module data take care of? Why would page modules data have to be edited? Please reorganice your submission in a more logical manner.
+You need to relate the different components to each other and how they will interact. It seems you organized your submission by who wrote it, instead of putting related sections next to each other. What implementation challenges do you predict?
+
+Grade: 2
+You have until April 22, to edit your submission
