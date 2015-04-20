@@ -54,6 +54,7 @@ router.get('/login/auth', function(req, res){
 	  }
 	}
 	else{
+	  console.log(err);
 	  req.flash('auth', 'user does not exist');
 	  res.redirect('/login');
 	}	

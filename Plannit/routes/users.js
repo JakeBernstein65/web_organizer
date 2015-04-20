@@ -3,7 +3,10 @@ var router = express.Router();
 var currentPlanner = undefined;
 var userlib = require('../lib/user');
 
+
+var editNotesButton = "false";
 /*all routes for user home*/
+
 
 //if they try to type in /users it will redirect them to users/home
 router.get('/', function(req, res){
@@ -75,16 +78,32 @@ var user = req.session.user;
      res.redirect('/login');
    }
   else{
-    userlib.addPageModule(user.username, req.query.module, currentPlanner, 
+    userlib.addPageModule(user.username, req.query.Module, currentPlanner, 
     function(err){ console.log(err);
     }); 
     res.redirect('/users/currentHomeModule');
-
-}  
-
-
+  }  
 });
 
+router.get('/editPageModule', function(req,res){
+
+var user = req.session.user;
+  if(user === undefined){
+     res.redirect('/login');
+  }
+  else{
+
+    userlib.editPageModule(user.username, currentPlanner, req.query.Module,
+	req.query.comment, function(err){
+      if(err){console.log(err)}
+    });    
+  
+    if(req.query.notesEdit !== null){
+        editNotesButton = req.query.notesEdit;
+    }
+    res.redirect('/users/currentHomeModule');
+  }
+});
 
 router.get('/editToDoList', function(req, res){
  //call this everytime to verify the user is logged in
@@ -94,16 +113,23 @@ router.get('/editToDoList', function(req, res){
 //it will render the module.ejs which will display 
 router.get('/currentHomeModule', function(req,res){
   var user = req.session.user;
-  currentPlanner = req.query.planner;
+  if(currentPlanner === null || req.query.planner !== undefined){
+    currentPlanner = req.query.planner;
+  }
   //call this everytime to verify the user is logged in
   if(user === undefined) {
     res.redirect('/login');
   }
   else{
-  userlib.listPageModules(user.username, currentPlanner, 
+    if(req.query.notesEdit !== null){
+	editNotesButton = req.query.notesEdit;
+    }
+  
+    userlib.listPageModules(user.username, currentPlanner,   
     function(listOfModule, data){  
-	res.render('module', {planner : currentPlanner, listOfModules : listOfModule});
-    });
+      res.render('module', {planner : currentPlanner, 
+	  listOfModules : listOfModule, editNotes : editNotesButton});
+  });
  
   }
 });

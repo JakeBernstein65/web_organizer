@@ -10,23 +10,32 @@ that class or whatever the users planner is-->
   <body>
     <h1><%=planner %></h1>
     <% for(var i = 0; i < listOfModules.length; i++) { %>
-    <li> listOfModules[i] </li>	
+    <h1> <%=listOfModules[i].module %> </h1>
+	<%if(listOfModules[i].module === 'Notes'){ %>
+            <form action="/users/currentHomeModule" id="Notes">
+	      <input type="hidden" name="notesEdit" value="true">
+              <input type="submit" value="Edit">
+            </form><br><br>
+	    <% if(editNotes === "true"){%>
+	      <textarea name="comment" form="Notes"> </textarea>
+	      <form action="/users/editPageModule" id="Notes">
+	        <input type="hidden" name="Module" value="Notes">
+	        <input type="hidden" name="notesEdit" value="false">
+	        <input type="submit" value="Finish Editing">
+  	      </form><br><br>
+            <%}%>
+	<%}%>
     <% } %>	
-    <h1>Drop Down Button </h1>
-  <form>
-  <select id="Module">
+    <h1>Add a Module </h1>
+  <select name="Module" form="Module">
     <option value="Notes">Notes</option>
     <option value="Budget">Budget</option>
     <option value="Upcoming Events">Upcoming Events</option>
     <option value="Useful Link">Useful Link</option>
-  </select>
-  </form>
-
-  <form action="/users/addPageModule">
-  <input type="hidden" name='module' value = document.getElementBy("Module").value>
-  <input type="submit" value = "Add">
-  </form>
-
+  </select><br><br>
+  <form action="/users/addPageModule" id="Module">
+     <input type="submit">
+  </form><br><br>
 
     <a href="/users/home">Back to Home</a><br>
     <a href="/logout">Logout</a>
