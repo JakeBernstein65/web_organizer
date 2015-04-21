@@ -30,4 +30,11 @@ FunctionalSpecificationSlides.pdf.
 Inside our notes folder we added two new documents 4-07-15 and 4-09-15 which
 highlight our meeting and the tasks we need to complete. Inside docs/dspec
 we added dspec.pdf and slides.pdf which are the files you should review for
-this assignment.
+this assignment. We believe our organization makes sense because not only did
+Professor Richards agree with the layout, but many of the resources (including
+Mean Machine by scotch.io)  that we used to assist in our understanding of these
+components layed it out in a similar fashion. In addition, we followed the document 
+specification/layout exactly by including an external libraies, birds eyeview, and component
+breakdown sections. In each section we tied it to each other section, so that you would
+know how each section interacted with each other.
+ 
