@@ -129,11 +129,13 @@ exports.removeHomeModule = function (username, nameOfModule) {
 		  var moduleCollection = username + nameOfModule + 
 			arrayOfModules[i].module;
 		  db.collection(moduleCollection, function(err, newModuleCollection){
-		     newModuleCollection.remove();
+		     newModuleCollection.drop(function(err){
+		     });
 		  });
 		}
 		//this will remove the planner collection
-		planner.remove();
+		planner.drop(function(err){
+		});
 	    }
 	  });
         }
@@ -279,9 +281,9 @@ exports.addModuleData = function (username, nameOfModule, newPageModule,
 	pageModuleData, cb) {
   db.open(function(err, db){
     if(!err){
-      //db.collection(username+ nameOfModule,function(err, plannerCollection){
-	//plannerCollection.insert({module: newPageModule});
-     // });
+      db.collection(username+ nameOfModule,function(err, plannerCollection){
+	plannerCollection.insert({module: newPageModule});
+      });
       db.collection(username+ nameOfModule + newPageModule, 
 	function(err, pageCollection){
         if(!err){
@@ -311,6 +313,18 @@ exports.addModuleData = function (username, nameOfModule, newPageModule,
 
 //this should remove a specified pageModule and all data associated with it 
 exports.removePageModule = function (username, nameOfModule, pageModule, cb){
-  
+    db.open(function(err, db){
+      if(!err){
+        db.collection(username+nameOfModule,function(err, plannerCollection){
+          plannerCollection.remove({module: newPageModule});
+        });
+	db.collection(username+nameOfModule+pageModule, function(err, 
+		plannerModule){
+	  plannerModule.drop(function(err){
+	  });
+	});
+      }
+    });
+
 }
 

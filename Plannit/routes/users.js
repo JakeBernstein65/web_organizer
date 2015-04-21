@@ -85,6 +85,17 @@ var user = req.session.user;
   }  
 });
 
+router.post('/removePageModule', function(req, res){
+  var user = req.session.user;
+
+  if(user === undefined){
+     res.redirect('/login');
+  }
+  else{
+    userlib.removePageModule();
+  }
+});
+
 router.get('/editPageModule', function(req,res){
 
 var user = req.session.user;
