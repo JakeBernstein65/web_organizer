@@ -17,10 +17,11 @@ that class or whatever the users planner is-->
               <input type="submit" value="Edit">
             </form><br><br>
 	    <% if(editNotes === "true"){%>
-	      <textarea name="comment" form="Notes"> </textarea>
 	      <form action="/users/editPageModule" id="Notes">
 	        <input type="hidden" name="Module" value="Notes">
 	        <input type="hidden" name="notesEdit" value="false">
+		<input type="text" name="comment" style="text-align: center;
+			width:200px; height:200px;">
 	        <input type="submit" value="Finish Editing">
   	      </form><br><br>
             <%}%>

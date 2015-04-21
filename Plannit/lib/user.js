@@ -60,6 +60,7 @@ exports.addNewUser = function (username, password, email, cb){
 exports.listHomeModule = function(username, cb){
   db.open(function(err, db){
     if(!err){
+
       db.collection(username+'HOME', function(err, collectionref){
 	if(!err){
 	  var cursor = collectionref.find();
@@ -148,40 +149,40 @@ exports.editPageModule = function (username, nameOfModule, pageModule,
 
   db.open(function(err, db){
     if(!err){
-
-      db.collection(username+ nameOfModule + pageModule,
+      db.collection(''+username+ nameOfModule + pageModule,
         function(error, pageCollection){
-
         if(!error){
-	  console.log(pageModule);
           if(pageModule === 'Notes'){
             //Check if text field is empty
-            console.log('here');
-	    if(pageCollection.find() === null)
-             pageCollection.insert({text: pageModuleData});
-
-           //Update text
-            else
-             pageCollection.update({text: pageModuleData});
-
-           }
+	    if(pageCollection.find() !== null){
+	      pageCollection.insert({text: pageModuleData});
+	    }
+            //Update text
+            else{
+              pageCollection.update({text: pageModuleData});
+            }
+	    cb(undefined);
+          }
           if(pageModule === 'Budget'){
-          //Checks if text field is empty
-           if(pageCollection.find() === null)
-            pageCollection.insert({text: pageModuleData});
-
-          //Update text
-           else
-            pageCollection.update({text: pageModuleData});
+            //Checks if text field is empty
+            if(pageCollection.find() === null){
+              pageCollection.insert({text: pageModuleData});
+	    }
+            //Update text
+            else{
+              pageCollection.update({text: pageModuleData});
+	    }
+	    cb(undefined);
           }
 
           if(pageModule === 'Upcoming Events'){
 
-          pageCollection.update({uid: pageModuleData[5]}, {$set:{month: pageModuleData[0]
-          ,day: pageModuleData[1], year: pageModuleData[2], time: pageModuleData[3],
-           info: pageModuleData[4]}});
+            pageCollection.update({uid: pageModuleData[5]}, {$set:{month: pageModuleData[0]
+            ,day: pageModuleData[1], year: pageModuleData[2], time: pageModuleData[3],
+            info: pageModuleData[4]}});
+	    cb(undefined);
           }
-        }
+        }//if error
         else{
           cb(username + nameOfModule + pageModule +' couldnt be accessed' + error);
         }

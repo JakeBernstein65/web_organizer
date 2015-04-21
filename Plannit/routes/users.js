@@ -92,7 +92,7 @@ var user = req.session.user;
      res.redirect('/login');
   }
   else{
-
+    console.log(req.query.comment);	
     userlib.editPageModule(user.username, currentPlanner, req.query.Module,
 	req.query.comment, function(err){
       if(err){console.log(err)}
