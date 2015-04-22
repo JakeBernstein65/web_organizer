@@ -12,7 +12,8 @@ that class or whatever the users planner is-->
     <% for(var i = 0; i < listOfModules.length; i++) { %>
       <h1> <%=listOfModules[i].module %> </h1>
 	<%if(listOfModules[i].module === 'Notes'){ %>
-	    <%if(data !== null && data[i] != null && data[i][0] != null){%>
+	    <%if(data !== null && data[i] !== undefined && 
+		data[i][0] !== undefined){%>
 	      <p><%=data[i][0].text%></p>
 	    <%}%>
             <form action="/users/currentHomeModule" id="Notes">
@@ -20,23 +21,32 @@ that class or whatever the users planner is-->
               <input type="submit" value="Edit">
             </form><br><br>
 	    <% if(editNotes === "true"){%>
-	      <form action="/users/editPageModule" id="Notes" method="post">
+	      <form action="/users/editPageModule" id="Notes" >
 	        <input type="hidden" name="Module" value="Notes">
 	        <input type="hidden" name="notesEdit" value="false">
+		<input type="text" name="comment">
 	        <input type="submit" value="Finish Editing">
   	      </form><br><br>
-	    <%if(data !== null && data[i] != null && data[i][0] != null){%>
+	    <!--<%if(data !== null && data[i] !== undefined && 
+		data[i][0] !== undefined){%>
                <textarea rows="4" cols="50" name="comment" form="Notes">
                         <%=data[i][0].text%></textarea>
             <%}%>
-       <form action="/users/removePageModule">
-           <input type="hidden" name ="Module" 
-		value=<%=listOfModules[i].module%>
+	    <%if(data === null || data[i] === undefined ||
+                data[i][0] === undefined){%>
+		<textarea rows="4" cols="50" name="comment" form="Notes">
+                     </textarea>
+	    <%}%>-->
+	   <%}%>
+     <%}%>
+	<form action="/users/removePageModule">
+           <input type="hidden" name ="Module"
+                value=<%=listOfModules[i].module%>>
            <input type="submit" value="remove">
         </form>
-     <%}%>
    <% } %>	
     <h1>Add a Module </h1>
+   <p><%=message%></p>
   <select name="Module" form="Module">
     <option value="Notes">Notes</option>
     <option value="Budget">Budget</option>

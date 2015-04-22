@@ -73,16 +73,29 @@ router.get('/removeHomeModule',function(req, res){
 
 router.get('/addPageModule', function(req,res){
 
+var redirected = false;
 var user = req.session.user;
   if(user === undefined){
      res.redirect('/login');
    }
   else{
+    userlib.listPageModules(user.username, currentPlanner,
+      function(listOfModule, data){
+        for(var i = 0; i < listOfModule.length; i++){
+	console.log('this ' +listOfModule[i].module + req.query.Module);
+	  if(listOfModule[i].module === req.query.Module){
+	    req.flash('moduleExists','section already exists');
+	    res.redirect('/users/currentHomeModule');
+	    redirected = true;
+	  }
+	}	 
+    if(redirected === false){
+      userlib.addPageModule(user.username, req.query.Module, currentPlanner,
+        function(err){ console.log(err);});
 
-    userlib.addPageModule(user.username, req.query.Module, currentPlanner, 
-    function(err){ console.log(err);
-    }); 
-    res.redirect('/users/currentHomeModule');
+      res.redirect('/users/currentHomeModule');
+    }
+    });
   }  
 });
 
@@ -99,14 +112,13 @@ router.get('/removePageModule', function(req, res){
   }
 });
 
-router.post('/editPageModule', function(req,res){
+router.get('/editPageModule', function(req,res){
 
 var user = req.session.user;
   if(user === undefined){
      res.redirect('/login');
   }
-  else{
-    console.log(req.query.comment);	
+  else{	
     userlib.editPageModule(user.username, currentPlanner, req.query.Module,
 	req.query.comment, function(err){
       if(err){console.log(err)}
@@ -127,6 +139,8 @@ router.get('/editToDoList', function(req, res){
 //it will render the module.ejs which will display 
 router.get('/currentHomeModule', function(req,res){
   var user = req.session.user;
+  var errorMessage = req.flash('moduleExists') || '';
+  
   if(currentPlanner === null || req.query.planner !== undefined){
     currentPlanner = req.query.planner;
   }
@@ -143,7 +157,7 @@ router.get('/currentHomeModule', function(req,res){
     function(listOfModule, data){  
       res.render('module', {planner : currentPlanner, 
 	  listOfModules : listOfModule, editNotes : editNotesButton,
-	  data: data});
+	  data: data, message: errorMessage});
     });
  
   }
