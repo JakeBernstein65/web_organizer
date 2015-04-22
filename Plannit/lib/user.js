@@ -9,14 +9,15 @@ var Server = mongo.Server;
 var Db = mongo.Db;
 var server = new Server('localhost', 27017, {auto_reconnect: true});
 var db = new Db('users', server);
+db.open(function(err, db){
+});
 
 //this will confirm whether a user exists or not
 
 exports.isUser = function (username, cb){
-db.open(function(err, db) {
-  if(!err) {
     db.collection(username, function(err, user) {
       if(!err){
+	  
 	user.findOne({username:username}, function(err, currentUser){
 	  if(!err && currentUser !== null){
  	    cb(undefined, currentUser);
@@ -31,36 +32,27 @@ db.open(function(err, db) {
       }
 
     });
-  }
-});  
 
 }
 
 //this should be called to add user to users database
 exports.addNewUser = function (username, password, email, cb){
-  db.open(function(err, db){
-    if(!err){
       var user = {username : username, password: password, email : email};
       db.collection(username, function(error, userCollection){
         userCollection.insert({username: username, password: password,
 	   email: email});
-      });
+      
 	  db.createCollection(username +'TODO', function(error, collectiontodo){
+            db.createCollection(username+'HOME', function(error, 
+		collectionhome){
+	        db.close();
+	     });	
 	  });
-         db.createCollection(username+'HOME', function(error, collectionhome){
-	  });
-      cb(undefined, user);
-    }
-    else{
-      cb(err);
-    }
-  });      
+       });
+       cb(undefined, user);      
 }
 
 exports.listHomeModule = function(username, cb){
-  db.open(function(err, db){
-    if(!err){
-
       db.collection(username+'HOME', function(err, collectionref){
 	if(!err){
 	  var cursor = collectionref.find();
@@ -71,12 +63,9 @@ exports.listHomeModule = function(username, cb){
 	    else{
 	      cb(arrayOfHomeModules);
 	    }
-	
 	  });
 	}
       });
-     }
-  });
 }
 
 //this should be called to add a database that will store all of the users
@@ -85,8 +74,6 @@ exports.listHomeModule = function(username, cb){
 //We should take in a callback that just checks if an error occurred when
 //making a home module.
 exports.addHomeModule = function (username, nameOfModule, cb) {
-  db.open(function(err, db){
-    if(!err){
       db.collection(username+ 'HOME', function(err, homeCollection){
         if(!err){
 	  homeCollection.findOne({planner : nameOfModule}, function(err, stuff){
@@ -103,17 +90,10 @@ exports.addHomeModule = function (username, nameOfModule, cb) {
 	  cb(username+'HOME' + 'couldnt be accessed'); 
 	}
       });
-    }//if err
-    else{
-      cb('Trouble opening database');
-    }
-  });
 }	
 
 //this will remove a planner such as cs 326 and cs 250
 exports.removeHomeModule = function (username, nameOfModule) {
-  db.open(function(err, db){
-    if(!err){
       db.collection(username+'HOME', function(err, homeCollection){
       db.collection(username+nameOfModule, function(err, planner){
 	if(!err){
@@ -141,34 +121,33 @@ exports.removeHomeModule = function (username, nameOfModule) {
         }
       });
      });
-    }
-  });
 }
 
 //this should be called to edit a pageModule with the new pageModule.
 exports.editPageModule = function (username, nameOfModule, pageModule,
         pageModuleData, cb){
-
-  db.open(function(err, db){
-    if(!err){
       db.collection(''+username+ nameOfModule + pageModule,
         function(error, pageCollection){
         if(!error){
           if(pageModule === 'Notes'){
             //Check if text field is empty
-	    if(pageCollection.find() !== null){
+	    var cursor = pageCollection.find();
+            cursor.toArray(function(err, arrayOfModules){
+	    if(arrayOfModules.length === 0){
 	      pageCollection.insert({text: pageModuleData});
 	    }
             //Update text
             else{
-              pageCollection.update({text: pageModuleData});
+              pageCollection.update({text: arrayOfModules[0].text},
+		{$set: {text: pageModuleData}});
             }
-	    cb(undefined);
+		cb(undefined);
+	    });
           }
           if(pageModule === 'Budget'){
             //Checks if text field is empty
             if(pageCollection.find() === null){
-              pageCollection.insert({text: pageModuleData});
+              pageCollection.insert({text: dpageModuleData});
 	    }
             //Update text
             else{
@@ -189,12 +168,6 @@ exports.editPageModule = function (username, nameOfModule, pageModule,
           cb(username + nameOfModule + pageModule +' couldnt be accessed' + error);
         }
       });
-    }//if err
-    else{
-      cb('Trouble opening database' + err);
-    }
-
-  });
 }
 
    
@@ -203,8 +176,6 @@ exports.editPageModule = function (username, nameOfModule, pageModule,
 //The list of page modules will be stored in one array and the other array
 //will store the associated data for each page module as an array  
 exports.listPageModules = function (username, nameOfPlanner, cb){
-  db.open(function(err, db){
-    if(!err){
        db.collection(username+ nameOfPlanner,function(err, plannerCollection){
 	  var cursor = plannerCollection.find();
           cursor.toArray(function(err, arrayOfModules){
@@ -215,7 +186,8 @@ exports.listPageModules = function (username, nameOfPlanner, cb){
             else{
 		//data will be the array that store all of the data
 		var data = [];
-		
+		var oneCB = 0;
+		if(arrayOfModules.length !== 0){
 	        for(var i = 0; i < arrayOfModules.length; i++){
 		  var pageModule = username + nameOfPlanner + 
 			arrayOfModules[i].module;
@@ -228,48 +200,40 @@ exports.listPageModules = function (username, nameOfPlanner, cb){
             	       else{
 			 data.push(arrayOfData);
 		       }
-		     });
+		     if(i === arrayOfModules.length && oneCB === 0){
+                       cb(arrayOfModules, data);
+			oneCB++;
+                     }
+		    });		     
 		  });
-		}//for
-		
-		//this will return an array of all page modules for a certain
-		//planner and then the data for each of those modules stored
-		// as an array. All fields in the data array are also arrays
-		cb(arrayOfModules ,data);
+		}//for	
+		}
+		else{
+		  cb(arrayOfModules, data);
+		}
 	    }
 	  });
        });
-    }//if err
-    else{
-      cb('Trouble opening database');
-    }
-
-  });
-
 }
 
 exports.addPageModule = function(username, nameOfModule, newPageModule, cb){
-  db.open(function(err, db){
-    if(!err){
       db.collection(username+newPageModule, function(err, plannerCollection){
         if(!err){
 	  plannerCollection.insert({module: nameOfModule});
+	  db.createCollection(username+newPageModule+nameOfModule, 
+		function(error, newCollection){
+          //if(error){
+           // cb('Aww the collection wasnt made');
+          //}
+	 
+	  cb(undefined);
+         });
         }
         else{
 	  cb('Welp we broke their ' + nameOfModule);
         }
+
       });
-      db.createCollection(username+newPageModule+nameOfModule, function(err, 
-                         newCollection){
-     	if(err){
-	  cb('Aww the collection wasnt made');
-        }    
-      });
-    }
-    else{
-      cb('Something terrible happened with the database');
-    }
-  });
 }
 
 //this should be called to create a new page module database that is specific
@@ -279,14 +243,13 @@ exports.addPageModule = function(username, nameOfModule, newPageModule, cb){
 //this should make sure that the module hasn't already been added   
 exports.addModuleData = function (username, nameOfModule, newPageModule, 
 	pageModuleData, cb) {
-  db.open(function(err, db){
-    if(!err){
+  //db.open(function(err, db){
+   // if(!err){
       db.collection(username+ nameOfModule,function(err, plannerCollection){
 	plannerCollection.insert({module: newPageModule});
-      });
-      db.collection(username+ nameOfModule + newPageModule, 
-	function(err, pageCollection){
-        if(!err){
+        db.collection(username+ nameOfModule + newPageModule, 
+	  function(error, pageCollection){
+        if(!error){
 
          //Do not need 'notes' or 'budget'
 	  if(newPageModule === 'upcoming events'){
@@ -302,29 +265,30 @@ exports.addModuleData = function (username, nameOfModule, newPageModule,
         else{
           cb(username + nameOfModule + newPageModule +' couldnt be accessed');
         }
+        });
       });
-    }//if err
-    else{
-      cb('Trouble opening database');
-    }
-
-  });  
+   // }//if err
+   // else{
+   //   cb('Trouble opening database');
+   // }
+  //});  
 }
 
 //this should remove a specified pageModule and all data associated with it 
-exports.removePageModule = function (username, nameOfModule, pageModule, cb){
-    db.open(function(err, db){
-      if(!err){
+exports.removePageModule = function (username, nameOfModule, pageModule){
+    //db.open(function(err, db){
+      //if(!err){
+	console.log(username+nameOfModule+pageModule);
         db.collection(username+nameOfModule,function(err, plannerCollection){
-          plannerCollection.remove({module: newPageModule});
-        });
+          plannerCollection.remove({module: pageModule});
 	db.collection(username+nameOfModule+pageModule, function(err, 
 		plannerModule){
-	  plannerModule.drop(function(err){
+	    plannerModule.drop(function(err){
+	    });
 	  });
 	});
-      }
-    });
+     // }
+   // });
 
 }
 

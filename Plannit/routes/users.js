@@ -78,6 +78,7 @@ var user = req.session.user;
      res.redirect('/login');
    }
   else{
+
     userlib.addPageModule(user.username, req.query.Module, currentPlanner, 
     function(err){ console.log(err);
     }); 
@@ -85,18 +86,20 @@ var user = req.session.user;
   }  
 });
 
-router.post('/removePageModule', function(req, res){
+router.get('/removePageModule', function(req, res){
   var user = req.session.user;
 
   if(user === undefined){
      res.redirect('/login');
   }
   else{
-    userlib.removePageModule();
+    console.log(req.query.Module);
+    userlib.removePageModule(user.username, currentPlanner, req.query.Module);
+    res.redirect('/users/currentHomeModule');
   }
 });
 
-router.get('/editPageModule', function(req,res){
+router.post('/editPageModule', function(req,res){
 
 var user = req.session.user;
   if(user === undefined){
@@ -139,8 +142,9 @@ router.get('/currentHomeModule', function(req,res){
     userlib.listPageModules(user.username, currentPlanner,   
     function(listOfModule, data){  
       res.render('module', {planner : currentPlanner, 
-	  listOfModules : listOfModule, editNotes : editNotesButton});
-  });
+	  listOfModules : listOfModule, editNotes : editNotesButton,
+	  data: data});
+    });
  
   }
 });
