@@ -16,6 +16,7 @@ Idea: After reading your idea, I am not sure what the goal of your webapp is. In
 Bios: You all could have added one of two more sentences to give a little more background on who you are besides a CS major, as well as a sentence about why you each chose the non-cs course that you did. Lucas did not include two additional non-cs courses. Be sure to all keep up and fully understand the workshops, as they will really help with your coding since no one mentioned any previous CSS/HTML or Javascript knowledge. 
 
 Overall Grade: weak thumbs up
+Changes were made: thumbs up
 
 -----------------------------------------------------------------------------------
 
@@ -26,7 +27,7 @@ You should still keep the bios about your team members that you had for project 
 Your idea seems like it will be very useful to many people. I'm interested to see how this will turn out.  I like the whole idea behind your startup company since organization and planning seems to be an area that everyone struggles with, especially with such busy lives. Will everyone have a login name? Since people do not always have a computer near them and usually always have their smart phone with them, will this be an app for phones or a website? Think about any competitors and what will set you apart. 
 
 Overall: weak thumbs up. If you make these changes by 3/10, you will get a thumbs up.
-
+changes were made thumbs up
 
 ---------------------------------------------------------------------------------------------
 
@@ -41,7 +42,7 @@ You did not include a revision history. This should track any changes you have o
 Before your team goes further into the technical aspects of the development, think about your idea more. How exactly will Plannit be different from other planner sites? Think of at least two major applications of Plannit that will make people prefer it over any other planner and incorporate them into your idea.
 
 Grade: Thumbs down. If you make these changes by April 2, you will receive a thumbs up. 
-
+changes were made: thumbs up
 
 -------------------------------------------------------------------------------------
 
@@ -55,3 +56,4 @@ You need to relate the different components to each other and how they will inte
 
 Grade: 2
 You have until April 22, to edit your submission
+changes were made: 5
