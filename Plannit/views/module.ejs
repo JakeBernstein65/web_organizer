@@ -50,7 +50,20 @@ that class or whatever the users planner is-->
 
 
         <%if(listOfModules[i].module === 'Budget'){ %>
-               <p> budget here </p>     
+
+	    <%if(data !== null && data[i] !== undefined && 
+		data[i][0] !== undefined){%>
+	      <p><%=data[i][0].text%></p>
+
+            <form action="/users/currentHomeModule" id="Budget">
+	      <input type="hidden" name="budgetEdit" value="true">
+              <input type="submit" value="Edit">
+            </form><br><br>
+
+
+	    <%}%>
+      
+         <p> budget here </p>     
         <%}%>
 
 
