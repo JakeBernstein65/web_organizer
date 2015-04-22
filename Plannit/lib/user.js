@@ -156,13 +156,13 @@ exports.editPageModule = function (username, nameOfModule, pageModule,
 	    cb(undefined);
           }
 
-          if(pageModule === 'Upcoming Events'){
+          //if(pageModule === 'Upcoming Events'){
 
-            pageCollection.update({uid: pageModuleData[5]}, {$set:{month: pageModuleData[0]
-            ,day: pageModuleData[1], year: pageModuleData[2], time: pageModuleData[3],
-            info: pageModuleData[4]}});
-	    cb(undefined);
-          }
+            //pageCollection.update({uid: pageModuleData[5]}, {$set:{month: pageModuleData[0]
+            //,day: pageModuleData[1], year: pageModuleData[2], time: pageModuleData[3],
+            //info: pageModuleData[4]}});
+	    //cb(undefined);
+          //}
         }//if error
         else{
           cb(username + nameOfModule + pageModule +' couldnt be accessed' + error);
