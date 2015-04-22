@@ -112,6 +112,32 @@ router.get('/removePageModule', function(req, res){
   }
 });
 
+
+///////////////
+router.get('/addPageModule', function(req,res){
+var user = req.session.user;
+if(user === undefined){
+  res.redirect('/login');
+}
+
+
+else {
+userlib.addModuleData(user.username, currentPlanner, req.query.Module, 
+    req.query.data, function(err){
+    if(err){ console.log(err);}
+    }); 
+   
+   if(req.query.addEvent !== null){
+      addEventButton = req.query.addEvent;
+  }
+  
+  res.redirect('/users/currentHomeModule');
+
+}
+
+
+});
+
 router.get('/editPageModule', function(req,res){
 
 var user = req.session.user;
@@ -121,15 +147,17 @@ var user = req.session.user;
   else{	
     userlib.editPageModule(user.username, currentPlanner, req.query.Module,
 	req.query.comment, function(err){
-      if(err){console.log(err)}
+      if(err){console.log(err);}
     });    
   
     if(req.query.notesEdit !== null){
         editNotesButton = req.query.notesEdit;
     }
+   
     res.redirect('/users/currentHomeModule');
   }
 });
+
 
 router.get('/editToDoList', function(req, res){
  //call this everytime to verify the user is logged in
@@ -149,6 +177,7 @@ router.get('/currentHomeModule', function(req,res){
     res.redirect('/login');
   }
   else{
+
     if(req.query.notesEdit !== null){
 	editNotesButton = req.query.notesEdit;
     }
@@ -159,6 +188,7 @@ router.get('/currentHomeModule', function(req,res){
 	  listOfModules : listOfModule, editNotes : editNotesButton,
 	  data: data, message: errorMessage});
     });
+
  
   }
 });
