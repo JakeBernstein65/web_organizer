@@ -252,7 +252,7 @@ exports.addModuleData = function (username, nameOfModule, newPageModule,
         if(!error){
 
          //Do not need 'notes' or 'budget'
-	  if(newPageModule === 'upcoming events'){
+	  if(newPageModule === 'UpcomingEvents'){
 	    pageCollection.insert({month: pageModuleData[0], day: pageModuleData[1]
 		, year: pageModuleData[2], time: pageModuleData[3],
 		info: pageModuleData[4]});
