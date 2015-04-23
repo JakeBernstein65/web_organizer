@@ -7,7 +7,7 @@
   <body>
     <h1><%=title %> <%= username%></h1>
     <p><%=error %></p>
-
+    <p>To Do List:</p>
     <ul>
       <% for(var i = 0; i < listOfModules.length; i++) { %>
 	<form action="/users/currentHomeModule" method="get">

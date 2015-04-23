@@ -257,7 +257,7 @@ exports.addModuleData = function (username, nameOfModule, newPageModule,
 		, year: pageModuleData[2], time: pageModuleData[3],
 		info: pageModuleData[4]});
 	  }
-	  if(newPageModule === 'useful links'){
+	  if(newPageModule === 'usefullinks'){
 	    pageCollection.insert({link: pageModuleData});
 	  }
 	  

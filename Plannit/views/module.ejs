@@ -18,38 +18,33 @@ that class or whatever the users planner is-->
 		data[i][0] !== undefined){%>
 	      <p><%=data[i][0].text%></p>
 	    <%}%>
+ 
 
             <form action="/users/currentHomeModule" id="Notes">
 	      <input type="hidden" name="notesEdit" value="true">
-              <input type="submit" value="Edit">
-            </form><br><br>
+              <input type="submit" value="Edit">  
+            </form>
+            
 
-	   <% if(editNotes === "true"){%>
-	      <form action="/users/editPageModule" id="Notes" >
+ 
+        
+	   <% if(editNotes === "true"){%>    
+
+              <p>Your Notes:</p> 
+              <textarea name="textBox" cols="50" rows="5">
+               "text"
+	       </textarea>      
+  
+	   <form action="/users/editPageModule" id="Notes" >
 	        <input type="hidden" name="Module" value="Notes">
 	        <input type="hidden" name="notesEdit" value="false">
 		<input type="text" name="comment">
 	        <input type="submit" value="Finish Editing">
   	      </form><br><br>
 
-	    <!--<%if(data !== null && data[i] !== undefined && 
-		data[i][0] !== undefined){%>
-               <textarea rows="4" cols="50" name="comment" form="Notes">
-                        <%=data[i][0].text%></textarea>
-               <%}%>
-
-	    <%if(data === null || data[i] === undefined ||
-                data[i][0] === undefined){%>
-		<textarea rows="4" cols="50" name="comment" form="Notes">
-                     </textarea>
-	     <%}%>-->
-
-	     <%}%>
-      
-
-
+	     <%}%>   
+       
  <%}%>
-
 
 
         <%if(listOfModules[i].module === 'Budget'){ %>
@@ -57,29 +52,46 @@ that class or whatever the users planner is-->
 	    <%if(data !== null && data[i] !== undefined && 
 		data[i][0] !== undefined){%>
 	      <p><%=data[i][0].text%></p>
+	    <%}%>
+
 
             <form action="/users/currentHomeModule" id="Budget">
 	      <input type="hidden" name="budgetEdit" value="true">
-              <input type="submit" value="Edit">
-            </form><br><br>
+            </form>
+            
+            
+	<form action="demo_form.asp">
+	Budget: <input type="text" name="Budget" value="$">
+	<input type="submit" value="Submit">
+	</form><br>
 
-
-	    <%}%>
       
-         <p> budget here </p>     
         <%}%>
 
 
         <%if(listOfModules[i].module === 'UsefulLinks'){ %>
-               <p> useful links  here </p>     
+       	    <%if(data !== null && data[i] !== undefined && 
+		data[i][0] !== undefined){%>
+	      <p><%=data[i][0].text%></p>
+	    <%}%>
+
+            <form action="/users/currentHomeModule" id="UsefulLinks">
+	      <input type="hidden" name="linkEdit" value="true">
+            </form><br>
+
+
+	<form action="demo_form.asp">
+	Useful Links: <input type="text" name="Budget" value="http://">
+	<input type="submit" value="Add">
+	</form><br>
+
+
         <%}%>
 
 
 
         <%if(listOfModules[i].module === 'UpcomingEvents'){ %>
                
-
-
 
 	    <%if(data !== null && data[i] !== undefined && 
 		data[i][0] !== undefined){%>
@@ -88,19 +100,87 @@ that class or whatever the users planner is-->
 
             <form action="/users/currentHomeModule" id="UpcomingEvents">
 	      <input type="hidden" name="addEvent" value="true">
-              <input type="submit" value="Edit">
-            </form><br><br>
-
+              <input type="submit" value="Add Event">
+            </form>
+              
+              <p>Event Description:</p>
 	      <form action="/users/editPageModule" id="UpcomingEvents" >
 	        <input type="hidden" name="Module" value="UpcomingEvents">
 		<input type="text" name="comment">
-	        <input type="submit" value="Finish Editing">
-  	      </form><br><br>
+	      <!---  <input type="submit" value="Submit"> --->
+  	      </form>
+              
+
+
+<select name="Month">
+	<option> - Month - </option>
+	<option value="January">January</option>
+	<option value="Febuary">Febuary</option>
+	<option value="March">March</option>
+	<option value="April">April</option>
+	<option value="May">May</option>
+	<option value="June">June</option>
+	<option value="July">July</option>
+	<option value="August">August</option>
+	<option value="September">September</option>
+	<option value="October">October</option>
+	<option value="November">November</option>
+	<option value="December">December</option>
+</select>
+
+<select name="Day">
+	<option> - Day - </option>
+	<option value="1">1</option>
+	<option value="2">2</option>
+	<option value="3">3</option>
+	<option value="4">4</option>
+	<option value="5">5</option>
+	<option value="6">6</option>
+	<option value="7">7</option>
+	<option value="8">8</option>
+	<option value="9">9</option>
+	<option value="10">10</option>
+	<option value="11">11</option>
+	<option value="12">12</option>
+	<option value="13">13</option>
+	<option value="14">14</option>
+	<option value="15">15</option>
+	<option value="16">16</option>
+	<option value="17">17</option>
+	<option value="18">18</option>
+	<option value="19">19</option>
+	<option value="20">20</option>
+	<option value="21">21</option>
+	<option value="22">22</option>
+	<option value="23">23</option>
+	<option value="24">24</option>
+	<option value="25">25</option>
+	<option value="26">26</option>
+	<option value="27">27</option>
+	<option value="28">28</option>
+	<option value="29">29</option>
+	<option value="30">30</option>
+	<option value="31">31</option>
+</select>
+
+<select name="Year">
+	<option> - Year - </option>
+	<option value="2015">2015</option>
+	<option value="2016">2016</option>
+	<option value="2017">2017</option>
+	<option value="2018">2018</option>
+	<option value="2019">2019</option>
+	
+</select>
 
 
 
+  <br><br>
+  <form action="/users/addPageModule" id="Module">
+     <input type="submit">
+  </form><br><br>
 
-	    <p> upcoming events  here </p>     
+
         <%}%>
 
 
