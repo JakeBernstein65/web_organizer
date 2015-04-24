@@ -122,6 +122,7 @@ if(user === undefined){
 
 
 else {
+ console.log(req.query.Module);
 userlib.addModuleData(user.username, currentPlanner, req.query.Module, 
     req.query.data, function(err){
     if(err){ console.log(err);}

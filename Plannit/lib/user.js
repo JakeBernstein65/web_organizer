@@ -292,3 +292,125 @@ exports.removePageModule = function (username, nameOfModule, pageModule){
 
 }
 
+exports.todoAdd = function(username, data, cb){
+  //NOTE: THIS IS STILL UNTESTED
+  //data will be an array of data that follows the same format
+  //of the array pageModuleData for upcoming events.
+  //We will callback a function for error checking and for the sorted array.
+  //When the data gives us the month, it'll be in string
+  //format, we'll deal with sorting by converting it to an
+  //int manually when we insert it into the database.
+  //Then proceed to sort by year first, then month, then day
+  //and then time. Obviously this'll have to sort by least to greatest.
+  //If we also include previously completed objectives in the todo list
+  //we'll add in a field called complete, 1 being finished, 0 meaning 
+  //not finished. If you wanted to make it more technical you can try
+  //to come up with a valid hash function to sort by one field instead of
+  //five. Hash functions including prime factorization, concatenating dates,
+  //adding dates together, etc. will not be valid for their own special
+  //reasons.
+  db.collection(username+'TODO', function(err, todo){
+    if(!err){
+      if(data[0] === 'January'){
+        todo.insert({month: 1, day: data[1], year: data[2], time: data[3],
+		   info: data[4], complete: 0});
+      }
+      else if(data[0] === 'Febuary'){
+	//Change this to 'February' once someone changes module.ejs
+        //dropdown to 'February'.
+        todo.insert({month: 2, day: data[1], year: data[2], time: data[3],
+		  info: data[4], complete: 0});
+      }
+      else if(data[0] === 'March'){
+	todo.insert({month: 3, day: data[1], year: data[2], time: data[3],
+		  info: data[4], complete: 0});
+      }
+      else if(data[0] === 'April'){
+	todo.insert({month: 4, day: data[1], year: data[2], time: data[3],
+		  info: data[4], complete: 0});
+      }
+      else if(data[0] === 'May'){
+	todo.insert({month: 5, day: data[1], year: data[2], time: data[3],
+		  info: data[4], complete: 0});
+      }
+      else if(data[0] === 'June'){
+	todo.insert({month: 6, day: data[1], year: data[2], time: data[3],
+		  info: data[4], complete: 0});
+      }
+      else if(data[0] === 'July'){
+	todo.insert({month: 7, day: data[1], year: data[2], time: data[3],
+		  info: data[4], complete: 0});
+      }
+      else if(data[0] === 'August'){
+	todo.insert({month: 8, day: data[1], year: data[2], time: data[3],
+		  info: data[4], complete: 0});
+      }
+      else if(data[0] === 'September'){
+	todo.insert({month: 9, day: data[1], year: data[2], time: data[3],
+		  info: data[4], complete: 0});
+      }
+      else if(data[0] === 'October'){
+	todo.insert({month: 10, day: data[1], year: data[2], time: data[3],
+		  info: data[4], complete: 0});
+      }
+      else if(data[0] === 'November'){
+	todo.insert({month: 11, day: data[1], year: data[2], time: data[3],
+		  info: data[4], complete: 0});
+      }
+      else if(data[0] === 'December'){
+	todo.insert({month: 12, day: data[1], year: data[2], time: data[3],
+		  info: data[4], complete: 0});
+      }
+      todo.find().sort({year:1, month:1, day:1, time:1}, function(error, list){
+	if(!error){
+	  list.toArray(function(anotherError, sortedlist){
+	    if(!anotherError){
+	      cb(undefined, sortedlist);
+            }
+            else{
+              cb('Error converting to array', undefined);
+            }
+          });
+        }
+	else{
+	  cb('Trouble sorting', undefined);
+        }
+      });
+    }
+    else{
+      cb('Error opening the todo', undefined);
+    }
+  });
+}
+
+exports.todoSorted = function(username, cb){
+  //NOTE: THIS IS STILL UNTESTED
+  //Gives a callback giving an error message, if any, and
+  //the sorted array. The difference between this function
+  //and the last is that this function does not add to
+  //the username+'TODO' collection it just sorts and gives
+  //it back to you. The callback format follows the same
+  //format as before: cb(error, array)
+  db.collection(username+'TODO', function(err, todo){
+    if(!err){
+      todo.find().sort({year:1, month:1, day:1, time:1}, function(error, list){
+	if(!error){
+	  list.toArray(function(anotherError, sortedlist){
+	    if(!anotherError){
+	      cb(undefined, sortedlist);
+            }
+            else{
+              cb('Error converting to array', undefined);
+            }
+          });
+        }
+	else{
+	  cb('Trouble sorting', undefined);
+        }
+      });
+    }
+    else{
+      cb('Trouble opening up TODO list', undefined);
+    }
+  });
+}
