@@ -1,4 +1,4 @@
-
+w
 //initialize mongodb and get the database of users
 //every user will have a username, password, email and a uid that we 
 //will set the value of
@@ -243,10 +243,6 @@ exports.addPageModule = function(username, nameOfModule, newPageModule, cb){
 //this should make sure that the module hasn't already been added   
 exports.addModuleData = function (username, nameOfModule, newPageModule, 
 	pageModuleData, cb) {
-  //db.open(function(err, db){
-   // if(!err){
-      db.collection(username+ nameOfModule,function(err, plannerCollection){
-	plannerCollection.insert({module: newPageModule});
         db.collection(username+ nameOfModule + newPageModule, 
 	  function(error, pageCollection){
         if(!error){
@@ -265,19 +261,11 @@ exports.addModuleData = function (username, nameOfModule, newPageModule,
         else{
           cb(username + nameOfModule + newPageModule +' couldnt be accessed');
         }
-        });
       });
-   // }//if err
-   // else{
-   //   cb('Trouble opening database');
-   // }
-  //});  
 }
 
 //this should remove a specified pageModule and all data associated with it 
 exports.removePageModule = function (username, nameOfModule, pageModule){
-    //db.open(function(err, db){
-      //if(!err){
 	console.log(username+nameOfModule+pageModule);
         db.collection(username+nameOfModule,function(err, plannerCollection){
           plannerCollection.remove({module: pageModule});
@@ -287,8 +275,6 @@ exports.removePageModule = function (username, nameOfModule, pageModule){
 	    });
 	  });
 	});
-     // }
-   // });
 
 }
 

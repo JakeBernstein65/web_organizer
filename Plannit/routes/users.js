@@ -114,7 +114,7 @@ router.get('/removePageModule', function(req, res){
 
 
 ///////////////
-router.get('/addPageModule', function(req,res){
+router.get('/addModuleData', function(req,res){
 var user = req.session.user;
 if(user === undefined){
   res.redirect('/login');
@@ -185,7 +185,7 @@ router.get('/currentHomeModule', function(req,res){
   
     userlib.listPageModules(user.username, currentPlanner,   
     function(listOfModule, data){  
-      res.render('module', {planner : currentPlanner, 
+      res.render('module2', {planner : currentPlanner, 
 	  listOfModules : listOfModule, editNotes : editNotesButton,
 	  data: data, message: errorMessage});
     });
