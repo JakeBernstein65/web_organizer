@@ -96,29 +96,41 @@ that class or whatever the users planner is-->
         <%if(listOfModules[i].module === 'UpcomingEvents'){ %>
                
 
-	    <%if(data !== null && data[i] !== undefined && 
-		data[i][0] !== undefined){%>
-	      <p><%=data[i][0].month%></p>
+	    <%if(data !== null && data[1] !== undefined){%> 
+	      <%for(var j = 0; j < data[1].length; j++){%>
+		<%if(data[1][j] !== undefined){%>
+	      	  <li><%=data[1][j].month%>/<%=data[1][j].day%>/
+			<%=data[1][j].year%> <b>Time</b> <%=data[1][j].time%>
+			<b>Description</b> <%=data[1][j].info%></li>
+                <form action="/users/removeModuleData">
+                 <input type="hidden" name ="Module"
+                  value='UpcomingEvents'>
+                  <input type="hidden" name="entry" value=<%=data[1][j].info%>>
+                 <input type="submit" value="remove">
+                </form>
+
+		<%}%>
+	      <%}%>
 	    <%}%>
+	<br>
 
+	<select name="Month" form="UpcomingEvents">
+	 <option> - Month - </option>
+	 <option value="1">January</option>
+	 <option value="2">Febuary</option>
+	 <option value="3">March</option>
+	 <option value="4">April</option>
+	 <option value="5">May</option>
+	 <option value="6">June</option>
+	 <option value="7">July</option>
+	 <option value="8">August</option>
+	 <option value="9">September</option>
+	 <option value="10">October</option>
+	 <option value="11">November</option>
+	 <option value="12">December</option>
+	</select>
 
-<select name="Month">
-	<option> - Month - </option>
-	<option value="January">January</option>
-	<option value="Febuary">Febuary</option>
-	<option value="March">March</option>
-	<option value="April">April</option>
-	<option value="May">May</option>
-	<option value="June">June</option>
-	<option value="July">July</option>
-	<option value="August">August</option>
-	<option value="September">September</option>
-	<option value="October">October</option>
-	<option value="November">November</option>
-	<option value="December">December</option>
-</select>
-
-<select name="Day">
+<select name="Day" form="UpcomingEvents">
 	<option> - Day - </option>
 	<option value="1">1</option>
 	<option value="2">2</option>
@@ -153,7 +165,7 @@ that class or whatever the users planner is-->
 	<option value="31">31</option>
 </select>
 
-<select name="Year">
+<select name="Year" form="UpcomingEvents">
 	<option> - Year - </option>
 	<option value="2015">2015</option>
 	<option value="2016">2016</option>
@@ -169,7 +181,7 @@ that class or whatever the users planner is-->
 	<input type="text" name="time"><br>
 	<p>Event Description:</p>
 	<input type="text" name="comment"><br></br>
-	<input type="submit" value"Submit"
+	<input type="submit" value"Submit">
 	</form>
 
 

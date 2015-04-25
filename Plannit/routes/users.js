@@ -121,8 +121,6 @@ router.get('/addModuleData', function(req,res){
   if(user === undefined){
     res.redirect('/login');
   }
-
-
   else {
    console.log(req.query.Module);
      
@@ -134,12 +132,27 @@ router.get('/addModuleData', function(req,res){
    else{
     console.log(user.username + currentPlanner + req.query.Module + ' ' +
 	req.query.data);
-    userlib.addModuleData(user.username, currentPlanner, req.query.Module, 
-    req.query.data, function(err){   
-    if(err){ 
-     console.log(err);}
-    }); 
-     
+    if("UsefulLinks" === req.query.Module){
+      userlib.addModuleData(user.username, currentPlanner, req.query.Module, 
+      req.query.data, function(err){   
+      if(err){ 
+        console.log(err);}
+      }); 
+    }
+    if("UpcomingEvents" === req.query.Module){
+	var arrayOfEvent= [];
+	arrayOfEvent.push(req.query.Month);
+	arrayOfEvent.push(req.query.Day);
+	arrayOfEvent.push(req.query.Year);
+	arrayOfEvent.push(req.query.time);
+	arrayOfEvent.push(req.query.comment);
+     userlib.addModuleData(user.username, currentPlanner, req.query.Module,
+      arrayOfEvent, function(err){
+      if(err){
+        console.log(err);}
+      });
+      
+    }
     res.redirect('/users/currentHomeModule');
    }
 
