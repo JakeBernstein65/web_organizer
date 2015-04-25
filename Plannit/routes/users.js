@@ -3,6 +3,11 @@ var router = express.Router();
 var currentPlanner = undefined;
 var userlib = require('../lib/user');
 
+////////////
+//if req.query == null
+//flash message
+
+
 
 var editNotesButton = "false";
 /*all routes for user home*/
@@ -41,7 +46,8 @@ router.get('/home', function(req, res, next) {
 router.get('/addHomeModule', function(req, res){
   var user = req.session.user;
   if(user === undefined) {
-      res.redirect('/login');
+	  
+            res.redirect('/login');
   }
   else{
     userlib.addHomeModule(user.username, req.query.planner, function(err){
@@ -123,16 +129,26 @@ if(user === undefined){
 
 else {
  console.log(req.query.Module);
-userlib.addModuleData(user.username, currentPlanner, req.query.Module, 
-    req.query.data, function(err){
-    if(err){ console.log(err);}
+ 
+   if(req.query.data === null){
+      req.flash('moduleExists','section already exists');
+      res.redirect('/users/currentHomeModule');
+      }
+
+   else{
+    userlib.addModuleData(user.username, currentPlanner, req.query.Module, 
+    req.query.data, function(err){   
+   if(err){ 
+     console.log(err);}
     }); 
    
    if(req.query.addEvent !== null){
       addEventButton = req.query.addEvent;
   }
   
+  }   
   res.redirect('/users/currentHomeModule');
+
 
 }
 
@@ -185,7 +201,8 @@ router.get('/currentHomeModule', function(req,res){
   
     userlib.listPageModules(user.username, currentPlanner,   
     function(listOfModule, data){  
-      res.render('module2', {planner : currentPlanner, 
+/////module render here
+      res.render('module', {planner : currentPlanner, 
 	  listOfModules : listOfModule, editNotes : editNotesButton,
 	  data: data, message: errorMessage});
     });

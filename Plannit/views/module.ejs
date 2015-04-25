@@ -26,14 +26,9 @@ that class or whatever the users planner is-->
             </form>
             
 
- 
-        
 	   <% if(editNotes === "true"){%>    
 
               <p>Your Notes:</p> 
-              <textarea name="textBox" cols="50" rows="5">
-               "text"
-	       </textarea>      
   
 	   <form action="/users/editPageModule" id="Notes" >
 	        <input type="hidden" name="Module" value="Notes">
@@ -53,18 +48,20 @@ that class or whatever the users planner is-->
 		data[i][0] !== undefined){%>
 	      <p><%=data[i][0].text%></p>
 	    <%}%>
+   
 
-
-            <form action="/users/currentHomeModule" id="Budget">
-	      <input type="hidden" name="budgetEdit" value="true">
-            </form>
-            
-            
-	<form action="/users/editPageModule" id = "Budget">
+	   <form action="/users/editPageModule" id="Budget" >
+	        <input type="hidden" name="Module" value="Budget">
+	        <input type="hidden" name="notesEdit" value="false">
+		<input type="text" name="comment">
+	        <input type="submit" value="Finish Editing">
+  	      </form><br><br>
+                      
+<!---	<form action="/users/editPageModule" id = "Budget">
 	Budget: <input type="text" name="Budget" value="$">
 	<input type="submit" value="Submit">
 	</form><br>
-
+--->
       
         <%}%>
 
@@ -75,12 +72,9 @@ that class or whatever the users planner is-->
 	      <p><%=data[i][0].text%></p>
 	    <%}%>
 
-            <form action="/users/currentHomeModule" id="UsefulLinks">
-	      <input type="hidden" name="linkEdit" value="true">
-            </form><br>
 
-
-	<form action="demo_form.asp">
+	<form  id="UsefulLinks" >
+	<input type="hidden" name="Module" value="UpcomingEvents">
 	Useful Links: <input type="text" name="Budget" value="http://">
 	<input type="submit" value="Add">
 	</form><br>
@@ -97,19 +91,6 @@ that class or whatever the users planner is-->
 		data[i][0] !== undefined){%>
 	      <p><%=data[i][0].month%></p>
 	    <%}%>
-
-            <form action="/users/currentHomeModule" id="UpcomingEvents">
-	      <input type="hidden" name="addEvent" value="true">
-              <input type="submit" value="Add Event">
-            </form>
-              
-              <p>Event Description:</p>
-	      <form action="/users/editPageModule" id="UpcomingEvents" >
-	        <input type="hidden" name="Module" value="UpcomingEvents">
-		<input type="text" name="comment">
-	      <!---  <input type="submit" value="Submit"> --->
-  	      </form>
-              
 
 
 <select name="Month">
@@ -173,16 +154,14 @@ that class or whatever the users planner is-->
 	
 </select>
 
-
-
-  <br><br>
-  <form action="/users/addModuleData" id="Module">
-     <input type="submit">
-  </form><br><br>
-
-
-
-
+	<form action="/users/addModuleData" id="UpcomingEvents" >
+	<input type="hidden" name="Module" value="UpcomingEvents">
+	<p>Time:</p>
+	<input type="text" name="time"><br>
+	<p>Event Description:</p>
+	<input type="text" name="comment"><br></br>
+	<input type="submit" value"Submit"
+	</form>
 
 
         <%}%>

@@ -1,4 +1,4 @@
-w
+
 //initialize mongodb and get the database of users
 //every user will have a username, password, email and a uid that we 
 //will set the value of
@@ -126,9 +126,14 @@ exports.removeHomeModule = function (username, nameOfModule) {
 //this should be called to edit a pageModule with the new pageModule.
 exports.editPageModule = function (username, nameOfModule, pageModule,
         pageModuleData, cb){
+
+
+
       db.collection(''+username+ nameOfModule + pageModule,
         function(error, pageCollection){
         if(!error){
+       
+
           if(pageModule === 'Notes'){
             //Check if text field is empty
 	    var cursor = pageCollection.find();
@@ -141,20 +146,56 @@ exports.editPageModule = function (username, nameOfModule, pageModule,
               pageCollection.update({text: arrayOfModules[0].text},
 		{$set: {text: pageModuleData}});
             }
+          console.log(pageModuleData);
+          console.log(arrayOfModules[0].text);
+
+
 		cb(undefined);
+
+
+
+
 	    });
           }
-          if(pageModule === 'Budget'){
-            //Checks if text field is empty
-            if(pageCollection.find() === null){
-              pageCollection.insert({text: dpageModuleData});
+         
+
+
+	 if(pageModule === 'Budget'){
+
+
+            //Check if text field is empty
+	    var cursor = pageCollection.find();
+            cursor.toArray(function(err, arrayOfModules){
+	    if(arrayOfModules.length === 0){
+	      pageCollection.insert({text: pageModuleData});
+	    }
+            //Update text
+            else{
+            pageCollection.update({text: arrayOfModules[0].text},
+		{$set: {text: pageModuleData}});
+            }
+
+          console.log(pageModuleData);
+          console.log(arrayOfModules[0].text);
+
+		cb(undefined);
+	    });
+
+
+/*            if(pageCollection.find() === null){
+              pageCollection.insert({text: pageModuleData});
 	    }
             //Update text
             else{
               pageCollection.update({text: pageModuleData});
 	    }
-	    cb(undefined);
+	    cb(undefined);*/
+
           }
+
+
+
+
 
           //if(pageModule === 'Upcoming Events'){
 

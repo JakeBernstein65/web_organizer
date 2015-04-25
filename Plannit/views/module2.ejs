@@ -37,15 +37,6 @@ that class or whatever the users planner is-->
 	      <p><%=data[i][0].month%></p>
 	    <%}%>
               
-              <p>Event Description:</p>
-	      <form action="/users/addModuleData" id="UpcomingEvents" >
-	        <input type="hidden" name="Module" value="UpcomingEvents">
-		<input type="text" name="comment">
-	        <input type="submit" value="Submit"> 
-  	      </form>
-              
-
-
 <select name="Month">
 	<option> - Month - </option>
 	<option value="January">January</option>
@@ -106,6 +97,19 @@ that class or whatever the users planner is-->
 	<option value="2019">2019</option>
 	
 </select>
+
+
+	      <form action="/users/addModuleData" id="UpcomingEvents" >
+	        <input type="hidden" name="Module" value="UpcomingEvents">
+               <p>Time:</p>
+		<input type="text" name="time"><br>
+                <p>Event Description:</p>
+		<input type="text" name="comment"><br></br>
+	        <input type="submit" value="Submit"> 
+  	      </form>
+              
+
+
 
 
         <%}%>
