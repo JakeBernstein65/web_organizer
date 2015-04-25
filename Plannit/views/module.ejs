@@ -44,9 +44,9 @@ that class or whatever the users planner is-->
 
         <%if(listOfModules[i].module === 'Budget'){ %>
 
-	    <%if(data !== null && data[i] !== undefined && 
-		data[i][0] !== undefined){%>
-	      <p><%=data[i][0].text%></p>
+	    <%if(data !== null && data[3] !== undefined && 
+		data[3][0] !== undefined){%>
+	      <p><%=data[3][0].text%></p>
 	    <%}%>
    
 
@@ -67,14 +67,12 @@ that class or whatever the users planner is-->
 
 
         <%if(listOfModules[i].module === 'UsefulLinks'){ %>
-	<p>there <%=data%><%=data[i]%></p>
-	  <%if(data !== undefined && data[i]!== undefined){%>
-	     <%for(var j = 0; j < data[i].length; j++){%>
-		<p>here <%=data[i][j]%></p>
-	     <%if(data[i][j] !== undefined){%>
-	      <a href=<%=data[i][j].text%><%=data[i][j].link%></a>
+	  <%if(data !== undefined && data[2]!== undefined){%>
+	     <%for(var j = 0; j < data[2].length; j++){%>
+	     <%if(data[2][j] !== undefined){%>
+	      <li><a href=<%=data[2][j].link%>><%=data[2][j].link%></a></li>
 	     <%}%>
-	   <%}%>>
+	   <%}%>
 	 <%}%>
 
 

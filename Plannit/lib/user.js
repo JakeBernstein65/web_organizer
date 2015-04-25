@@ -210,11 +210,11 @@ exports.listPageModules = function (username, nameOfPlanner, cb){
 		  db.collection(username + nameOfPlanner + 'Notes', 
 			function(err, notesCollection){
 		     var cursorNotes = notesCollection.find();
-	             cursor.toArray(function(err, arrayOfNotes){
+	             cursorNotes.toArray(function(err, arrayOfNotes){
            	       if(err){console.log(err);}
             	       else{
 			 for(var i = 0; i < arrayOfModules.length; i++){
-			   if('Notes' === arrayOfModules[i]){
+			   if('Notes' === arrayOfModules[i].module){
 				moduleExists = true;
 			   }
 			 }
@@ -232,7 +232,7 @@ exports.listPageModules = function (username, nameOfPlanner, cb){
                        if(err){console.log(err);}
                        else{
                          for(var i = 0; i < arrayOfModules.length; i++){
-                           if('UpcomingEvents' === arrayOfModules[i]){
+                           if('UpcomingEvents' === arrayOfModules[i].module){
                                 moduleExists = true;
                            }
                          }
@@ -252,7 +252,7 @@ exports.listPageModules = function (username, nameOfPlanner, cb){
                        else{
                          
 			 for(var i = 0; i < arrayOfModules.length; i++){
-                           if('UsefulLinks' === arrayOfModules[i]){
+			   if('UsefulLinks' === arrayOfModules[i].module){
                                 moduleExists = true;
                            }
                          }
@@ -272,7 +272,7 @@ exports.listPageModules = function (username, nameOfPlanner, cb){
                        else{
                          moduleExists = false;
                          for(var i = 0; i < arrayOfModules.length; i++){
-                           if('Budget' === arrayOfModules[i]){
+                           if('Budget' === arrayOfModules[i].module){
                                 moduleExists = true;
                            }
                          }
