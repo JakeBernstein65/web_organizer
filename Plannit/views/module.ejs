@@ -66,15 +66,21 @@ that class or whatever the users planner is-->
         <%}%>
 
 
-        <%if(listOfModules[i].module === 'UsefulLinks'){ %>
-	  <%if(data !== undefined && data[2]!== undefined){%>
-	     <%for(var j = 0; j < data[2].length; j++){%>
+      <%if(listOfModules[i].module === 'UsefulLinks'){ %>
+	 <%if(data !== undefined && data[2]!== undefined){%>
+	   <%for(var j = 0; j < data[2].length; j++){%>
 	     <%if(data[2][j] !== undefined){%>
 	      <li><a href=<%=data[2][j].link%>><%=data[2][j].link%></a></li>
-	     <%}%>
+	      <form action="/users/removeModuleData">
+               <input type="hidden" name ="Module"
+                value='UsefulLinks'>
+		<input type="hidden" name="entry" value=<%=data[2][j].link%>>
+               <input type="submit" value="remove">
+              </form>
+	    <%}%>
 	   <%}%>
 	 <%}%>
-
+	<br>
 
 	<form  action="/users/addModuleData" id="UsefulLinks" >
 	<input type="hidden" name="Module" value="UsefulLinks">

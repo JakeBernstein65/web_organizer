@@ -145,7 +145,19 @@ router.get('/addModuleData', function(req,res){
 
 }
 
+});
 
+router.get('/removeModuleData', function(req,res){
+  var user = req.session.user;
+  if(user === undefined){
+     res.redirect('/login');
+  }
+  else{
+    userlib.removeModuleData(user.username, currentPlanner, req.query.Module,
+	req.query.entry);
+	console.log(req.query.entry);
+       res.redirect('/users/currentHomeModule');    
+  }
 });
 
 router.get('/editPageModule', function(req,res){

@@ -299,6 +299,21 @@ exports.listPageModules = function (username, nameOfPlanner, cb){
     });
 }
 
+exports.removeModuleData = function(username, nameOfModule, pageModule, entry){
+  db.collection(username+nameOfModule+pageModule, function(err, moduleCollection){
+    if(!err){
+       if(pageModule === 'UsefulLinks'){
+         moduleCollection.remove({link: entry});
+       }
+       if(pageModule === 'UpcomingEvents'){
+	 moduleCollection.remove({info: entry});
+       }
+    }
+    else{}
+  });
+
+}
+
 exports.addPageModule = function(username, nameOfModule, newPageModule, cb){
       db.collection(username+newPageModule, function(err, plannerCollection){
         if(!err){
