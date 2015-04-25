@@ -3,9 +3,6 @@ var router = express.Router();
 var currentPlanner = undefined;
 var userlib = require('../lib/user');
 
-
-
-var editNotesButton = "false";
 /*all routes for user home*/
 
 
@@ -108,7 +105,6 @@ router.get('/removePageModule', function(req, res){
      res.redirect('/login');
   }
   else{
-    console.log(req.query.Module);
     userlib.removePageModule(user.username, currentPlanner, req.query.Module);
     res.redirect('/users/currentHomeModule');
   }
@@ -166,9 +162,21 @@ router.get('/removeModuleData', function(req,res){
      res.redirect('/login');
   }
   else{
-    userlib.removeModuleData(user.username, currentPlanner, req.query.Module,
+    if(req.query.Module === "UsefulLinks"){
+      userlib.removeModuleData(user.username, currentPlanner, req.query.Module,
 	req.query.entry);
-	console.log(req.query.entry);
+    }
+    if(req.query.Module === "UpcomingEvents"){
+      var arrayOfEvent = [];
+      arrayOfEvent.push(req.query.month);
+      arrayOfEvent.push(req.query.day);
+      arrayOfEvent.push(req.query.year);
+      arrayOfEvent.push(req.query.time);
+      arrayOfEvent.push(req.query.info);
+     userlib.removeModuleData(user.username, currentPlanner, req.query.Module,
+        arrayOfEvent);     
+     
+    }
        res.redirect('/users/currentHomeModule');    
   }
 });
@@ -184,10 +192,7 @@ var user = req.session.user;
 	req.query.comment, function(err){
       if(err){console.log(err);}
     });    
-  
-    if(req.query.notesEdit !== null){
-        editNotesButton = req.query.notesEdit;
-    }
+ 
    
     res.redirect('/users/currentHomeModule');
   }
@@ -212,17 +217,10 @@ router.get('/currentHomeModule', function(req,res){
     res.redirect('/login');
   }
   else{
-
-    if(req.query.notesEdit !== null){
-	editNotesButton = req.query.notesEdit;
-    }
-  
     userlib.listPageModules(user.username, currentPlanner,   
     function(listOfModule, data){  
-/////module render here
       res.render('module', {planner : currentPlanner, 
-	  listOfModules : listOfModule, editNotes : editNotesButton,
-	  data: data, message: errorMessage});
+	  listOfModules : listOfModule, data: data, message: errorMessage});
     });
 
  

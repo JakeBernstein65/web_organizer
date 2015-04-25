@@ -306,7 +306,10 @@ exports.removeModuleData = function(username, nameOfModule, pageModule, entry){
          moduleCollection.remove({link: entry});
        }
        if(pageModule === 'UpcomingEvents'){
-	 moduleCollection.remove({info: entry});
+	 moduleCollection.remove({month:entry[0], day:entry[1] , year:entry[2], time:entry[3]
+		 ,info: entry[4]}, function(err, numberOfRemovedDocs){
+	  if(err){console.log(err);}
+	});
        }
     }
     else{}
@@ -320,9 +323,7 @@ exports.addPageModule = function(username, nameOfModule, newPageModule, cb){
 	  plannerCollection.insert({module: nameOfModule});
 	  db.createCollection(username+newPageModule+nameOfModule, 
 		function(error, newCollection){
-          //if(error){
-           // cb('Aww the collection wasnt made');
-          //}
+    
 	 
 	  cb(undefined);
          });
@@ -367,6 +368,7 @@ exports.removePageModule = function (username, nameOfModule, pageModule){
 	console.log(username+nameOfModule+pageModule);
         db.collection(username+nameOfModule,function(err, plannerCollection){
           plannerCollection.remove({module: pageModule});
+	console.log(username+nameOfModule+pageModule);
 	db.collection(username+nameOfModule+pageModule, function(err, 
 		plannerModule){
 	    plannerModule.drop(function(err){

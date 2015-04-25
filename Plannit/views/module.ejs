@@ -14,30 +14,16 @@ that class or whatever the users planner is-->
 
       <%if(listOfModules[i].module === 'Notes'){ %>
 
-	    <%if(data !== null && data[i] !== undefined && 
-		data[i][0] !== undefined){%>
-	      <p><%=data[i][0].text%></p>
+	    <%if(data !== null && data[0] !== undefined && 
+		data[0][0] !== undefined){%>
+	      <p><%=data[0][0].text%></p>
 	    <%}%>
- 
-
-            <form action="/users/currentHomeModule" id="Notes">
-	      <input type="hidden" name="notesEdit" value="true">
-              <input type="submit" value="Edit">  
-            </form>
-            
-
-	   <% if(editNotes === "true"){%>    
-
-              <p>Your Notes:</p> 
   
 	   <form action="/users/editPageModule" id="Notes" >
 	        <input type="hidden" name="Module" value="Notes">
-	        <input type="hidden" name="notesEdit" value="false">
 		<input type="text" name="comment">
 	        <input type="submit" value="Finish Editing">
   	      </form><br><br>
-
-	     <%}%>   
        
      <%}%>
 
@@ -52,16 +38,9 @@ that class or whatever the users planner is-->
 
 	   <form action="/users/editPageModule" id="Budget" >
 	        <input type="hidden" name="Module" value="Budget">
-	        <input type="hidden" name="notesEdit" value="false">
 		<input type="text" name="comment">
 	        <input type="submit" value="Finish Editing">
   	      </form><br><br>
-                      
-<!---	<form action="/users/editPageModule" id = "Budget">
-	Budget: <input type="text" name="Budget" value="$">
-	<input type="submit" value="Submit">
-	</form><br>
---->
       
         <%}%>
 
@@ -105,7 +84,11 @@ that class or whatever the users planner is-->
                 <form action="/users/removeModuleData">
                  <input type="hidden" name ="Module"
                   value='UpcomingEvents'>
-                  <input type="hidden" name="entry" value=<%=data[1][j].info%>>
+                  <input type="hidden" name="info" value=<%=data[1][j].info%>>
+ 		 <input type="hidden" name="month" value=<%=data[1][j].month%>>
+ 		 <input type="hidden" name="day" value=<%=data[1][j].day%>>
+ 		 <input type="hidden" name="year" value=<%=data[1][j].year%>>
+		 <input type="hidden" name="time" value=<%=data[1][j].time%>>
                  <input type="submit" value="remove">
                 </form>
 
