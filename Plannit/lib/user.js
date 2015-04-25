@@ -157,11 +157,8 @@ exports.editPageModule = function (username, nameOfModule, pageModule,
 
 	    });
           }
-         
-
 
 	 if(pageModule === 'Budget'){
-
 
             //Check if text field is empty
 	    var cursor = pageCollection.find();
@@ -174,9 +171,6 @@ exports.editPageModule = function (username, nameOfModule, pageModule,
             pageCollection.update({text: arrayOfModules[0].text},
 		{$set: {text: pageModuleData}});
             }
-
-          console.log(pageModuleData);
-          console.log(arrayOfModules[0].text);
 
 		cb(undefined);
 	    });
@@ -193,17 +187,6 @@ exports.editPageModule = function (username, nameOfModule, pageModule,
 
           }
 
-
-
-
-
-          //if(pageModule === 'Upcoming Events'){
-
-            //pageCollection.update({uid: pageModuleData[5]}, {$set:{month: pageModuleData[0]
-            //,day: pageModuleData[1], year: pageModuleData[2], time: pageModuleData[3],
-            //info: pageModuleData[4]}});
-	    //cb(undefined);
-          //}
         }//if error
         else{
           cb(username + nameOfModule + pageModule +' couldnt be accessed' + error);
@@ -216,6 +199,8 @@ exports.editPageModule = function (username, nameOfModule, pageModule,
 //will return the data associated with each module as well.
 //The list of page modules will be stored in one array and the other array
 //will store the associated data for each page module as an array  
+//THE DATA ARRAY WILL STORE THE MODULES IN THIS SPECFIED ORDER NOTES, UPCOMINGEVENTS,
+//USEFULLINKS, AND BUDGET. this means data[0] will be accessing the notes array
 exports.listPageModules = function (username, nameOfPlanner, cb){
        db.collection(username+ nameOfPlanner,function(err, plannerCollection){
 	  var cursor = plannerCollection.find();
@@ -227,27 +212,96 @@ exports.listPageModules = function (username, nameOfPlanner, cb){
             else{
 		//data will be the array that store all of the data
 		var data = [];
-		var oneCB = 0;
 		if(arrayOfModules.length !== 0){
-	        for(var i = 0; i < arrayOfModules.length; i++){
-		  var pageModule = username + nameOfPlanner + 
+		  var moduleExists = false;
+	          var pageModule = username + nameOfPlanner + 
 			arrayOfModules[i].module;
-		  db.collection(pageModule, function(err, moduleCollection){
-		     var cursor = moduleCollection.find();
-	             cursor.toArray(function(err, arrayOfData){
-           	       if(err){
-               	   	 console.log(err);
-            	       }
+   		  //the following call backs are all nested inside of one another  
+		  db.collection(username + nameOfPlanner + 'Notes', 
+			function(err, notesCollection){
+		     var cursorNotes = notesCollection.find();
+	             cursor.toArray(function(err, arrayOfNotes){
+           	       if(err){console.log(err);}
             	       else{
-			 data.push(arrayOfData);
-		       }
-		     if(i === arrayOfModules.length && oneCB === 0){
-                       cb(arrayOfModules, data);
-			oneCB++;
-                     }
-		    });		     
-		  });
-		}//for	
+			 for(var i = 0; i < arrayOfModules.length; i++){
+			   if('Notes' === arrayOfModules[i]){
+				moduleExists = true;
+			   }
+			 }
+			 if(moduleExists === true){
+			   data.push(arrayOfNotes);
+			 }
+			 else{data.push(undeinfed);}
+		      }
+
+       		     //upcoming events
+  		     db.collection(username + nameOfPlanner + 'UpcomingEvents',
+                        function(err, upcomingCollection){
+                     var cursorUpcoming = upcomingCollection.find();
+		     cursorUpcoming.toArray(function(err, arrayOfUpcoming){
+                       if(err){console.log(err);}
+                       else{
+                         for(var i = 0; i < arrayOfModules.length; i++){
+                           if('UpcomingEvents' === arrayOfModules[i]){
+                                moduleExists = true;
+                           }
+                         }
+                         if(moduleExists === true){
+                           data.push(arrayOfUpcoming);
+                         }
+			 else{data.push(undefined)}
+                       }
+
+		     //useful links
+		     db.collection(username + nameOfPlanner + 'UsefulLinks',
+                        function(err, linksCollection){
+                     var linksCursor = linksCollection.find();
+
+                     linksCursor.toArray(function(err, arrayOfLinks){
+                       if(err){console.log(err);}
+                       else{
+                         
+			 for(var i = 0; i < arrayOfModules.length; i++){
+                           if('UsefulLinks' === arrayOfModules[i]){
+                                moduleExists = true;
+                           }
+                         }
+                         if(moduleExists === true){
+                           data.push(arrayOfLinks);
+                         }
+			 else{ data.push(undefined);}
+                       }
+
+		     //Budget
+		     db.collection(username + nameOfPlanner + 'Budget',
+                        function(err, budgetCollection){
+                     var budgetCursor = budgetCollection.find();
+
+                     budgetCursor.toArray(function(err, arrayOfBudget){
+                       if(err){console.log(err);}
+                       else{
+                         moduleExists = false;
+                         for(var i = 0; i < arrayOfModules.length; i++){
+                           if('Budget' === arrayOfModules[i]){
+                                moduleExists = true;
+                           }
+                         }
+                         if(moduleExists === true){
+                           data.push(arrayOfBudget);
+                         }
+			 else{data.push(undefined);}
+                       }
+			cb(arrayOfModules, data);
+			});
+			});
+			});
+                      });
+                    });
+
+                    });
+                  });
+
+	
 		}
 		else{
 		  cb(arrayOfModules, data);
@@ -294,7 +348,7 @@ exports.addModuleData = function (username, nameOfModule, newPageModule,
 		, year: pageModuleData[2], time: pageModuleData[3],
 		info: pageModuleData[4]});
 	  }
-	  if(newPageModule === 'usefullinks'){
+	  if(newPageModule === 'UsefulLinks'){
 	    pageCollection.insert({link: pageModuleData});
 	  }
 	  

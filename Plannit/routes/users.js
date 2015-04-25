@@ -3,10 +3,6 @@ var router = express.Router();
 var currentPlanner = undefined;
 var userlib = require('../lib/user');
 
-////////////
-//if req.query == null
-//flash message
-
 
 
 var editNotesButton = "false";
@@ -15,7 +11,7 @@ var editNotesButton = "false";
 
 //if they try to type in /users it will redirect them to users/home
 router.get('/', function(req, res){
-  res.redirect('users/home');
+  res.redirect('/users/home');
 });
 
 //this is the users home where all of the users planners and todo list will
@@ -119,36 +115,33 @@ router.get('/removePageModule', function(req, res){
 });
 
 
-///////////////
+
 router.get('/addModuleData', function(req,res){
-var user = req.session.user;
-if(user === undefined){
-  res.redirect('/login');
-}
+  var user = req.session.user;
+  if(user === undefined){
+    res.redirect('/login');
+  }
 
 
-else {
- console.log(req.query.Module);
- 
+  else {
+   console.log(req.query.Module);
+     
    if(req.query.data === null){
-      req.flash('moduleExists','section already exists');
+      req.flash('moduleExists','no data entered');
       res.redirect('/users/currentHomeModule');
-      }
+   }
 
    else{
+    console.log(user.username + currentPlanner + req.query.Module + ' ' +
+	req.query.data);
     userlib.addModuleData(user.username, currentPlanner, req.query.Module, 
     req.query.data, function(err){   
-   if(err){ 
+    if(err){ 
      console.log(err);}
     }); 
-   
-   if(req.query.addEvent !== null){
-      addEventButton = req.query.addEvent;
-  }
-  
-  }   
-  res.redirect('/users/currentHomeModule');
-
+     
+    res.redirect('/users/currentHomeModule');
+   }
 
 }
 
