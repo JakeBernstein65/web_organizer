@@ -146,15 +146,7 @@ exports.editPageModule = function (username, nameOfModule, pageModule,
               pageCollection.update({text: arrayOfModules[0].text},
 		{$set: {text: pageModuleData}});
             }
-          console.log(pageModuleData);
-          console.log(arrayOfModules[0].text);
-
-
 		cb(undefined);
-
-
-
-
 	    });
           }
 
@@ -214,8 +206,6 @@ exports.listPageModules = function (username, nameOfPlanner, cb){
 		var data = [];
 		if(arrayOfModules.length !== 0){
 		  var moduleExists = false;
-	          var pageModule = username + nameOfPlanner + 
-			arrayOfModules[i].module;
    		  //the following call backs are all nested inside of one another  
 		  db.collection(username + nameOfPlanner + 'Notes', 
 			function(err, notesCollection){
@@ -231,7 +221,7 @@ exports.listPageModules = function (username, nameOfPlanner, cb){
 			 if(moduleExists === true){
 			   data.push(arrayOfNotes);
 			 }
-			 else{data.push(undeinfed);}
+			 else{data.push(undefined);}
 		      }
 
        		     //upcoming events
@@ -292,23 +282,21 @@ exports.listPageModules = function (username, nameOfPlanner, cb){
 			 else{data.push(undefined);}
                        }
 			cb(arrayOfModules, data);
-			});
-			});
-			});
-                      });
-                    });
-
-                    });
-                  });
-
-	
-		}
-		else{
-		  cb(arrayOfModules, data);
-		}
-	    }
-	  });
+		    });
+		   });
+	    	  });
+	         });
+                });
+               });
+              });
+             });
+	   }//if
+	   else{
+	     cb(arrayOfModules, data);
+	   }
+	  }//else
        });
+    });
 }
 
 exports.addPageModule = function(username, nameOfModule, newPageModule, cb){
