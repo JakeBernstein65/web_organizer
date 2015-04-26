@@ -1,0 +1,15 @@
+.carddemoBasicUsage md-card {
+  min-height: 150px; 
+}
+
+.outerCard {
+	width: 525px;
+	margin-left: auto;
+    margin-right: auto;
+}
+
+.innerCard {
+	width: 500px;
+	margin-left: auto;
+    margin-right: auto;
+}
