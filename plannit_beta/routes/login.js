@@ -19,7 +19,7 @@ router.get('/login', function(req, res) {
        res.redirect('/users/home');
      }
      else{
-       res.sendFile('signin.html', { root: "public/views" });
+       res.sendFile('prettyModule.html', { root: "public/views" });
      }
    
 });

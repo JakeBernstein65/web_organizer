@@ -21,11 +21,11 @@ router.get('/home', function(req,res){
     res.sendFile('home.html', {root:"public/views"});
   }
   
-}
+});
 
 //this is the users home where all of the users planners and todo list will
 //be displayed
-router.get('/homedata', function(req, res) {
+router.get('/home', function(req, res) {
   //this is used to check if user is online
   var user = req.session.user;
   var errorMessage = req.flash('error') || '';
@@ -261,7 +261,7 @@ var user = req.session.user;
   }
 });
 
-router.get('/currentHomeModule', function(req,res)){
+router.get('/currentHomeModule', function(req,res){
   var user = req.session.user;
 
   if(user === undefined) {
@@ -276,6 +276,8 @@ router.get('/currentHomeModule', function(req,res)){
 //this route will display the page for one of your planners like cs 326
 //it will render the module.ejs which will display 
 router.get('/currentHomeModuleData', function(req,res){
+  res.json({"note": "HAHAHAH"});
+  return;
   var user = req.session.user;
   var errorMessage = req.flash('moduleExists') || '';
   
