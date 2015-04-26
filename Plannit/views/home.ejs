@@ -13,6 +13,21 @@
            <li><%=data[i].month%>/<%=data[i].day%>/
                <%=data[i].year%> <b>Time</b> <%=data[i].time%>
                <b>Description</b> <%=data[i].info%></li>
+	   <form action="/users/todoRemove" method="get">
+             <input type="hidden" name='Month'
+             value=<%= data[i].month %>>
+             <input type="hidden" name='Day'
+             value=<%= data[i].day %>>
+             <input type="hidden" name='Year'
+             value=<%= data[i].year %>>
+	     <input type="hidden" name='info'
+             value=<%= data[i].info %>>
+	     <input type="hidden" name='time'
+             value=<%= data[i].time %>>
+
+             <input type="submit" value="Remove Entry"> <br><br>
+           </form> <br>
+
        <%}%>
     <%}%>
     <br>
