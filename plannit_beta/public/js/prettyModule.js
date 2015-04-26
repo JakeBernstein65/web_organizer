@@ -37,6 +37,7 @@ angular.module('Module', ['ngMaterial'])
 		})
 		.error(function(){
 			$scope.hiddenNewNote = true;
+			$scope.noteCardHide = false;
 		});
 
 
@@ -69,7 +70,7 @@ angular.module('Module', ['ngMaterial'])
 	})
 
 .controller('NoteCardCtrl', function($scope, $http, $mdDialog) {
-	$scope.noteCardHide = false;
+	//$scope.noteCardHide = true;
 	$http.get('/users/currentHomeModuleData', {"a":"1"}).success(function(data){
 		$scope.noteBody = data.note;
 	});
