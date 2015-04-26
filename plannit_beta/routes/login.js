@@ -113,7 +113,7 @@ router.get('/addNewUser', function(req, res){
 	if(err === undefined){
 	  //req.flash('add', 'user exists');
 	  //res.redirect('/login/newUser');
-    res.json({"code":"1"});
+          res.json({"code":"1"});
  	}
 	else{
 	  

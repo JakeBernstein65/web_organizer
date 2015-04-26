@@ -45,7 +45,6 @@ exports.addNewUser = function (username, password, email, cb){
 	  db.createCollection(username +'TODO', function(error, collectiontodo){
             db.createCollection(username+'HOME', function(error, 
 		collectionhome){
-	        db.close();
 	     });	
 	  });
        });
@@ -126,9 +125,14 @@ exports.removeHomeModule = function (username, nameOfModule) {
 //this should be called to edit a pageModule with the new pageModule.
 exports.editPageModule = function (username, nameOfModule, pageModule,
         pageModuleData, cb){
+
+
+
       db.collection(''+username+ nameOfModule + pageModule,
         function(error, pageCollection){
         if(!error){
+       
+
           if(pageModule === 'Notes'){
             //Check if text field is empty
 	    var cursor = pageCollection.find();
@@ -144,25 +148,36 @@ exports.editPageModule = function (username, nameOfModule, pageModule,
 		cb(undefined);
 	    });
           }
-          if(pageModule === 'Budget'){
-            //Checks if text field is empty
-            if(pageCollection.find() === null){
-              pageCollection.insert({text: dpageModuleData});
+
+	 if(pageModule === 'Budget'){
+
+            //Check if text field is empty
+	    var cursor = pageCollection.find();
+            cursor.toArray(function(err, arrayOfModules){
+	    if(arrayOfModules.length === 0){
+	      pageCollection.insert({text: pageModuleData});
+	    }
+            //Update text
+            else{
+            pageCollection.update({text: arrayOfModules[0].text},
+		{$set: {text: pageModuleData}});
+            }
+
+		cb(undefined);
+	    });
+
+
+/*            if(pageCollection.find() === null){
+              pageCollection.insert({text: pageModuleData});
 	    }
             //Update text
             else{
               pageCollection.update({text: pageModuleData});
 	    }
-	    cb(undefined);
+	    cb(undefined);*/
+
           }
 
-          if(pageModule === 'Upcoming Events'){
-
-            pageCollection.update({uid: pageModuleData[5]}, {$set:{month: pageModuleData[0]
-            ,day: pageModuleData[1], year: pageModuleData[2], time: pageModuleData[3],
-            info: pageModuleData[4]}});
-	    cb(undefined);
-          }
         }//if error
         else{
           cb(username + nameOfModule + pageModule +' couldnt be accessed' + error);
@@ -175,6 +190,8 @@ exports.editPageModule = function (username, nameOfModule, pageModule,
 //will return the data associated with each module as well.
 //The list of page modules will be stored in one array and the other array
 //will store the associated data for each page module as an array  
+//THE DATA ARRAY WILL STORE THE MODULES IN THIS SPECFIED ORDER NOTES, UPCOMINGEVENTS,
+//USEFULLINKS, AND BUDGET. this means data[0] will be accessing the notes array
 exports.listPageModules = function (username, nameOfPlanner, cb){
        db.collection(username+ nameOfPlanner,function(err, plannerCollection){
 	  var cursor = plannerCollection.find();
@@ -186,34 +203,119 @@ exports.listPageModules = function (username, nameOfPlanner, cb){
             else{
 		//data will be the array that store all of the data
 		var data = [];
-		var oneCB = 0;
 		if(arrayOfModules.length !== 0){
-	        for(var i = 0; i < arrayOfModules.length; i++){
-		  var pageModule = username + nameOfPlanner + 
-			arrayOfModules[i].module;
-		  db.collection(pageModule, function(err, moduleCollection){
-		     var cursor = moduleCollection.find();
-	             cursor.toArray(function(err, arrayOfData){
-           	       if(err){
-               	   	 console.log(err);
-            	       }
+		  var moduleExists = false;
+   		  //the following call backs are all nested inside of one another  
+		  db.collection(username + nameOfPlanner + 'Notes', 
+			function(err, notesCollection){
+		     var cursorNotes = notesCollection.find();
+	             cursorNotes.toArray(function(err, arrayOfNotes){
+           	       if(err){console.log(err);}
             	       else{
-			 data.push(arrayOfData);
-		       }
-		     if(i === arrayOfModules.length && oneCB === 0){
-                       cb(arrayOfModules, data);
-			oneCB++;
-                     }
-		    });		     
-		  });
-		}//for	
-		}
-		else{
-		  cb(arrayOfModules, data);
-		}
-	    }
-	  });
+			 for(var i = 0; i < arrayOfModules.length; i++){
+			   if('Notes' === arrayOfModules[i].module){
+				moduleExists = true;
+			   }
+			 }
+			 if(moduleExists === true){
+			   data.push(arrayOfNotes);
+			 }
+			 else{data.push(undefined);}
+		      }
+
+       		     //upcoming events
+  		     db.collection(username + nameOfPlanner + 'UpcomingEvents',
+                        function(err, upcomingCollection){
+                     var cursorUpcoming = upcomingCollection.find();
+		     cursorUpcoming.toArray(function(err, arrayOfUpcoming){
+                       if(err){console.log(err);}
+                       else{
+                         for(var i = 0; i < arrayOfModules.length; i++){
+                           if('UpcomingEvents' === arrayOfModules[i].module){
+                                moduleExists = true;
+                           }
+                         }
+                         if(moduleExists === true){
+                           data.push(arrayOfUpcoming);
+                         }
+			 else{data.push(undefined)}
+                       }
+
+		     //useful links
+		     db.collection(username + nameOfPlanner + 'UsefulLinks',
+                        function(err, linksCollection){
+                     var linksCursor = linksCollection.find();
+
+                     linksCursor.toArray(function(err, arrayOfLinks){
+                       if(err){console.log(err);}
+                       else{
+                         
+			 for(var i = 0; i < arrayOfModules.length; i++){
+			   if('UsefulLinks' === arrayOfModules[i].module){
+                                moduleExists = true;
+                           }
+                         }
+                         if(moduleExists === true){
+                           data.push(arrayOfLinks);
+                         }
+			 else{ data.push(undefined);}
+                       }
+
+		     //Budget
+		     db.collection(username + nameOfPlanner + 'Budget',
+                        function(err, budgetCollection){
+                     var budgetCursor = budgetCollection.find();
+
+                     budgetCursor.toArray(function(err, arrayOfBudget){
+                       if(err){console.log(err);}
+                       else{
+                         moduleExists = false;
+                         for(var i = 0; i < arrayOfModules.length; i++){
+                           if('Budget' === arrayOfModules[i].module){
+                                moduleExists = true;
+                           }
+                         }
+                         if(moduleExists === true){
+                           data.push(arrayOfBudget);
+                         }
+			 else{data.push(undefined);}
+                       }
+			cb(arrayOfModules, data);
+		    });
+		   });
+	    	  });
+	         });
+                });
+               });
+              });
+             });
+	   }//if
+	   else{
+	     cb(arrayOfModules, data);
+	   }
+	  }//else
        });
+    });
+}
+
+exports.removeModuleData = function(username, nameOfModule, pageModule, entry){
+  db.collection(username+nameOfModule+pageModule, function(err,
+	 moduleCollection){
+    if(!err){
+       if(pageModule === 'UsefulLinks'){
+         moduleCollection.remove({link: entry});
+       }
+       if(pageModule === 'UpcomingEvents'){
+	 moduleCollection.remove({month:entry[0], day:entry[1] , 
+		year:entry[2], time:entry[3] ,info: entry[4]}, 
+		function(err, numberOfRemovedDocs){
+	  if(err){console.log(err);}
+	});
+       }
+    }
+    else{}
+  });
+
 }
 
 exports.addPageModule = function(username, nameOfModule, newPageModule, cb){
@@ -222,9 +324,7 @@ exports.addPageModule = function(username, nameOfModule, newPageModule, cb){
 	  plannerCollection.insert({module: nameOfModule});
 	  db.createCollection(username+newPageModule+nameOfModule, 
 		function(error, newCollection){
-          //if(error){
-           // cb('Aww the collection wasnt made');
-          //}
+    
 	 
 	  cb(undefined);
          });
@@ -243,21 +343,17 @@ exports.addPageModule = function(username, nameOfModule, newPageModule, cb){
 //this should make sure that the module hasn't already been added   
 exports.addModuleData = function (username, nameOfModule, newPageModule, 
 	pageModuleData, cb) {
-  //db.open(function(err, db){
-   // if(!err){
-      db.collection(username+ nameOfModule,function(err, plannerCollection){
-	plannerCollection.insert({module: newPageModule});
         db.collection(username+ nameOfModule + newPageModule, 
 	  function(error, pageCollection){
         if(!error){
 
          //Do not need 'notes' or 'budget'
-	  if(newPageModule === 'upcoming events'){
+	  if(newPageModule === 'UpcomingEvents'){
 	    pageCollection.insert({month: pageModuleData[0], day: pageModuleData[1]
 		, year: pageModuleData[2], time: pageModuleData[3],
 		info: pageModuleData[4]});
 	  }
-	  if(newPageModule === 'useful links'){
+	  if(newPageModule === 'UsefulLinks'){
 	    pageCollection.insert({link: pageModuleData});
 	  }
 	  
@@ -265,30 +361,105 @@ exports.addModuleData = function (username, nameOfModule, newPageModule,
         else{
           cb(username + nameOfModule + newPageModule +' couldnt be accessed');
         }
-        });
       });
-   // }//if err
-   // else{
-   //   cb('Trouble opening database');
-   // }
-  //});  
 }
 
 //this should remove a specified pageModule and all data associated with it 
 exports.removePageModule = function (username, nameOfModule, pageModule){
-    //db.open(function(err, db){
-      //if(!err){
 	console.log(username+nameOfModule+pageModule);
         db.collection(username+nameOfModule,function(err, plannerCollection){
           plannerCollection.remove({module: pageModule});
+	console.log(username+nameOfModule+pageModule);
 	db.collection(username+nameOfModule+pageModule, function(err, 
 		plannerModule){
 	    plannerModule.drop(function(err){
 	    });
 	  });
 	});
-     // }
-   // });
 
 }
 
+exports.todoAdd = function(username, data, cb){
+  //NOTE: THIS IS STILL UNTESTED
+  //data will be an array of data that follows the same format
+  //of the array pageModuleData for upcoming events.
+  //We will callback a function for error checking and for the sorted array.
+  //When the data gives us the month, it'll be in string
+  //format, we'll deal with sorting by converting it to an
+  //int manually when we insert it into the database.
+  //Then proceed to sort by year first, then month, then day
+  //and then time. Obviously this'll have to sort by least to greatest.
+  //If we also include previously completed objectives in the todo list
+  //we'll add in a field called complete, 1 being finished, 0 meaning 
+  //not finished. If you wanted to make it more technical you can try
+  //to come up with a valid hash function to sort by one field instead of
+  //five. Hash functions including prime factorization, concatenating dates,
+  //adding dates together, etc. will not be valid for their own special
+  //reasons.
+  db.collection(username+'TODO', function(err, todo){
+    if(!err){
+      todo.insert({month: data[0], day: data[1], year: data[2], time: data[3],
+		  info: data[4], complete: 0});
+      var list = todo.find({}).sort({year:1, month:1, day:1});
+	  list.toArray(function(anotherError, sortedlist){
+	    if(!anotherError){
+	      cb(undefined, sortedlist);
+            }
+            else{
+              cb('Error converting to array', undefined);
+            }
+          });
+    }
+    else{
+      cb('Error opening the todo', undefined);
+    }
+  });
+}
+
+exports.todoRemove = function(username, entry, cb){
+ db.collection(username+'TODO',entry, function(err,
+         moduleCollection){
+    if(!err){
+      console.log(entry[0]+ ' ' + entry[1]+ ' ' + entry[2]+ ' ' + 
+entry[3]+ ' ' + entry[4]);
+       var round = Math.round;
+       var month = round(entry[0]);
+       var day = round(entry[1]);
+       var year = round(entry[2]); 
+       moduleCollection.remove({month:month, day:day, year:year,
+	time:entry[3], info:entry[4]},
+             function(err, numberOfRemovedDocs){
+          if(err){console.log(err);}
+       });
+       
+    }
+    else{}
+  });
+
+}
+
+exports.todoSorted = function(username, cb){
+  //NOTE: THIS IS STILL UNTESTED
+  //Gives a callback giving an error message, if any, and
+  //the sorted array. The difference between this function
+  //and the last is that this function does not add to
+  //the username+'TODO' collection it just sorts and gives
+  //it back to you. The callback format follows the same
+  //format as before: cb(error, array)
+  db.collection(username+'TODO', function(err, todo){
+    if(!err){
+      var list = todo.find({}).sort({year:1, month:1, day:1, time:1});
+	  list.toArray(function(anotherError, sortedlist){
+	    if(!anotherError){
+	      cb(undefined, sortedlist);
+            }
+            else{
+              cb('Error converting to array', undefined);
+            }
+          });
+    }
+    else{
+      cb('Trouble opening up TODO list', undefined);
+    }
+  });
+}
