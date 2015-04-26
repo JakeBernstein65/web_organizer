@@ -397,58 +397,10 @@ exports.todoAdd = function(username, data, cb){
   //reasons.
   db.collection(username+'TODO', function(err, todo){
     if(!err){
-      if(data[0] === 'January'){
-        todo.insert({month: 1, day: data[1], year: data[2], time: data[3],
-		   info: data[4], complete: 0});
-      }
-      else if(data[0] === 'Febuary'){
-	//Change this to 'February' once someone changes module.ejs
-        //dropdown to 'February'.
-        todo.insert({month: 2, day: data[1], year: data[2], time: data[3],
+     //console.log(typeof(data[1] === number));
+      todo.insert({month: data[0], day: data[1], year: data[2], time: data[3],
 		  info: data[4], complete: 0});
-      }
-      else if(data[0] === 'March'){
-	todo.insert({month: 3, day: data[1], year: data[2], time: data[3],
-		  info: data[4], complete: 0});
-      }
-      else if(data[0] === 'April'){
-	todo.insert({month: 4, day: data[1], year: data[2], time: data[3],
-		  info: data[4], complete: 0});
-      }
-      else if(data[0] === 'May'){
-	todo.insert({month: 5, day: data[1], year: data[2], time: data[3],
-		  info: data[4], complete: 0});
-      }
-      else if(data[0] === 'June'){
-	todo.insert({month: 6, day: data[1], year: data[2], time: data[3],
-		  info: data[4], complete: 0});
-      }
-      else if(data[0] === 'July'){
-	todo.insert({month: 7, day: data[1], year: data[2], time: data[3],
-		  info: data[4], complete: 0});
-      }
-      else if(data[0] === 'August'){
-	todo.insert({month: 8, day: data[1], year: data[2], time: data[3],
-		  info: data[4], complete: 0});
-      }
-      else if(data[0] === 'September'){
-	todo.insert({month: 9, day: data[1], year: data[2], time: data[3],
-		  info: data[4], complete: 0});
-      }
-      else if(data[0] === 'October'){
-	todo.insert({month: 10, day: data[1], year: data[2], time: data[3],
-		  info: data[4], complete: 0});
-      }
-      else if(data[0] === 'November'){
-	todo.insert({month: 11, day: data[1], year: data[2], time: data[3],
-		  info: data[4], complete: 0});
-      }
-      else if(data[0] === 'December'){
-	todo.insert({month: 12, day: data[1], year: data[2], time: data[3],
-		  info: data[4], complete: 0});
-      }
-      todo.find().sort({year:1, month:1, day:1, time:1}, function(error, list){
-	if(!error){
+      var list = todo.find({}).sort({year:1, month:1, day:1, time:1});
 	  list.toArray(function(anotherError, sortedlist){
 	    if(!anotherError){
 	      cb(undefined, sortedlist);
@@ -457,11 +409,6 @@ exports.todoAdd = function(username, data, cb){
               cb('Error converting to array', undefined);
             }
           });
-        }
-	else{
-	  cb('Trouble sorting', undefined);
-        }
-      });
     }
     else{
       cb('Error opening the todo', undefined);
@@ -479,8 +426,7 @@ exports.todoSorted = function(username, cb){
   //format as before: cb(error, array)
   db.collection(username+'TODO', function(err, todo){
     if(!err){
-      todo.find().sort({year:1, month:1, day:1, time:1}, function(error, list){
-	if(!error){
+      var list = todo.find({}).sort({year:1, month:1, day:1, time:1});
 	  list.toArray(function(anotherError, sortedlist){
 	    if(!anotherError){
 	      cb(undefined, sortedlist);
@@ -489,11 +435,6 @@ exports.todoSorted = function(username, cb){
               cb('Error converting to array', undefined);
             }
           });
-        }
-	else{
-	  cb('Trouble sorting', undefined);
-        }
-      });
     }
     else{
       cb('Trouble opening up TODO list', undefined);

@@ -25,14 +25,58 @@ router.get('/home', function(req, res, next) {
         //this will render the users home page and show all modules associated
   	//with this particular user such as cs 326 or cs 250 it will also
   	//show their to-do list
+         userlib.todoSorted(user.username, function(err, todo){
+           if(err){
+             res.redirect('/login');
+           }
+           else{
          userlib.listHomeModule(user.username, function(userHomeModules){       
 	 res.render('home', {title : 'Welcome to Plannit', username : 
-	user.username,  listOfModules : userHomeModules, error : errorMessage});
+	user.username,  listOfModules : userHomeModules, data: todo,
+        error : errorMessage});
         // todo : user.todo});
          });//END
-
+         }
+         });
     }
   
+});
+
+router.get('/todoAdd', function(req, res){
+  var user = req.session.user;
+  if(user === undefined){
+    res.redirect('/login');
+  }
+  else{
+    if(req.query.data === null){
+      //Add some flash messages in which not enough data or something.
+      res.redirect('/users/home');
+    }
+    else{
+      var arrayOfDates = [];
+      //arrayOfDates.push(req.query.Month);
+      //arrayOfDates.push(req.query.Day);
+      //arrayOfDates.push(req.query.Year);
+      //arrayOfDates.push(req.query.time);
+      //arrayOfDates.push(req.query.comment);
+      var round = Math.round; //This will be used to convert strings to int.
+      var month = round(req.query.Month);
+      var day = round(req.query.Day);
+      var year = round(req.query.Year);
+      var time = round(req.query.time);
+      arrayOfDates.push(month);
+      arrayOfDates.push(day);
+      arrayOfDates.push(year);
+      arrayOfDates.push(time);
+      arrayOfDates.push(req.query.comment);
+      userlib.todoAdd(user.username, arrayOfDates, function(err, list){
+        if(err){
+          console.log(err);
+        }
+      });
+      res.redirect('/users/home');
+    }
+  }
 });
 
 //this will call a function in userlib to add to the users home modules db
