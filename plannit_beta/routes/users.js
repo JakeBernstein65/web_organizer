@@ -11,6 +11,8 @@ router.get('/', function(req, res){
   res.redirect('/users/home');
 });
 
+//this will be eveyr users home page calling this route should render
+//the particular users home page
 router.get('/home', function(req,res){
 
   var user = req.session.user;
@@ -23,8 +25,9 @@ router.get('/home', function(req,res){
   
 }
 
-//this is the users home where all of the users planners and todo list will
-//be displayed
+//this should be called to get all of the data associated with the home page
+//the data includes the list of all courses a user has all of the data in the
+//todo list and any error messages associated with this page
 router.get('/homedata', function(req, res) {
   //this is used to check if user is online
   var user = req.session.user;
@@ -56,6 +59,8 @@ router.get('/homedata', function(req, res) {
   
 });
 
+//this should be called to remove indivdual entries from the todo list
+//the function expects the following data Month, Day, Year, Time, Info
 router.get('/todoRemove', function(req, res){
   var user = req.session.user;
   if(user === undefined){
@@ -73,6 +78,11 @@ router.get('/todoRemove', function(req, res){
   }
 });
 
+//this should be called whenever a user wants to add to their todo list
+//I send an error if they don't fill in the Info/Time fields
+//This fields expects the foloowing data Month, Day, Year, Info, Time
+//you should construct drop downs for Month, Day, Year so they always send
+//back a number the other two fields should just be text fields
 router.get('/todoAdd', function(req, res){
   var user = req.session.user;
   if(user === undefined){
@@ -104,7 +114,8 @@ router.get('/todoAdd', function(req, res){
   }
 });
 
-//this will call a function in userlib to add to the users home modules db
+//this should be called to add a new course like cs250 or cs326
+//it expects the name of the course as the variable name planner
 router.get('/addHomeModule', function(req, res){
   var user = req.session.user;
   if(user === undefined) {
@@ -123,8 +134,9 @@ router.get('/addHomeModule', function(req, res){
   }
 });
 
-//this will call a function in userlib to remove a module from the users
-//home modules db
+//this should be called to remove a specific course from the users homepage
+//It expects the name of the course to be removed as input the name of
+//which should be planner
 router.get('/removeHomeModule',function(req, res){
   var user = req.session.user;
   if(user === undefined) {
@@ -137,6 +149,11 @@ router.get('/removeHomeModule',function(req, res){
 });
 
 
+//this route should be called to add a module to a planners page such as
+//adding Notes to cs250. This function expects the name of the module to
+//be added under variable name Module. The names of modules that we can add
+//are Notes, Budget, UsefulLinks, and UpcomingEvents be sure to add only these
+//modules using these exact names
 router.get('/addPageModule', function(req,res){
 
 var redirected = false;
@@ -164,6 +181,9 @@ var user = req.session.user;
   }  
 });
 
+//This should be called when a user wants to remove one of the modules they 
+//added such as Notes or Budget. Make sure to pass in the correct module
+//names which are Notes, Budget, UpcomingEvents, and UsefulLinks
 router.get('/removePageModule', function(req, res){
   var user = req.session.user;
 
@@ -177,7 +197,14 @@ router.get('/removePageModule', function(req, res){
 });
 
 
-
+//This function should be called when you want to add a link or an upcoming
+//event. This function expects the name of the module we are adding to
+// so UsefulLinks or UpcomingEvents and then if the module is UsefulLinks
+// then the data it expects is simply the variable name data which is just 
+//the link. If Module equals UpcomingEvents then it expects the variables 
+//Month, Day, Year, Time, Info where like before Month, Day and Year should
+//be drop downs with the values being int approriate to the field its under
+//and Time and Info should be text fields
 router.get('/addModuleData', function(req,res){
   var user = req.session.user;
   if(user === undefined){
@@ -185,8 +212,10 @@ router.get('/addModuleData', function(req,res){
   }
   else {
      
-   if(req.body.data === null){
-      req.flash('moduleExists','no data entered');
+   if((req.body.Module === 'UsefulLinks' && req.body.data === undefined) || 
+	(req.body.Module === 'UpcomingEvents' && (req.body.Time === undefined ||
+	req.body.Info === undefined))){
+      req.flash('moduleExists','fill in all fields');
       res.redirect('/users/currentHomeModule');
    }
 
@@ -219,6 +248,10 @@ router.get('/addModuleData', function(req,res){
 
 });
 
+//this should be called to remove an entry from UsefulLinks or UpcomingEvents
+//It expects the variable Module which will be either UsefulLinks or 
+//UpcomingEvents and you can look at the function above to see what variables
+//it expects in each case
 router.get('/removeModuleData', function(req,res){
   var user = req.session.user;
   if(user === undefined){
@@ -244,6 +277,10 @@ router.get('/removeModuleData', function(req,res){
   }
 });
 
+
+//this should be called to edit the text in either Budget or Notes
+//This function expects two variables Module and comment. Module will
+//be either Notes or Budget. comment will be the text the user edited
 router.get('/editPageModule', function(req,res){
 
 var user = req.session.user;
@@ -261,6 +298,8 @@ var user = req.session.user;
   }
 });
 
+//this function should be called to render the specific module page
+//such as cs250's page
 router.get('/currentHomeModule', function(req,res)){
   var user = req.session.user;
 
@@ -273,8 +312,17 @@ router.get('/currentHomeModule', function(req,res)){
   
 });
 
-//this route will display the page for one of your planners like cs 326
-//it will render the module.ejs which will display 
+//this function should be called to get the information for the currentModules
+//page. It expects the variable planner when you are on your homepage
+//and click the link to a specfic planners page otherwise if the page
+//is being re-rendered then nothing needs to be passed in. The function
+//will give an error message, a list of all modules on the page
+//(listOfModules) and the data array that store all data for every module
+//(data). remember its a double array where the first array tells you
+// which module you are on such as Notes or Budget and the second array
+//will give the data so data[0][0].text will give you the text for Notes
+//You can look at the module.ejs file to see which index corresponds
+//to which module i know 0 is Notes but i'm uncertain as to the other ones  
 router.get('/currentHomeModuleData', function(req,res){
   var user = req.session.user;
   var errorMessage = req.flash('moduleExists') || '';
