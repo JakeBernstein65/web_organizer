@@ -8,6 +8,10 @@ router.get('/', function(req, res){
   res.redirect('/login');
 });
 
+router.get('/home', function(req, res){
+  res.redirect('/login');
+});
+
 router.get('/login', function(req, res) {
    var message = req.flash('auth') || '';
    var user = req.session.user;
@@ -15,9 +19,20 @@ router.get('/login', function(req, res) {
        res.redirect('/users/home');
      }
      else{
-       res.render('login', {title : 'Plannit', message: message});
+       res.sendFile('signin.html', { root: "public/views" });
      }
    
+});
+
+router.get('/signup', function(req, res) {
+  var message = req.flash('auth') || '';
+   var user = req.session.user;
+     if(user !== undefined){
+       res.redirect('/users/home');
+     }
+     else{
+       res.sendFile('signup.html', { root: "public/views" });
+     }
 });
 
 router.get('/logout', function(req, res){
@@ -33,30 +48,38 @@ router.get('/logout', function(req, res){
 
 });
 
-router.get('/login/auth', function(req, res){
-   if(req.query.username === "" || req.query.password === "" ||
-      req.query.username === undefined ||
-      req.query.password === undefined){
-     req.flash('auth', 'please fill in all fields');
-     res.redirect('/login');
+router.post('/login/auth', function(req, res){
+
+  console.log("ROUTER AUTH:\n"+req.body.name);
+  console.log(req.body.password);
+  //var userinfo = JSON.parse(req.body);
+
+  //console.log("ROUTER AUTH:\n"+userinfo);
+
+   if(req.body.name === "" || req.body.password === "" ||
+      req.body.name === undefined ||
+      req.body.password === undefined){
+     //req.flash('auth', 'please fill in all fields');
+     res.json({"code":"0"});
    }
 
    else{
-     userlib.isUser(req.query.username, function(err, user){
+     userlib.isUser(req.body.name, function(err, user){
 	if(err === undefined){
-	  if(req.query.password === user.password){
+	  if(req.body.password === user.password){
 	    req.session.user = user;
 	    res.redirect('/users/home');
 	  }
 	  else{
-	    req.flash('auth', 'incorrect password');
-	    res.redirect('/login');
+	    //req.flash('auth', 'incorrect password');
+	    res.json({"code":"0"});
 	  }
 	}
 	else{
 	  console.log(err);
-	  req.flash('auth', 'user does not exist');
-	  res.redirect('/login');
+	  //req.flash('auth', 'user does not exist');
+	  //res.redirect('/login');
+    res.json({"code":"0"});
 	}	
      });
    }
@@ -74,30 +97,31 @@ router.get('/login/newUser', function(req, res){
 //this will be called when the form has been filled out so that we can 
 //add a new user, this function should redirect to /users/home once the user
 //has been created otherwise send us back to newUser page
-router.get('/login/addNewUser', function(req, res){
-  if(req.query.username === "" || req.query.password === "" ||
-	req.query.verifyPassword === "" || req.query.email === ""){
-    req.flash('add', 'Please fill in all fields');
-    res.redirect('/login/newUser');
+router.post('/addNewUser', function(req, res){
+  if(req.body.name === "" || req.body.password === "" || req.body.repassword === "" || req.body.email === ""){
+    //req.flash('add', 'Please fill in all fields');
+    res.redirect('/signup');
   }
   else{
-    if(req.query.password !== req.query.verifyPassword){
-      req.flash('add', 'Passwords do not match');
-      res.redirect('/login/newUser');
+    if(req.query.password !== req.query.repassword){
+      //req.flash('add', 'Passwords do not match');
+      //res.redirect('/login/newUser');
+      res.json({"code":"0"});
     }
     else{
-      userlib.isUser(req.query.username, function(err){
+      userlib.isUser(req.body.name, function(err){
 	if(err === undefined){
-	  req.flash('add', 'user exists');
-	  res.redirect('/login/newUser');
+	  //req.flash('add', 'user exists');
+	  //res.redirect('/login/newUser');
+    res.json({"code":"1"});
  	}
 	else{
 	  
-	  userlib.addNewUser(req.query.username, req.query.password,
-		req.query.email, function(err, user){	  
+	  userlib.addNewUser(req.body.name, req.body.password,
+		req.body.email, function(err, user){	  
 	    if(err === undefined){
 	      req.session.user = user;
-       	      res.redirect('/users/home');
+       	res.redirect('/users/home');
 	    }
 	    else{
 	      req.flash('add', err);

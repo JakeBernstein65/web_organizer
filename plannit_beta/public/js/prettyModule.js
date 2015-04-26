@@ -1,15 +1,27 @@
 angular.module('Module', ['ngMaterial'])
+.factory('ModuleData', function($scope, $http){
+	var module = [[]];
+	$http.get('/route', {JSON}).success(function(data){
+		module = data;
+	});
+
+	Module.note = module[0][0].text;
+	Module.budget = module[3][0].text;
+	Module.usefulLinks = [];
+	for(var i = 0; i < module[2].length; i++) {
+		Module.usefulLinks[i] = module[2][i].link;
+	}
+	Module.upcomingEvents = [];
+	for(var j = 0; j < module[1].length; j++) {
+		Module.upcomingEvents[j].month = module[1].[j].month;
+		Module.upcomingEvents[j].day = module[1].[j].day;
+		Module.upcomingEvents[j].year = module[1].[j].year;
+		Module.upcomingEvents[j].time = module[1].[j].time;
+		Module.upcomingEvents[j].info = module[1].[j].info;
+	}	
+})
 .controller('AppCtrl', function($scope, $http) {
 
-	var vm = this;
-/*
-	$scope.clearValue = function() {
-    $scope.myModel = undefined;
-  };
-  $scope.save = function() {
-    alert('Form was valid!');
-  };
-*/
 	$scope.noteData = [];
 
   	$scope.saveNote = function(){
@@ -19,16 +31,7 @@ angular.module('Module', ['ngMaterial'])
 			body: $scope.body
 		});
 
-		//after our computer has been added, clean the form
-		//$scope.noteData = JSON.stringify($scope.noteData);
 		$http.post('/module/savenote', $scope.noteData)
-		/*$http({
-			method: 'POST',
-			url: '/module/savenote',
-			data: $scope.noteData,
-			headers: {'Content-Type': 'application/json'}
-		})*/
-
 		.success(function(data){
 			alert("success" + data);
 			$scope.hiddenNewNote = true;
