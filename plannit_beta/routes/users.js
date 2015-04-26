@@ -23,7 +23,7 @@ router.get('/home', function(req,res){
     res.sendFile('home.html', {root:"public/views"});
   }
   
-}
+});
  
 //this should be called to get all of the data associated with the home page
 //the data includes the list of all courses a user has all of the data in the
@@ -300,7 +300,7 @@ var user = req.session.user;
  
 //this function should be called to render the specific module page
 //such as cs250's page
-router.get('/currentHomeModule', function(req,res)){
+router.get('/currentHomeModule', function(req,res){
   var user = req.session.user;
  
   if(user === undefined) {
