@@ -1,0 +1,182 @@
+The following historical commit information, by author, was found in the
+repository:
+
+Author                     Commits    Insertions      Deletions    % of changes
+Jake                             4           407            220            0.32
+Lucas Meira                      8           196             43            0.12
+Raymond Zhu                     11           356            125            0.25
+Shaoxi Ma                        3           711             49            0.39
+mlydigsen                       28        185543           6157           98.91
+
+Below are the number of rows from each author that have survived and are still
+intact in the current revision:
+
+Author                     Rows       % in comments
+Jake Bernstein              420               14.05
+Lucas Meira                  93               10.75
+Matthew Lydigsen         362670               26.27
+Raymond Zhu                 189               14.81
+Shaoxi Ma                  1337               44.88
+
+The following history timeline has been gathered from the repository:
+
+Author                  2015W15    2015W16    2015W17 
+Jake                                             -+++ 
+Lucas Meira                              .          . 
+Raymond Zhu                              .          + 
+Shaoxi Ma                                .          . 
+mlydigsen             +++++++++  +++++++++   --++++++ 
+Modified Rows:            24679     166773       2355 
+
+The following files are suspiciously big (in order of severity):
+plannit_beta/node_modules/mongoose/node_modules/ms/test/support/jquery.js (8012 eloc)
+Plannit/node_modules/mongoose/node_modules/ms/test/support/jquery.js (8012 eloc)
+plannit_beta/node_modules/mongoose/node_modules/mongodb/node_modules/mongodb-core/node_modules/bson/browser_build/bson.js (3121 eloc)
+plannit_beta/node_modules/mongodb/node_modules/mongodb-core/node_modules/bson/browser_build/bson.js (3121 eloc)
+Plannit/node_modules/mongoose/node_modules/mongodb/node_modules/mongodb-core/node_modules/bson/browser_build/bson.js (3121 eloc)
+Plannit/node_modules/mongodb/node_modules/mongodb-core/node_modules/bson/browser_build/bson.js (3121 eloc)
+plannit_beta/node_modules/mongoose/node_modules/mquery/test/index.js (2853 eloc)
+Plannit/node_modules/mongoose/node_modules/mquery/test/index.js (2853 eloc)
+plannit_beta/node_modules/mongoose/node_modules/mongodb/node_modules/mongodb-core/node_modules/kerberos/node_modules/nan/nan.h (2168 eloc)
+plannit_beta/node_modules/mongoose/node_modules/mongodb/node_modules/mongodb-core/node_modules/bson/node_modules/nan/nan.h (2168 eloc)
+plannit_beta/node_modules/mongodb/node_modules/mongodb-core/node_modules/kerberos/node_modules/nan/nan.h (2168 eloc)
+plannit_beta/node_modules/mongodb/node_modules/mongodb-core/node_modules/bson/node_modules/bson-ext/node_modules/nan/nan.h (2168 eloc)
+Plannit/node_modules/mongoose/node_modules/mongodb/node_modules/mongodb-core/node_modules/kerberos/node_modules/nan/nan.h (2168 eloc)
+Plannit/node_modules/mongoose/node_modules/mongodb/node_modules/mongodb-core/node_modules/bson/node_modules/nan/nan.h (2168 eloc)
+Plannit/node_modules/mongodb/node_modules/mongodb-core/node_modules/kerberos/node_modules/nan/nan.h (2168 eloc)
+Plannit/node_modules/mongodb/node_modules/mongodb-core/node_modules/bson/node_modules/bson-ext/node_modules/nan/nan.h (2168 eloc)
+plannit_beta/node_modules/mongoose/node_modules/mongodb/node_modules/mongodb-core/node_modules/bson/tools/jasmine-1.1.0/jasmine.js (1875 eloc)
+Plannit/node_modules/mongoose/node_modules/mongodb/node_modules/mongodb-core/node_modules/bson/tools/jasmine-1.1.0/jasmine.js (1875 eloc)
+plannit_beta/node_modules/mongoose/lib/model.js (1621 eloc)
+Plannit/node_modules/mongoose/lib/model.js (1621 eloc)
+plannit_beta/node_modules/mongoose/node_modules/mpath/test/index.js (1612 eloc)
+Plannit/node_modules/mongoose/node_modules/mpath/test/index.js (1612 eloc)
+plannit_beta/node_modules/mongoose/node_modules/mquery/lib/mquery.js (1381 eloc)
+Plannit/node_modules/mongoose/node_modules/mquery/lib/mquery.js (1381 eloc)
+plannit_beta/node_modules/mongoose/lib/document.js (1361 eloc)
+Plannit/node_modules/mongoose/lib/document.js (1361 eloc)
+plannit_beta/node_modules/mongoose/lib/query.js (1301 eloc)
+Plannit/node_modules/mongoose/lib/query.js (1301 eloc)
+plannit_beta/node_modules/mongodb/node_modules/mongodb-core/node_modules/bson/node_modules/bson-ext/test/node/bson_test.js (1280 eloc)
+Plannit/node_modules/mongodb/node_modules/mongodb-core/node_modules/bson/node_modules/bson-ext/test/node/bson_test.js (1280 eloc)
+plannit_beta/node_modules/mongodb/lib/collection.js (1226 eloc)
+Plannit/node_modules/mongodb/lib/collection.js (1226 eloc)
+plannit_beta/node_modules/mongoose/node_modules/mongodb/lib/collection.js (1206 eloc)
+Plannit/node_modules/mongoose/node_modules/mongodb/lib/collection.js (1206 eloc)
+plannit_beta/node_modules/mongoose/node_modules/async/lib/async.js (1084 eloc)
+Plannit/node_modules/mongoose/node_modules/async/lib/async.js (1084 eloc)
+plannit_beta/node_modules/mongoose/node_modules/mquery/node_modules/bluebird/js/zalgo/promise.js (1055 eloc)
+plannit_beta/node_modules/mongoose/node_modules/mquery/node_modules/bluebird/js/main/promise.js (1055 eloc)
+Plannit/node_modules/mongoose/node_modules/mquery/node_modules/bluebird/js/zalgo/promise.js (1055 eloc)
+Plannit/node_modules/mongoose/node_modules/mquery/node_modules/bluebird/js/main/promise.js (1055 eloc)
+plannit_beta/node_modules/mongodb/lib/gridfs/grid_store.js (966 eloc)
+Plannit/node_modules/mongodb/lib/gridfs/grid_store.js (966 eloc)
+plannit_beta/node_modules/mongoose/node_modules/mongodb/lib/gridfs/grid_store.js (960 eloc)
+Plannit/node_modules/mongoose/node_modules/mongodb/lib/gridfs/grid_store.js (960 eloc)
+plannit_beta/node_modules/mongoose/node_modules/mongodb/node_modules/mongodb-core/node_modules/bson/lib/bson/bson.js (936 eloc)
+plannit_beta/node_modules/mongodb/node_modules/mongodb-core/node_modules/bson/lib/bson/bson.js (936 eloc)
+Plannit/node_modules/mongoose/node_modules/mongodb/node_modules/mongodb-core/node_modules/bson/lib/bson/bson.js (936 eloc)
+Plannit/node_modules/mongodb/node_modules/mongodb-core/node_modules/bson/lib/bson/bson.js (936 eloc)
+plannit_beta/node_modules/mongodb/lib/db.js (828 eloc)
+Plannit/node_modules/mongodb/lib/db.js (828 eloc)
+plannit_beta/node_modules/mongoose/node_modules/mongodb/lib/db.js (827 eloc)
+Plannit/node_modules/mongoose/node_modules/mongodb/lib/db.js (827 eloc)
+plannit_beta/node_modules/mongoose/node_modules/mongodb/node_modules/mongodb-core/lib/topologies/replset.js (826 eloc)
+plannit_beta/node_modules/mongodb/node_modules/mongodb-core/lib/topologies/replset.js (826 eloc)
+Plannit/node_modules/mongoose/node_modules/mongodb/node_modules/mongodb-core/lib/topologies/replset.js (826 eloc)
+Plannit/node_modules/mongodb/node_modules/mongodb-core/lib/topologies/replset.js (826 eloc)
+plannit_beta/node_modules/mongoose/node_modules/mongodb/node_modules/readable-stream/lib/_stream_readable.js (775 eloc)
+plannit_beta/node_modules/mongodb/node_modules/readable-stream/lib/_stream_readable.js (775 eloc)
+Plannit/node_modules/mongoose/node_modules/mongodb/node_modules/readable-stream/lib/_stream_readable.js (775 eloc)
+Plannit/node_modules/mongodb/node_modules/readable-stream/lib/_stream_readable.js (775 eloc)
+plannit_beta/node_modules/mongoose/node_modules/hooks-fixed/test.js (701 eloc)
+Plannit/node_modules/mongoose/node_modules/hooks-fixed/test.js (701 eloc)
+plannit_beta/node_modules/mongoose/node_modules/mongodb/node_modules/mongodb-core/lib/topologies/server.js (649 eloc)
+plannit_beta/node_modules/mongodb/node_modules/mongodb-core/lib/topologies/server.js (649 eloc)
+Plannit/node_modules/mongoose/node_modules/mongodb/node_modules/mongodb-core/lib/topologies/server.js (649 eloc)
+Plannit/node_modules/mongodb/node_modules/mongodb-core/lib/topologies/server.js (649 eloc)
+plannit_beta/node_modules/express/node_modules/path-to-regexp/test.js (616 eloc)
+Plannit/node_modules/express/node_modules/path-to-regexp/test.js (616 eloc)
+plannit_beta/node_modules/mongoose/lib/schema.js (615 eloc)
+Plannit/node_modules/mongoose/lib/schema.js (615 eloc)
+plannit_beta/node_modules/mongoose/node_modules/mongodb/node_modules/mongodb-core/lib/topologies/mongos.js (588 eloc)
+plannit_beta/node_modules/mongodb/node_modules/mongodb-core/lib/topologies/mongos.js (588 eloc)
+Plannit/node_modules/mongoose/node_modules/mongodb/node_modules/mongodb-core/lib/topologies/mongos.js (588 eloc)
+Plannit/node_modules/mongodb/node_modules/mongodb-core/lib/topologies/mongos.js (588 eloc)
+plannit_beta/node_modules/mongoose/lib/utils.js (558 eloc)
+Plannit/node_modules/mongoose/lib/utils.js (558 eloc)
+plannit_beta/node_modules/express/lib/response.js (552 eloc)
+Plannit/node_modules/express/lib/response.js (552 eloc)
+plannit_beta/node_modules/mongoose/node_modules/mpromise/test/promise.test.js (547 eloc)
+Plannit/node_modules/mongoose/node_modules/mpromise/test/promise.test.js (547 eloc)
+plannit_beta/node_modules/express/node_modules/send/index.js (534 eloc)
+Plannit/node_modules/express/node_modules/send/index.js (534 eloc)
+plannit_beta/node_modules/mongoose/node_modules/mongodb/node_modules/mongodb-core/node_modules/bson/lib/bson/bson_new.js (505 eloc)
+plannit_beta/node_modules/mongodb/node_modules/mongodb-core/node_modules/bson/lib/bson/bson_new.js (505 eloc)
+Plannit/node_modules/mongoose/node_modules/mongodb/node_modules/mongodb-core/node_modules/bson/lib/bson/bson_new.js (505 eloc)
+Plannit/node_modules/mongodb/node_modules/mongodb-core/node_modules/bson/lib/bson/bson_new.js (505 eloc)
+plannit_beta/node_modules/mongoose/node_modules/mongodb/node_modules/mongodb-core/node_modules/kerberos/node_modules/nan/nan_new.h (312 eloc)
+plannit_beta/node_modules/mongoose/node_modules/mongodb/node_modules/mongodb-core/node_modules/bson/node_modules/nan/nan_new.h (312 eloc)
+plannit_beta/node_modules/mongodb/node_modules/mongodb-core/node_modules/kerberos/node_modules/nan/nan_new.h (312 eloc)
+plannit_beta/node_modules/mongodb/node_modules/mongodb-core/node_modules/bson/node_modules/bson-ext/node_modules/nan/nan_new.h (312 eloc)
+Plannit/node_modules/mongoose/node_modules/mongodb/node_modules/mongodb-core/node_modules/kerberos/node_modules/nan/nan_new.h (312 eloc)
+Plannit/node_modules/mongoose/node_modules/mongodb/node_modules/mongodb-core/node_modules/bson/node_modules/nan/nan_new.h (312 eloc)
+Plannit/node_modules/mongodb/node_modules/mongodb-core/node_modules/kerberos/node_modules/nan/nan_new.h (312 eloc)
+Plannit/node_modules/mongodb/node_modules/mongodb-core/node_modules/bson/node_modules/bson-ext/node_modules/nan/nan_new.h (312 eloc)
+
+The following repsonsibilties, by author, were found in the current revision of
+the repository (comments are exluded from the line count, if possible):
+
+Jake Bernstein is mostly responsible for:
+    78 plannit_beta/routes/users.js
+    75 plannit_beta/public/js/prettyModule.js
+    48 plannit_beta/routes/login.js
+    36 plannit_beta/public/js/signup.js
+    30 plannit_beta/public/js/signin.js
+    26 plannit_beta/lib/user.js
+    13 plannit_beta/routes/mod.js
+     7 .../mongodb/node_modules/mongodb-core/node_modules/kerberos/lib/worker.cc
+     7 ...db/node_modules/mongodb-core/node_modules/kerberos/lib/win32/worker.cc
+     7 .../mongodb/node_modules/mongodb-core/node_modules/kerberos/lib/worker.cc
+
+Lucas Meira is mostly responsible for:
+    48 Plannit/routes/users.js
+    22 Plannit/lib/user.js
+     8 plannit_beta/routes/users.js
+     4 plannit_beta/lib/user.js
+     1 plannit_beta/routes/mod.js
+
+Matthew Lydigsen is mostly responsible for:
+  8012 plannit_beta/node_modules/mongoose/node_modules/ms/test/support/jquery.js
+  8012 Plannit/node_modules/mongoose/node_modules/ms/test/support/jquery.js
+  3121 ...godb/node_modules/mongodb-core/node_modules/bson/browser_build/bson.js
+  3121 ...godb/node_modules/mongodb-core/node_modules/bson/browser_build/bson.js
+  3121 ...godb/node_modules/mongodb-core/node_modules/bson/browser_build/bson.js
+  3121 ...godb/node_modules/mongodb-core/node_modules/bson/browser_build/bson.js
+  2853 plannit_beta/node_modules/mongoose/node_modules/mquery/test/index.js
+  2853 Plannit/node_modules/mongoose/node_modules/mquery/test/index.js
+  2168 ...node_modules/mongodb-core/node_modules/kerberos/node_modules/nan/nan.h
+  2168 ...odb/node_modules/mongodb-core/node_modules/bson/node_modules/nan/nan.h
+
+Raymond Zhu is mostly responsible for:
+    79 Plannit/lib/user.js
+    38 plannit_beta/lib/user.js
+    32 Plannit/routes/users.js
+     7 Plannit/routes/login.js
+     5 plannit_beta/routes/login.js
+
+Shaoxi Ma is mostly responsible for:
+   245 plannit_beta/public/js/angular.min-1.3.15.js
+   245 Plannit/public/js/angular.min-1.3.15.js
+    55 plannit_beta/public/js/angular-material.min-0.8.3.js
+    55 Plannit/public/js/angular-material.min-0.8.3.js
+    33 Plannit/routes/login.js
+    27 plannit_beta/public/js/angular-animate.min-1.3.15.js
+    27 Plannit/public/js/angular-animate.min-1.3.15.js
+    21 plannit_beta/public/js/prettyModule.js
+     7 plannit_beta/public/js/angular-aria.min-1.3.15.js
+     7 Plannit/public/js/angular-aria.min-1.3.15.js
+
+The extensions below were found in the repository history (extensions used
+during statistical analysis are marked):
+markdown LICENSE [cc] Makefile gypi md~ txt out log 1 json html save yml css ejs map coffee [js] gyp types md [c] d [h] mk patch sh svg opts 
