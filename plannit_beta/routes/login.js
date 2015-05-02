@@ -68,7 +68,8 @@ router.post('/login/auth', function(req, res){
 	if(err === undefined){
 	  if(req.body.password === user.password){
 	    req.session.user = user;
-	    res.redirect('/users/home');
+      res.json({"code":"200"});
+	    //res.redirect('/users/home');
 	  }
 	  else{
 	    //req.flash('auth', 'incorrect password');
@@ -120,12 +121,12 @@ router.post('/addNewUser', function(req, res){
 	  userlib.addNewUser(req.body.name, req.body.password,
 		req.body.email, function(err, user){	  
 	    if(err === undefined){
-	      req.session.user = user;
-       	res.redirect('/users/home');
+	      //req.session.user = user;
+       	res.redirect('/login');
 	    }
 	    else{
 	      req.flash('add', err);
-	      res.redirect('/login/newUser');
+	      res.redirect('/signup');
 	    }
 	  });
 	}

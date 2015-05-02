@@ -16,10 +16,13 @@ router.get('/', function(req, res){
 router.get('/home', function(req,res){
  
   var user = req.session.user;
+  console.log("/home: user is "+user);
   if(user === undefined) {
+      console.log("/home: user undefined");
       res.redirect('/login');
   }
   else{
+    console.log("/home: send home.html");
     res.sendFile('home.html', {root:"public/views"});
   }
   
