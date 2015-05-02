@@ -32,6 +32,11 @@ router.get('/homedata', function(req, res) {
   //this is used to check if user is online
   var user = req.session.user;
   var errorMessage = req.flash('error') || '';
+
+  if(req.body.mode !== "list") {
+    console.log("/homedata: mode !== list");
+    return;
+  }
  
   if(user === undefined) {
       res.redirect('/login');
@@ -144,7 +149,7 @@ router.get('/removeHomeModule',function(req, res){
   }
   else{
     userlib.removeHomeModule(user.username, req.body.planner);
-    res.redirect('/users/home');
+    res.redirect('/users/home');// res.json({"code":200});
   }
 });
  

@@ -21,7 +21,6 @@ signup.controller("SignupForm", function($scope,$http) {
 		console.log(user);
 		var userJSON = JSON.stringify(user);
 		console.log(userJSON);
-
 		$http.post('/addNewUser', userJSON)
 		.success(function(data) {
 			console.log("FORM: "+"200  "+data.code);

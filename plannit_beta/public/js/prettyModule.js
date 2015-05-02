@@ -1,4 +1,5 @@
 angular.module('Module', ['ngMaterial'])
+/*
 .factory('ModuleData', function($scope, $http){
 	var module = [[]];
 	$http.get('/route', {JSON}).success(function(data){
@@ -20,6 +21,7 @@ angular.module('Module', ['ngMaterial'])
 		Module.upcomingEvents[j].info = module[1].[j].info;
 	}	
 })
+*/
 .controller('AppCtrl', function($scope, $http) {
 
 	$scope.noteData = [];
