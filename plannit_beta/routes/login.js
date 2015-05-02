@@ -121,8 +121,9 @@ router.post('/addNewUser', function(req, res){
 	  userlib.addNewUser(req.body.name, req.body.password,
 		req.body.email, function(err, user){	  
 	    if(err === undefined){
-	      //req.session.user = user;
-       	res.redirect('/login');
+	      req.session.user = user;
+       	//res.redirect('/login');
+        res.json({"code":"200"});
 	    }
 	    else{
 	      req.flash('add', err);
