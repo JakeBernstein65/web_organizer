@@ -97,7 +97,7 @@ router.get('/login/newUser', function(req, res){
 //this will be called when the form has been filled out so that we can 
 //add a new user, this function should redirect to /users/home once the user
 //has been created otherwise send us back to newUser page
-router.get('/addNewUser', function(req, res){
+router.post('/addNewUser', function(req, res){
   if(req.body.name === "" || req.body.password === "" || req.body.repassword === "" || req.body.email === ""){
     //req.flash('add', 'Please fill in all fields');
     res.redirect('/signup');
