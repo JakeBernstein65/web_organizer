@@ -332,6 +332,14 @@ router.get('/currentHomeModule', function(req,res){
 //You can look at the module.ejs file to see which index corresponds
 //to which module i know 0 is Notes but i'm uncertain as to the other ones  
 router.get('/currentHomeModuleData', function(req,res){
+  
+ //var data = [[]];
+  //data[0][0].text = "hello";
+  //console.log("data" + data[0][0].text);
+  res.json({"data": "xxxxxx"});
+  //return;
+  
+  console.log("Hllloooo");
   var user = req.session.user;
   var errorMessage = req.flash('moduleExists') || '';
   

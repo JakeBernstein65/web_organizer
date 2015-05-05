@@ -1,12 +1,43 @@
-angular.module('Module', ['ngMaterial'])
-/*
-.factory('ModuleData', function($scope, $http){
+var myApp = angular.module('Module', ['ngMaterial'])
+
+myApp.factory('ModuleData', function($scope, $http, $location){
 	var module = [[]];
-	$http.get('/route', {JSON}).success(function(data){
+	var plannerType = $location.search().p;
+	$http.get('/currentHomeModuleData', {"planner": plannerType}).success(function(data){
 		module = data;
 	});
 
-	Module.note = module[0][0].text;
+	var service = {};
+
+	//gets notes
+	service.getNote = function() {
+		return module[0][0].text;
+	};
+	//get links
+	service.getLinks = function() {
+		var usefulLinks = [];
+	for(var i = 0; i < module[2].length; i++) {
+		usefulLinks[i] = module[2][i].link;
+		}
+			return usefulLinks;
+	};
+	//get budget
+	service.getBudget = function(){
+		return module[3][0].text;
+	};
+	
+	service.getEvents = function(){
+		var upcomingEvents = [];
+	for(var j = 0; j < module[1].length; j++) {
+		upcomingEvents[j].month = module[1][j].month;
+		upcomingEvents[j].day = module[1][j].day;
+		upcomingEvents[j].year = module[1][j].year;
+		upcomingEvents[j].time = module[1][j].time;
+		upcomingEvents[j].info = module[1][j].info;
+		}
+		return upcomingEvents;
+	};
+	/*
 	Module.budget = module[3][0].text;
 	Module.usefulLinks = [];
 	for(var i = 0; i < module[2].length; i++) {
@@ -20,9 +51,12 @@ angular.module('Module', ['ngMaterial'])
 		Module.upcomingEvents[j].time = module[1].[j].time;
 		Module.upcomingEvents[j].info = module[1].[j].info;
 	}	
-})
+
 */
-.controller('AppCtrl', function($scope, $http) {
+	return service;
+});
+
+myApp.controller('AppCtrl', function($scope, $http) {
 
 	$scope.noteData = [];
 
@@ -52,12 +86,12 @@ angular.module('Module', ['ngMaterial'])
 		
 	};
 
-})
+});
 
 //controller to edit notes
 
 
-.controller('EditNoteCtrl', function($scope, $http, $mdDialog) {
+myApp.controller('EditNoteCtrl', function($scope, $http, $mdDialog) {
 
 	 $scope.showAdvanced = function(ev) {
     $mdDialog.show({
@@ -72,22 +106,38 @@ angular.module('Module', ['ngMaterial'])
       });
   		};
   	
-	})
-
-.controller('NoteCardCtrl', function($scope, $http, $mdDialog) {
-	//$scope.noteCardHide = true;
-	$http.get('/users/currentHomeModuleData', {"a":"1"}).success(function(data){
-		$scope.noteBody = data.note;
 	});
-})
 
-.controller('EditCurrentNoteCtrl', function($scope, $http) {
+myApp.controller('NoteCardCtrl', function($scope, $http, $mdDialog) {
+	$http.get('/users/currentHomeModuleData', {"a":"1"}).success(function(data){
+		console.log("qwerr");
+		$scope.noteBody = data.data;
+	});
+});
+
+myApp.controller('EditCurrentNoteCtrl', function($scope, $http) {
 	$scope.noteCardHide = false;
 	$http.get('/users/currentHomeModuleData', {"a":"1"}).success(function(data){
 		console.log(data.note);
 		$scope.editNoteBody = data.note;
 	});
-})
+});
+//have to edit
+myApp.controller('BudgetCtrl', function($scope, $http) {
+	$scope.noteCardHide = false;
+	$http.get('/users/currentHomeModuleData', {"a":"1"}).success(function(data){
+		console.log(data.note);
+		$scope.editNoteBody = data.note;
+	});
+});
+//have to edit
+myApp.controller('LinksCtrl', function($scope, $http) {
+	$scope.noteCardHide = false;
+	$http.get('/users/currentHomeModuleData', {"a":"1"}).success(function(data){
+		console.log(data.note);
+		$scope.editNoteBody = data.note;
+	});
+});
 /*
 .controller('LinkCntrl', function($scope, $http){
 
@@ -122,7 +172,7 @@ angular.module('Module', ['ngMaterial'])
 
 	};
 
-}) */;
+}) */
 
 function DialogController($scope, $mdDialog) {
   $scope.hide = function() {
