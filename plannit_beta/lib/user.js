@@ -424,7 +424,7 @@ exports.todoRemove = function(username, entry, cb){
 exports.todoSorted = function(username, cb){
   db.collection(username+'TODO', function(err, todo){
     if(!err){
-      var list = todo.find({}).sort({year:1, month:1, day:1, time:1});
+      var list = todo.find({}).sort({year:1, month:1, day:1});
 	  list.toArray(function(anotherError, sortedlist){
 	    if(!anotherError){
 	      cb(undefined, sortedlist);
