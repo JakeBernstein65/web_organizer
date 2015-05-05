@@ -1,19 +1,19 @@
 
 //initialize mongodb and get the database of users
-//every user will have a username, password, email and a uid that we 
-//will set the value of
+//every user will have a username, password, email
 
 var mongo = require('mongodb');
-//var connection = new Mongo();
 var Server = mongo.Server;
 var Db = mongo.Db;
 var server = new Server('localhost', 27017, {auto_reconnect: true});
 var db = new Db('users', server);
+//this will open the connection to the database so that we can access
+//any collection in the users database
 db.open(function(err, db){
 });
 
-//this will confirm whether a user exists or not
 
+//this will confirm whether a user exists or not
 exports.isUser = function (username, cb){
     db.collection(username, function(err, user) {
       if(!err){
@@ -35,7 +35,7 @@ exports.isUser = function (username, cb){
 
 }
 
-//this should be called to add user to users database
+//this should be called to add a user to users database
 exports.addNewUser = function (username, password, email, cb){
       var user = {username : username, password: password, email : email};
       db.collection(username, function(error, userCollection){
@@ -51,6 +51,8 @@ exports.addNewUser = function (username, password, email, cb){
        cb(undefined, user);      
 }
 
+//this is called to get the current list of all home modules a user has
+//this could be cs250, cs326, ect...
 exports.listHomeModule = function(username, cb){
       db.collection(username+'HOME', function(err, collectionref){
 	if(!err){
@@ -68,7 +70,7 @@ exports.listHomeModule = function(username, cb){
 }
 
 //this should be called to add a database that will store all of the users
-//planners such as cs 326, cs 250 we should also verify that two
+//planners such as cs 326, cs250 we should also verify that two
 //planners of the exact same name haven't been added
 //We should take in a callback that just checks if an error occurred when
 //making a home module.
@@ -91,7 +93,7 @@ exports.addHomeModule = function (username, nameOfModule, cb) {
       });
 }	
 
-//this will remove a planner such as cs 326 and cs 250
+//this will remove a planner such as cs326 and cs250
 exports.removeHomeModule = function (username, nameOfModule) {
       db.collection(username+'HOME', function(err, homeCollection){
       db.collection(username+nameOfModule, function(err, planner){
@@ -122,11 +124,10 @@ exports.removeHomeModule = function (username, nameOfModule) {
      });
 }
 
-//this should be called to edit a pageModule with the new pageModule.
+//this should be called to edit the contents of either the notes or the
+//budget module. 
 exports.editPageModule = function (username, nameOfModule, pageModule,
         pageModuleData, cb){
-
-
 
       db.collection(''+username+ nameOfModule + pageModule,
         function(error, pageCollection){
@@ -166,32 +167,23 @@ exports.editPageModule = function (username, nameOfModule, pageModule,
 		cb(undefined);
 	    });
 
-
-/*            if(pageCollection.find() === null){
-              pageCollection.insert({text: pageModuleData});
-	    }
-            //Update text
-            else{
-              pageCollection.update({text: pageModuleData});
-	    }
-	    cb(undefined);*/
-
           }
 
         }//if error
         else{
           cb(username + nameOfModule + pageModule +' couldnt be accessed' + error);
         }
-      });
+      });//pageCollection
 }
 
    
-//this will return a list of all modules on a page for a planner and it
+//This will return a list of all modules on a page for a planner and it
 //will return the data associated with each module as well.
 //The list of page modules will be stored in one array and the other array
 //will store the associated data for each page module as an array  
-//THE DATA ARRAY WILL STORE THE MODULES IN THIS SPECFIED ORDER NOTES, UPCOMINGEVENTS,
-//USEFULLINKS, AND BUDGET. this means data[0] will be accessing the notes array
+//THE DATA ARRAY WILL STORE THE MODULES IN THIS SPECFIED ORDER NOTES, 
+//UPCOMINGEVENTS, USEFULLINKS, AND BUDGET. this means data[0] will be 
+//accessing the notes array
 exports.listPageModules = function (username, nameOfPlanner, cb){
        db.collection(username+ nameOfPlanner,function(err, plannerCollection){
 	  var cursor = plannerCollection.find();
@@ -298,6 +290,8 @@ exports.listPageModules = function (username, nameOfPlanner, cb){
     });
 }
 
+//This will remove an entry from either the UpcomingEvents or UsefulLinks 
+//modules
 exports.removeModuleData = function(username, nameOfModule, pageModule, entry){
   db.collection(username+nameOfModule+pageModule, function(err,
 	 moduleCollection){
@@ -318,6 +312,9 @@ exports.removeModuleData = function(username, nameOfModule, pageModule, entry){
 
 }
 
+//this is used to add to the list of modules a current users planner has
+//so in the collection matthewcs250 we could add Notes, UpcomingEvents,
+//budget, or UsefulLinks
 exports.addPageModule = function(username, nameOfModule, newPageModule, cb){
       db.collection(username+newPageModule, function(err, plannerCollection){
         if(!err){
@@ -340,7 +337,8 @@ exports.addPageModule = function(username, nameOfModule, newPageModule, cb){
 //to a user and one of their planners. The newPageModule will be the name of
 //the new database and the pageModuleData will be the data you store in that
 //newPageModule such as any notes you have or maybe a link. In addition,
-//this should make sure that the module hasn't already been added   
+//this should make sure that the module hasn't already been added.
+//the only modules you can edit here are UpcomingEvents and UsefulLinks   
 exports.addModuleData = function (username, nameOfModule, newPageModule, 
 	pageModuleData, cb) {
         db.collection(username+ nameOfModule + newPageModule, 
@@ -364,7 +362,9 @@ exports.addModuleData = function (username, nameOfModule, newPageModule,
       });
 }
 
-//this should remove a specified pageModule and all data associated with it 
+//this should remove a specified pageModule and all data associated with it
+//so if I removed Notes from cs250 then  i would delete the collection called
+//matthewcs250Notes and remove Notes from the collection matthewcs250 
 exports.removePageModule = function (username, nameOfModule, pageModule){
 	console.log(username+nameOfModule+pageModule);
         db.collection(username+nameOfModule,function(err, plannerCollection){
@@ -378,24 +378,8 @@ exports.removePageModule = function (username, nameOfModule, pageModule){
 	});
 
 }
-
+//this handles adding entries to a users todo list
 exports.todoAdd = function(username, data, cb){
-  //NOTE: THIS IS STILL UNTESTED
-  //data will be an array of data that follows the same format
-  //of the array pageModuleData for upcoming events.
-  //We will callback a function for error checking and for the sorted array.
-  //When the data gives us the month, it'll be in string
-  //format, we'll deal with sorting by converting it to an
-  //int manually when we insert it into the database.
-  //Then proceed to sort by year first, then month, then day
-  //and then time. Obviously this'll have to sort by least to greatest.
-  //If we also include previously completed objectives in the todo list
-  //we'll add in a field called complete, 1 being finished, 0 meaning 
-  //not finished. If you wanted to make it more technical you can try
-  //to come up with a valid hash function to sort by one field instead of
-  //five. Hash functions including prime factorization, concatenating dates,
-  //adding dates together, etc. will not be valid for their own special
-  //reasons.
   db.collection(username+'TODO', function(err, todo){
     if(!err){
       todo.insert({month: data[0], day: data[1], year: data[2], time: data[3],
@@ -416,12 +400,11 @@ exports.todoAdd = function(username, data, cb){
   });
 }
 
+//this removes entries from a users todo list
 exports.todoRemove = function(username, entry, cb){
  db.collection(username+'TODO',entry, function(err,
          moduleCollection){
     if(!err){
-      console.log(entry[0]+ ' ' + entry[1]+ ' ' + entry[2]+ ' ' + 
-entry[3]+ ' ' + entry[4]);
        var round = Math.round;
        var month = round(entry[0]);
        var day = round(entry[1]);
@@ -438,14 +421,9 @@ entry[3]+ ' ' + entry[4]);
 
 }
 
+//this is used to sort the todo list by date with the event coming up 
+//the soonest being put at the front of the list.
 exports.todoSorted = function(username, cb){
-  //NOTE: THIS IS STILL UNTESTED
-  //Gives a callback giving an error message, if any, and
-  //the sorted array. The difference between this function
-  //and the last is that this function does not add to
-  //the username+'TODO' collection it just sorts and gives
-  //it back to you. The callback format follows the same
-  //format as before: cb(error, array)
   db.collection(username+'TODO', function(err, todo){
     if(!err){
       var list = todo.find({}).sort({year:1, month:1, day:1, time:1});
