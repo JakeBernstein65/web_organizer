@@ -120,7 +120,7 @@ router.get('/todoAdd', function(req, res){
  
 //this should be called to add a new course like cs250 or cs326
 //it expects the name of the course as the variable name planner
-router.get('/addHomeModule', function(req, res){
+router.post('/addHomeModule', function(req, res){
   var user = req.session.user;
   if(user === undefined) {
      res.redirect('/login');
@@ -128,11 +128,12 @@ router.get('/addHomeModule', function(req, res){
   else{
     userlib.addHomeModule(user.username, req.body.planner, function(err){
    if(err === undefined){
-     res.redirect('/users/home');
+     res.json({"code": 200});
    }
    else{
-     req.flash('error', err);
-     res.redirect('/users/home');
+     //req.flash('error', err);
+     //res.redirect('/users/home');
+     res.json({"code": 0})
    }
     });
   }
