@@ -90,7 +90,7 @@ myApp.controller('AppCtrl', function($scope, $http) {
 
 //controller to edit notes
 
-
+/*
 myApp.controller('EditNoteCtrl', function($scope, $http, $mdDialog) {
 
 	 $scope.showAdvanced = function(ev) {
@@ -107,6 +107,7 @@ myApp.controller('EditNoteCtrl', function($scope, $http, $mdDialog) {
   		};
   	
 	});
+*/
 
 myApp.controller('NoteCardCtrl', function($scope, $http, $mdDialog) {
 	$http.get('/users/currentHomeModuleData', {"a":"1"}).success(function(data){
@@ -115,6 +116,15 @@ myApp.controller('NoteCardCtrl', function($scope, $http, $mdDialog) {
 	});
 });
 
+myApp.controller("ListofModulesCtrl", function($scope, $http) {
+	$scope.listofModules = [];
+	$http.get('/users/currentHomeModuleData').success(function(data){
+		//console.log(data.plannerList);
+		$scope.listofModules = data.currentHomeModuleData;
+	});
+});
+
+/*
 myApp.controller('EditCurrentNoteCtrl', function($scope, $http) {
 	$scope.noteCardHide = false;
 	$http.get('/users/currentHomeModuleData', {"a":"1"}).success(function(data){
@@ -122,6 +132,7 @@ myApp.controller('EditCurrentNoteCtrl', function($scope, $http) {
 		$scope.editNoteBody = data.note;
 	});
 });
+
 //have to edit
 myApp.controller('BudgetCtrl', function($scope, $http) {
 	$scope.noteCardHide = false;
@@ -131,15 +142,7 @@ myApp.controller('BudgetCtrl', function($scope, $http) {
 	});
 });
 //have to edit
-myApp.controller('LinksCtrl', function($scope, $http) {
-	$scope.noteCardHide = false;
-	$http.get('/users/currentHomeModuleData', {"a":"1"}).success(function(data){
-		console.log(data.note);
-		$scope.editNoteBody = data.note;
-	});
-});
-/*
-.controller('LinkCntrl', function($scope, $http){
+myApp.controller('LinkCntrl', function($scope, $http){
 
 	$scope.listOfLinks = [];
 
@@ -153,26 +156,29 @@ myApp.controller('LinksCtrl', function($scope, $http) {
 		//after our computer has been added, clean the form
 		//$scope.noteData = JSON.stringify($scope.noteData);
 		$http.post('/module/saveLink', $scope.listOfLinks)
-		/*$http({
+		$http({
 			method: 'POST',
 			url: '/module/savenote',
 			data: $scope.noteData,
 			headers: {'Content-Type': 'application/json'}
-		})*/
-/*
+		})
+
 		.success(function(data){
 			alert("success" + data);
 			return;
 
-		})
-		.error(function(){
+		});
 
+		.error(function(){
+			alert("error saving link!");
+			return;
 		});
 
 
 	};
 
-}) */
+})
+*/
 
 function DialogController($scope, $mdDialog) {
   $scope.hide = function() {
