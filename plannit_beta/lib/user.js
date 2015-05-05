@@ -366,10 +366,8 @@ exports.addModuleData = function (username, nameOfModule, newPageModule,
 //so if I removed Notes from cs250 then  i would delete the collection called
 //matthewcs250Notes and remove Notes from the collection matthewcs250 
 exports.removePageModule = function (username, nameOfModule, pageModule){
-	console.log(username+nameOfModule+pageModule);
         db.collection(username+nameOfModule,function(err, plannerCollection){
           plannerCollection.remove({module: pageModule});
-	console.log(username+nameOfModule+pageModule);
 	db.collection(username+nameOfModule+pageModule, function(err, 
 		plannerModule){
 	    plannerModule.drop(function(err){
