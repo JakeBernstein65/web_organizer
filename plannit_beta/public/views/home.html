@@ -18,7 +18,7 @@
 
 
     <!-- Header -->
-    <div ng-controller="TopHeader">
+    <div class="nav" ng-controller="TopHeader">
       <md-toolbar>
         <div class="md-toolbar-tools">
             <a href="/users/home" id="headerLogo">
@@ -36,68 +36,38 @@
     </div>
     <!-- Header END -->
     
-
+    <!-- Main START -->
     <div class="main" layout="column">
 
-      <!-- Welcome Msg -->
-      <div id="btn_addPlanner">
-        <h1>Welcome to Plannit!</h1>
+      <!-- Add btn -->
+      <div id="holder_addBtn" ng-controller="AddPlannerCtrl">
+        <form>
+          <span ng-bind="addMsg"></span>
+          <md-input-container md-no-float>
+            <md-icon md-svg-src="/img/ic_note_add_24px.svg" class="name ng-isolate-scope md-default-theme" aria-hidden="true"></md-icon>
+            <input ng-model="user.planner" type="text" ng-required="true"></input>
+          </md-input-container>
+          <md-button class="md-primary md-raised btn_addPlanner" ng-click="addPlanner(user.planner)">Add a Planner</md-button>
+        </form>
       </div>
-      <!-- Welcome Msg END -->
+      <!-- Add btn END -->
+
 
       <!-- Planner List -->
-      <div>
-        <md-card class="listPanel" ng-controller="PlannerListCtrl">
+      
+      <div ng-controller="PlannerListCtrl">
+        <md-card class="listPanel">
           <md-card class="innerCard" ng-repeat="x in planners">
-            <span>
-              <a ng-href="users/currentHomeModule?mod={{x}}">{{ x }}</a>
-            </span>
-            <span>
-              <md-button class="btn_removePlanner" ng-click="removePlanner(x)">
-                <md-icon md-svg-src="/img/ic_clear_24px.svg" class="ng-isolate-scope md-default-theme" aria-hidden="true"></md-icon>
-              </md-button>
-            </span>
+            <a ng-href="/users/currentHomeModule?mod={{x.planner}}">{{ x.planner }}</a>
           </md-card>
         </md-card>
       </div>
+      
       <!-- Planner List END -->
 
-      <!-- Login Panel -->  
-      <div>
-        <md-card class="signupPanel">
-          <div class="signupField" ng-controller="SignupForm">
-            <div id="errMsg" ng-bind="errMsg"></div>
-            </br>
-            <form name="loginForm">
-              <md-input-container md-no-float>
-                <md-icon md-svg-src="/img/ic_person_24px.svg" class="name ng-isolate-scope md-default-theme" aria-hidden="true"></md-icon>
-                <input ng-model="user.name" type="text" placeholder="Username" ng-required="true">
-              </md-input-container>
-              <md-input-container md-no-float>
-                <md-icon id="iconPass" md-svg-src="/img/ic_vpn_key_24px.svg"></md-icon>
-                <input ng-model="user.password" type="password" placeholder="Password" ng-required="true">
-              </md-input-container>
-              <md-input-container md-no-float>
-                <md-icon id="iconPass" md-svg-src=""></md-icon>
-                <input ng-model="user.repassword" type="password" placeholder="Re-enter the password" ng-required="true">
-              </md-input-container>
-              <md-input-container md-no-float>
-                <md-icon md-svg-src="/img/ic_email_24px.svg" class="email ng-isolate-scope md-default-theme" aria-hidden="true"></md-icon>
-                <input ng-model="user.email" type="email" placeholder="Email" ng-required="true">
-              </md-input-container>
-              <md-input-container id="btnContainer">
-                <md-button class="md-raised md-primary" id="signBtn" ng-click="processForm(user)" ng-disabled="isProcess">Sign Up</md-button>
-              </md-input-container>
-            </form>
-            </br>
-        </div>
-       
-      </md-card>
-      </div>
-      <!-- Login Panel END -->
 
     </div>
-    
+    <!-- Main END -->
     
   </body>
 </html>

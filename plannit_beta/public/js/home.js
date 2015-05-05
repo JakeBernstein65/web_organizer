@@ -4,20 +4,38 @@ home.controller("TopHeader", function($scope) {
 	
 });
 
-home.controller("PlannerListCtrl", function($scope,$http,$route) {
-	$scope.planners = {};
-	$http.get('/users/homedata', {"mode": "list"}).success(function(data){
-		if (data.plannerList !== undefined) {
-			$scope.planners = data.plannerList;
-		}
-	});
+home.controller("AddPlannerCtrl", function($scope, $http, $window, $timeout) {
+	$scope.addMsg = "Please add a Planner";
+	$scope.addPlanner = function(planner) {
 
-	$scope.removePlanner = function(planner) {
-		$http.post('/users/removeHomeModule', {"planner": planner})
-		.success(function(data) {
-			if (data.code === 200) {
-				$route.reload();
-			}
-		});
+		if (planner === undefined || planner === "") {
+			$scope.addMsg = "Please give a title to the planner";
+			return;
+		} else {
+			$http.post('/users/addHomeModule', {"planner": planner})
+			.success(function(data) {
+				if (data.code == 200) {
+					console.log("Planner added: " + data.code);
+					$timeout(function(){
+						$window.location.reload();
+					}, 2000);
+				} else {
+					console.log("Planner exists: " + data.code);
+					$timeout(function(){
+						$window.location.reload();
+					}, 2000);
+				}
+			});
+		}
 	};
 });
+
+home.controller("PlannerListCtrl", function($scope, $http) {
+	$scope.planners = [];
+	$http.get('/users/homedata').success(function(data){
+		//console.log(data.plannerList);
+		$scope.planners = data.plannerList;
+	});
+});
+
+

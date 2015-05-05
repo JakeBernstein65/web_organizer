@@ -36,11 +36,7 @@ router.get('/homedata', function(req, res) {
   var user = req.session.user;
   var errorMessage = req.flash('error') || '';
 
-  if(req.body.mode !== "list") {
-    console.log("/homedata: mode !== list");
-    return;
-  }
- 
+  
   if(user === undefined) {
       res.redirect('/login');
   }  
