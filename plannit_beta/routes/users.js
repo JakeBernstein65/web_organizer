@@ -52,10 +52,6 @@ router.get('/homedata', function(req, res) {
          userlib.listHomeModule(user.username, function(userHomeModules){       
       res.json({"err":errorMessage,"plannerList": userHomeModules, 
         "todo": todo});
-        // res.render('home', {title : 'Welcome to Plannit', username : 
-   //user.username,  listOfModules : userHomeModules, data: todo,
-        //error : errorMessage});
-        // todo : user.todo});
          });//END
          }
          });
@@ -170,14 +166,14 @@ var user = req.session.user;
     userlib.listPageModules(user.username, currentPlanner,
       function(listOfModule, data){
         for(var i = 0; i < listOfModule.length; i++){
-     if(listOfModule[i].module === req.body.Module){
-       req.flash('moduleExists','section already exists');
+     if(listOfModule[i].module === req.query.Module){
+       req.flash('moduleExists','Section already exists!');
        res.redirect('/users/currentHomeModule');
        redirected = true;
      }
    }     
     if(redirected === false){
-      userlib.addPageModule(user.username, req.body.Module, currentPlanner,
+      userlib.addPageModule(user.username, req.query.Module, currentPlanner,
         function(err){ console.log(err);});
  
       res.redirect('/users/currentHomeModule');
@@ -196,7 +192,7 @@ router.get('/removePageModule', function(req, res){
      res.redirect('/login');
   }
   else{
-    userlib.removePageModule(user.username, currentPlanner, req.body.Module);
+    userlib.removePageModule(user.username, currentPlanner, req.query.Module);
     res.redirect('/users/currentHomeModule');
   }
 });
@@ -216,30 +212,31 @@ router.get('/addModuleData', function(req,res){
     res.redirect('/login');
   }
   else {
-     
-   if((req.body.Module === 'UsefulLinks' && req.body.data === undefined) || 
-   (req.body.Module === 'UpcomingEvents' && (req.body.Time === undefined ||
-   req.body.Info === undefined))){
-      req.flash('moduleExists','fill in all fields');
+   console.log(req.query.Day + ' ' + req.query.Time + ' here ' + req.query.Module);  
+   if((req.query.Module === 'UsefulLinks' && req.query.data === undefined) || 
+   (req.query.Module === 'UpcomingEvents' && (req.query.Month === "undefined" ||
+   req.query.Day === "undefined" || req.query.Year === "undefined" ||
+   req.query.Time === "" || req.query.Info === ""))){
+      req.flash('upcomingError','Fill in all fields!');
       res.redirect('/users/currentHomeModule');
    }
  
    else{
-    if("UsefulLinks" === req.body.Module){
-      userlib.addModuleData(user.username, currentPlanner, req.body.Module, 
-      req.body.data, function(err){   
+    if("UsefulLinks" === req.query.Module){
+      userlib.addModuleData(user.username, currentPlanner, req.query.Module, 
+      req.query.data, function(err){   
       if(err){ 
         console.log(err);}
       }); 
     }
-    if("UpcomingEvents" === req.body.Module){
+    if("UpcomingEvents" === req.query.Module){
    var arrayOfEvent= [];
-   arrayOfEvent.push(req.body.Month);
-   arrayOfEvent.push(req.body.Day);
-   arrayOfEvent.push(req.body.Year);
-   arrayOfEvent.push(req.body.Time);
-   arrayOfEvent.push(req.body.Info);
-     userlib.addModuleData(user.username, currentPlanner, req.body.Module,
+   arrayOfEvent.push(req.query.Month);
+   arrayOfEvent.push(req.query.Day);
+   arrayOfEvent.push(req.query.Year);
+   arrayOfEvent.push(req.query.Time);
+   arrayOfEvent.push(req.query.Info);
+     userlib.addModuleData(user.username, currentPlanner, req.query.Module,
       arrayOfEvent, function(err){
       if(err){
         console.log(err);}
@@ -263,18 +260,18 @@ router.get('/removeModuleData', function(req,res){
      res.redirect('/login');
   }
   else{
-    if(req.body.Module === "UsefulLinks"){
-      userlib.removeModuleData(user.username, currentPlanner, req.body.Module,
+    if(req.query.Module === "UsefulLinks"){
+      userlib.removeModuleData(user.username, currentPlanner, req.query.Module,
    req.query.entry);
     }
     if(req.query.Module === "UpcomingEvents"){
       var arrayOfEvent = [];
-      arrayOfEvent.push(req.body.Month);
-      arrayOfEvent.push(req.body.Day);
-      arrayOfEvent.push(req.body.Year);
-      arrayOfEvent.push(req.body.Time);
-      arrayOfEvent.push(req.body.Info);
-     userlib.removeModuleData(user.username, currentPlanner, req.body.Module,
+      arrayOfEvent.push(req.query.Month);
+      arrayOfEvent.push(req.query.Day);
+      arrayOfEvent.push(req.query.Year);
+      arrayOfEvent.push(req.query.Time);
+      arrayOfEvent.push(req.query.Info);
+     userlib.removeModuleData(user.username, currentPlanner, req.query.Module,
         arrayOfEvent);     
      
     }
@@ -293,8 +290,8 @@ var user = req.session.user;
      res.redirect('/login');
   }
   else{    
-    userlib.editPageModule(user.username, currentPlanner, req.body.Module,
-   req.body.comment, function(err){
+    userlib.editPageModule(user.username, currentPlanner, req.query.Module,
+   req.query.comment, function(err){
       if(err){console.log(err);}
     });    
  
@@ -332,20 +329,13 @@ router.get('/currentHomeModule/:mod', function(req,res){
 //will give the data so data[0][0].text will give you the text for Notes
 //You can look at the module.ejs file to see which index corresponds
 //to which module i know 0 is Notes but i'm uncertain as to the other ones  
-router.get('/currentHomeModuleData', function(req,res){
+router.get('/currentHomeModule', function(req,res){
   
- //var data = [[]];
-  //data[0][0].text = "hello";
-  //console.log("data" + data[0][0].text);
-  res.json({"data": "xxxxxx"});
-  //return;
-  
-  console.log("Helloooo");
   var user = req.session.user;
   var errorMessage = req.flash('moduleExists') || '';
-  
-  if(currentPlanner === null || req.body.planner !== undefined){
-    currentPlanner = req.body.planner;
+  var upcomingError = req.flash('upcomingError') || '';
+  if(currentPlanner === undefined || req.query.mod !== undefined){
+    currentPlanner = req.query.mod;
   }
   //call this everytime to verify the user is logged in
   if(user === undefined) {
@@ -354,10 +344,11 @@ router.get('/currentHomeModuleData', function(req,res){
   else{
     userlib.listPageModules(user.username, currentPlanner,   
     function(listOfModule, data){  
-      res.json({"message": errorMessage,"listOfModules": listOfModule, 
-   "data": data});
-      //res.render('module', {planner : currentPlanner, 
-   //  listOfModules : listOfModule, data: data, message: errorMessage});
+   //   res.json({"message": errorMessage,"listOfModules": listOfModule, 
+   //"data" : data);
+      res.render('module', {planner : currentPlanner, 
+     listOfModules : listOfModule, data: data, message: errorMessage,
+	upcomingMessage: upcomingError});
     });
  
  
