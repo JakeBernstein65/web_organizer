@@ -301,23 +301,6 @@ var user = req.session.user;
   }
 });
  
-//this function should be called to render the specific module page
-//such as cs250's page
-router.get('/currentHomeModule/:mod', function(req,res){
-  var user = req.session.user;
- 
-  if(user === undefined) {
-    res.redirect('/login');
-  }
-  else{
-    if(req.params.mod !== undefined){
-    currentPlanner = req.params.mod;
-    }
-    console.log(currentPlanner);
-    res.sendFile('prettyModule.html', {root: "public/views"});
-  }
-  
-});
  
 //this function should be called to get the information for the currentModules
 //page. It expects the variable planner when you are on your homepage
