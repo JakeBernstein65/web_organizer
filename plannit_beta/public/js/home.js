@@ -30,12 +30,28 @@ home.controller("AddPlannerCtrl", function($scope, $http, $window, $timeout) {
 	};
 });
 
-home.controller("PlannerListCtrl", function($scope, $http) {
+home.controller("PlannerListCtrl", function($scope, $http, $timeout, $window) {
 	$scope.planners = [];
 	$http.get('/users/homedata').success(function(data){
 		//console.log(data.plannerList);
 		$scope.planners = data.plannerList;
 	});
+	$scope.removePlanner = function(planner) {
+		$http.post('/users/removeHomeModule', {"planner": planner})
+		.success(function(data){
+			if (data.code == 200) {
+					console.log("Planner removed: " + data.code);
+					$timeout(function(){
+						$window.location.reload();
+					}, 2000);
+				} else {
+					console.log("Planner remove failed: " + data.code);
+					$timeout(function(){
+						$window.location.reload();
+					}, 2000);
+				}
+		});
+	};
 });
 
 

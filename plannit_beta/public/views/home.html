@@ -58,7 +58,10 @@
       <div ng-controller="PlannerListCtrl">
         <md-card class="listPanel">
           <md-card class="innerCard" ng-repeat="x in planners">
+            <span>
             <a ng-href="/users/currentHomeModule?mod={{x.planner}}">{{ x.planner }}</a>
+            <md-button class="md-primary md-raised btn_remove" aria-label="{{x.planner}}" ng-click="removePlanner(x.planner)">Remove</md-button>
+            </span>
           </md-card>
         </md-card>
       </div>

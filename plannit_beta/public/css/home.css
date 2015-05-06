@@ -67,6 +67,17 @@ body {
   position: relative;
 }
 
+
+.innerCard {
+  width: 460px;
+  height: 40px;
+}
+
+.btn_remove {
+  margin: auto;
+  float: right;
+}
+
 #img_indexBack {
   width: 800;
   height: 400;

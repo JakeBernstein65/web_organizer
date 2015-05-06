@@ -138,14 +138,15 @@ router.post('/addHomeModule', function(req, res){
 //this should be called to remove a specific course from the users homepage
 //It expects the name of the course to be removed as input the name of
 //which should be planner
-router.get('/removeHomeModule',function(req, res){
+router.post('/removeHomeModule',function(req, res){
   var user = req.session.user;
   if(user === undefined) {
       res.redirect('/login');
   }
   else{
     userlib.removeHomeModule(user.username, req.body.planner);
-    res.redirect('/users/home');// res.json({"code":200});
+    //res.redirect('/users/home');
+    res.json({"code":200});
   }
 });
  
