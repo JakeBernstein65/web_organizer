@@ -38,11 +38,4 @@ components layed it out in a similar fashion. In addition, we followed the docum
 specification/layout exactly by including an external libraies, birds eyeview, and component
 breakdown sections. In each section we tied it to each other section, so that you would
 know how each section interacted with each other.
- 
-=======
-#Web Development project
 
-Web development projects based off of javascript, node.js, express, angular.js, and mongoDB
-
-Will post more detailed description once project is finished
->>>>>>> 396be555a02d113b02c829458ec0301dd73b82df
